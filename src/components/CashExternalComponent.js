@@ -23,8 +23,7 @@ var cookies = new Cookies();
 var Actions = require('../redux/actions/index');
 var CurrencyCode =  require('./shared/CurrencyFromCode');
 const ENV = require('../services/env-vars');
-var payment_backend_url = ENV.API_URL;
-// var payment_backend_url = "http://localhost:8006";
+var payment_backend_url = ENV.API_URL+'/api/v1/ps';
 //http://localhost:8006
 console.log(ENV);
 
