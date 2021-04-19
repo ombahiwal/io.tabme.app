@@ -72,8 +72,7 @@ function Process(subprop){
             cookies.remove('gastro', {path:'/'});
             cookies.set('gastro', qr.gastro,  {path: '/' })
         }else
-        return(<center><b>{t('restaurant_not_found')}
-        </b></center>);
+        return(<div><center><b>{t('restaurant_not_found')}</b></center></div>);
     }
 
     return (
