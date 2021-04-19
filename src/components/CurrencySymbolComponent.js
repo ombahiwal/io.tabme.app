@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const CurrencySymbol = (props)=> {
         // super(props);
         // this.state = ;
-    const [status, setState] = useState({symbol: ".."});
+    const [status, setState] = useState({symbol: "€"});
         // this.symbolChooser();
     const restaurant = useSelector(state=>state.restaurant);
     useEffect(()=>{        
@@ -90,7 +90,8 @@ const CurrencySymbol = (props)=> {
 
         // setState({symbol: currentSymbol});
         // console.log(status.symbol);
-        return symbols[country];
+
+        return country ? symbols[country] : "€";
     }
     
         return(<span>{status.symbol}</span>)

@@ -143,7 +143,7 @@ export default function RazorpayDialog(){
         pay_res:response,
         success:success
     });
-    const payment_record_response = await Axios.post(payment_backend_url+"/api/v1/ps/razorpay/tabmepayment", payment_obj).catch();
+    const payment_record_response = await Axios.post(payment_backend_url+"/razorpay/tabmepayment", payment_obj).catch();
     if(payment_record_response.data.success && success){
         // create order
             createOrder(orderinfo, payment_record_response.data.p_id);
@@ -246,7 +246,7 @@ export default function RazorpayDialog(){
             alert('razorpay sdk failed, are you online?');
             return
         }
-       await Axios.post(payment_backend_url+'/api/v1/ps/razorpay/order', {currency:orderinfo.cart.currency, amount:orderinfo.cart.totalCost, rz_acc_id:rz_acc_id}).then((t)=>{
+       await Axios.post(payment_backend_url+'/razorpay/order', {currency:orderinfo.cart.currency, amount:orderinfo.cart.totalCost, rz_acc_id:rz_acc_id}).then((t)=>{
             console.log(t.data);
             // setRazorpayOrderId(t.data.id)
             const options = {
