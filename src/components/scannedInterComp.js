@@ -11,7 +11,7 @@ const Actions  = require('../redux/actions/index');
 
 // const flag = false;
 function Process(subprop){
-    console.log(subprop);
+    // console.log(subprop);
     const [loading, setLoading] = useState(true);
     const [qr, setQr] = useState(false);
     const id = String(subprop.id).toLowerCase();  
@@ -26,7 +26,7 @@ function Process(subprop){
    useEffect(()=>{
        setTimeout(async ()=>{
         await DataService.getQRInfo({id:id, alias:id}).then((res)=>{
-            console.log(res.data);
+            // console.log(res.data);
             if(!qr){            
                 if(res.data.success){
                     setQr(res.data);
@@ -58,12 +58,12 @@ function Process(subprop){
                 var u = cookies.get('user');
                 if(user.email === null && u !== undefined){
                     dispatch(Actions.setUserSession(u));
-                    console.log('User set', u);
+                    // console.log('User set', u);
                 }else{
-                    console.log('User not Logged!');
+                    // console.log('User not Logged!');
                 }
             }catch(e){
-                console.log('Some Error related to User Login happened');
+                // console.log('Some Error related to User Login happened');
             }
             dispatch(Actions.setTableNumber(qr.table_number));
             dispatch(Actions.setRestaurant(qr.gastro));

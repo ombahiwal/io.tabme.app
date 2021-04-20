@@ -19,7 +19,7 @@ class RestaurantWelcome extends Component{
     constructor(props){
         super(props);
         if(props.restaurant._id === 'test'){
-            console.log('restaurant not set');
+            // console.log('restaurant not set');
             this.state = {user: this.props.user, redirect:{show:true, path:'/'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:false, loading:false, cookies_banner:{show:false} };
         }else{
             this.state = {user: this.props.user, redirect:{show:false, path:'/welcome'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:false, loading:false, showAlertSuccessPickup:false, cookies_banner:{show:false}};
@@ -33,7 +33,7 @@ class RestaurantWelcome extends Component{
     table_num = this.props.tablenum;
 
     componentDidMount(){
-        console.log(cookies.get('tabme_consent'));
+        // console.log(cookies.get('tabme_consent'));
         if(!cookies.get('tabme_consent')){
             this.setState({cookies_banner:{show:true}});
         }    
@@ -42,7 +42,7 @@ class RestaurantWelcome extends Component{
     acceptCookie(){
         let now = new Date();
         now.setDate(now.getDate() + 7);
-        console.log(now);
+        // console.log(now);
         // console.log('accept.');
         this.setState({cookies_banner:{show:false}});
         // Set cookie
@@ -50,7 +50,7 @@ class RestaurantWelcome extends Component{
     }
 
     rejectCookie(){
-        console.log('reject.');
+        // console.log('reject.');
         this.setState({cookies_banner:{show:false}, redirect:{show:true, path:'/'}});
     }
     renderHomePage(){

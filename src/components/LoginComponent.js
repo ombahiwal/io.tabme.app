@@ -34,7 +34,7 @@ class UserLogin extends Component{
         super(props);
         this.state = {redirect:"/login",status:false, alert:{show:false,variant:null}, response:null, loading:false};
         // console.log("Login Component Constructor Invoked!");
-        console.log(this.props.history);
+        // console.log(this.props.history);
     }
 
     handleSubmit = async (event) =>{
@@ -46,8 +46,8 @@ class UserLogin extends Component{
               
                 AuthService.login(this.email.value, this.pass.value)
                 .then( (response) => {
-                console.log(response.data);
-                
+                // console.log(response.data);
+                // 
                 
                 //Login Succeess
                     if(response.data.login){
@@ -76,7 +76,7 @@ class UserLogin extends Component{
                     }
 
               }).catch((err) => {
-                  console.log(err);
+                //   console.log(err);
                 this.setState({redirect:"/login" ,status:true, alert:{show:true, variant:"warning"}, response:"Some Error Occured! - Please try again later.", loading:false});
                 });
               

@@ -28,18 +28,18 @@ const AccountInfoList = props => {
                 props.loading(true);
                 var rsp = await AuthService.updateUserInfo(data);
                 if(rsp.data.success){
-                    console.log('Success : ' );
+                    // console.log('Success : ' );
                     cookies.remove('user', {path:'/'});
                     dispatch(Actions.setUserSession(rsp.data.user));
                     cookies.set('user', rsp.data.user, {path:'/'});                    
                 }else{
-                    console.log('Failed : ' );
+                    // console.log('Failed : ' );
                 }
                 props.setUpdate(false);
                 props.loading(false);
                 // console.log(rsp.data);
                 }catch(e){
-                    console.log(e);
+                    // console.log(e);
                 }
         }
         

@@ -17,7 +17,7 @@ class RestaurantPickup extends Component{
     constructor(props){
         super(props);
         if(props.restaurant._id === 'test'){
-            console.log('restaurant not set')
+            // console.log('restaurant not set')
             this.state = {user: this.props.user, redirect:{show:true, path:'/'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:false, loading:false };
         }else{
             this.state = {user: this.props.user, redirect:{show:false, path:'/r/delivery'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:true, loading:false };

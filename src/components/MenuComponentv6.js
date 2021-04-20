@@ -485,7 +485,7 @@ class Menu6 extends Component {
         this.setState({status:false});
         // Update redux store cart
         this.updateInStore(this.cart);
-        console.log(this.cart);
+        // console.log(this.cart);
         
     }
 

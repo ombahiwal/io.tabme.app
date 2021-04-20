@@ -25,7 +25,7 @@ var CurrencyCode =  require('./shared/CurrencyFromCode');
 const ENV = require('../services/env-vars');
 var payment_backend_url = ENV.API_URL+'/api/v1/ps';
 //http://localhost:8006
-console.log(ENV);
+// console.log(ENV);
 
 const CheckoutForm = () => {
   // const stripe = useStripe();
@@ -147,14 +147,14 @@ const CheckoutForm = () => {
       setShowAlertBillInfo(false);
     }else if(user.email === null){
       setShowAlertBillInfo(true);
-      console.log('Guest User');
+      // console.log('Guest User');
       return null
     }
 
     // Condition for Regular User
     if(user.email !== null){
       billInfoObj = user;
-      console.log('user is present', billInfoObj)
+      // console.log('user is present', billInfoObj)
     }
 
     //condition for delivery address
@@ -262,7 +262,7 @@ const CheckoutForm = () => {
                 email:String(billInfoObj.email)
             }});
             
-          console.log(response);
+          // console.log(response);
           if(response.data.success){
             // setShowAlertSuccess(true);
             // Paymenr Succeeded
@@ -273,10 +273,10 @@ const CheckoutForm = () => {
 
             // Create Order POST
             var OrderReq = await DataService.createOrder(OrderRequestData).then((response)=>{
-              console.log(response.data);
+              // console.log(response.data);
               return response.data;
             }).finally((obj, err) =>{
-              console.log(obj);
+              // console.log(obj);
             });
 
             if(!OrderReq.success){

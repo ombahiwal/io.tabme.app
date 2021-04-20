@@ -124,7 +124,7 @@ export default function PaypalCheckout(props) {
         },
         api_resp:paymentData
       });      
-      console.log(response);
+      // console.log(response);
       if(response.data.success){
         // setShowAlertSuccess(true);
         // Paymenr Succeeded
@@ -135,10 +135,10 @@ export default function PaypalCheckout(props) {
 
         // Create Order POST
         var OrderReq = await DataService.createOrder(OrderRequestData).then((response)=>{
-          console.log(response.data);
+          // console.log(response.data);
           return response.data;
         }).finally((obj, err) =>{
-          console.log(obj);
+          // console.log(obj);
         });
 
         if(!OrderReq.success){

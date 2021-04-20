@@ -46,7 +46,7 @@ class Cart extends Component {
         this.renderPaymentOptions = this.renderPaymentOptions.bind(this);
         this.showRazorpay = this.showRazorpay.bind(this);
         this.setCartLoading = this.setCartLoading.bind(this);
-        console.log('ispaypal', (this.props.restaurant.info && this.props.restaurant.payment_methods.includes('paypal') && this.props.restaurant.info.paypal_client_id));
+        // console.log('ispaypal', (this.props.restaurant.info && this.props.restaurant.payment_methods.includes('paypal') && this.props.restaurant.info.paypal_client_id));
     }
 
     payment_options = [
@@ -228,7 +228,7 @@ class Cart extends Component {
         this.cart.dishes.find((dish, i)=>{
             if(cartdish.dish_id === dish.dish_id){
                 // Dish found in cart
-                console.log('dish found in cart', dish);
+                // console.log('dish found in cart', dish);
                     // dish has options, +dc,  optionset,
                     if(this.cart.dishes[i].optionSets[optionset_idx].option_dish_count > 0 && this.cart.dishes[i].dishCount>0){
                         this.cart.dishes[i].optionSets[optionset_idx].option_dish_count +=1;
@@ -259,7 +259,7 @@ class Cart extends Component {
         this.setState({status:true});
         // Update redux store cart
         this.updateInStore(this.cart);
-        console.log(this.cart);
+        // console.log(this.cart);
         
     }
 

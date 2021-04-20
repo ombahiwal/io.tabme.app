@@ -21,7 +21,7 @@ Leaflet.Icon.Default.imagePath =
 '../node_modules/leaflet';
 
 function Process(subprop){
-    console.log(subprop);
+    // console.log(subprop);
     const [loading, setLoading] = useState(true);
     // const [qr, setQr] = useState(false);
     // const user = useSelector(state => state.user);

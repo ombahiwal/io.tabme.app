@@ -84,10 +84,10 @@ export default function RazorpayDialog(){
 
         // Create Order POST
         var OrderReq = await DataService.createOrder(OrderRequestData).then((response)=>{
-          console.log(response.data);
+          // console.log(response.data);
           return response.data;
         }).finally((obj, err) =>{
-          console.log(obj);
+          // console.log(obj);
         });
 
         if(!OrderReq.success){
@@ -188,14 +188,14 @@ export default function RazorpayDialog(){
       setShowAlertBillInfo(false);
     }else if(user.email === null){
       setShowAlertBillInfo(true);
-      console.log('Guest User');
+      // console.log('Guest User');
       return
     }
 
     // Condition for Regular User
     if(user.email !== null){
       billInfoObj = user;
-      console.log('user is present', billInfoObj)
+      // console.log('user is present', billInfoObj)
     }
     // Stage Order Object
 
@@ -236,18 +236,18 @@ export default function RazorpayDialog(){
             rz_acc_id = restaurant.info.razorpay_account_id;
           } 
         }
-        console.log(rz_acc_id);
+        // console.log(rz_acc_id);
 
-        console.log(orderinfo);
+        // console.log(orderinfo);
         const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js').catch((e)=>{
-          console.log(e);
+          // console.log(e);
         });
         if(!res){
             alert('razorpay sdk failed, are you online?');
             return
         }
        await Axios.post(payment_backend_url+'/razorpay/order', {currency:orderinfo.cart.currency, amount:orderinfo.cart.totalCost, rz_acc_id:rz_acc_id}).then((t)=>{
-            console.log(t.data);
+            // console.log(t.data);
             // setRazorpayOrderId(t.data.id)
             const options = {
                 "key": __DEV__ ?  ENV.RZ_PK_TEST :  ENV.RZ_PK_LIVE , // The Key ID generated from the Dashboard
@@ -359,7 +359,7 @@ export default function RazorpayDialog(){
               }
     
             }catch(e){
-              console.log('Some Error related to User Login happened');
+              // console.log('Some Error related to User Login happened');
             }
       }
     

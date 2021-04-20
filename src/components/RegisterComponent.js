@@ -66,18 +66,18 @@ class Register extends Component{
                     this.setState({redirect:"/register", status:true, alert:{show:true, variant:"danger"}, response:"Password doesn't match, Please check the entered passwords and confirm..."});                
 
                 }else if(this.fname.value==="" && this.lname.value ==="" && this.pass1.value==="" && this.address.value ==="" && this.region.value === "" && this.country.value ===null && this.city.value===null && this.zip.value===""){
-                    console.log("something in the form is empty");
+                    // console.log("something in the form is empty");
                     this.setState({redirect:"/register", status:true, alert:{show:true, variant:"danger"}, response:"Some fields are missing, Please Fill-in the form completely."});                
                 }else{
-                console.log(usercred);
+                // console.log(usercred);
                 
               AuthService.register(usercred)
               .then( (response) => {            
-                console.log(response.data);
+                // console.log(response.data);
                 
                 //Creation Success
                     if(response.data.created){ 
-                        console.log(response.data.created);
+                        // console.log(response.data.created);
                         // Display  Success
                         this.setState({redirect:null, status:true, success:true, email:this.email.value,alert:{show:true, variant:"success"}, response:response.data.response});
                         // Redirect to the Home Page
@@ -87,13 +87,14 @@ class Register extends Component{
                         this.setState({redirect:"/register" ,status:true, alert:{show:true, variant:"danger"}, response:response.data.response, success:false, email:this.email.value});
                         // Display Error Message using BS component Alert
                     }            
-              }).catch((err) => {console.log(err)
+              }).catch((err) => {
+                //   console.log(err)
                 this.setState({redirect:"/register" ,status:true, alert:{show:true, variant:"warning"}, response:"Some Error Occured! - Please try again later."});
                 });
               
             //   console.log(response);
             }}catch(error){
-                console.log(error);
+                // console.log(error);
             }
         
       };

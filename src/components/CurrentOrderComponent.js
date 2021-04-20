@@ -83,17 +83,17 @@ function Process(subprop){
         if(order._id === null){
                 try{
                     order = cookies.get('current_order');
-                    console.log(order);
+                    // console.log(order);
                     if(order._id && order !== undefined){
                         dispatch(Actions.setOrder(order)); 
                     }
                     
-                    console.log(order);
+                    // console.log(order);
                 }catch(e){
-                    console.log(e, 'cookie not set');
+                    // console.log(e, 'cookie not set');
                 }
             }else{
-                console.log('get cookies');
+                // console.log('get cookies');
                 cookies.remove('current_order', {path:'/'});
                 cookies.set('current_order', order,  {path:'/'});
             }

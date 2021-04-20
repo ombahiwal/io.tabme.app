@@ -65,7 +65,7 @@ class AppInner extends Component{
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(prevProps.restaurant, this.props);
+        // console.log(prevProps.restaurant, this.props);
         try{
           if(prevProps.restaurant.country !== this.props.restaurant.country)
             this.setState({locale:countryToLocales(this.props.restaurant.country)});

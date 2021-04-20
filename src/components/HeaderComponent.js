@@ -29,7 +29,14 @@ function Heading(props) {
   const goBack = () =>{
     // props.history.push('/sbakery');
     // props.history.replace('https://checkout.stripe.com/pay', [{pathname:'/menu'}]);
-    console.log(location.pathname);
+    // console.log(location.pathname);
+    if(location.pathname.includes('stripe')){
+        setRedirect({ state:false});
+        setRedirect({to:"/cart", state:true});
+    }else if(location.pathname.includes('cart')){
+      setRedirect({ state:false});
+        setRedirect({to:"/menu6", state:true});
+    }else
     switch(location.pathname){  
       case '/order/current':
         setRedirect({ state:false});
