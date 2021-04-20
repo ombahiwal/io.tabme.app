@@ -40,7 +40,7 @@ function Process(subprop){
     var markers_req; 
     setLoading(true);
        setTimeout(async ()=>{            
-             markers_req =  await axios.post(ENV.API_URL+'/api/dev/map/restaurants',{});
+             markers_req =  await axios.post(ENV.API_URL+'/api/v1/ds/dev/map/restaurants',{});
              setMarkers(markers_req.data.restaurants);
              setLoading(false);
        }, 0);  
