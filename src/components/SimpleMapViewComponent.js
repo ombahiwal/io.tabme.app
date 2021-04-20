@@ -80,7 +80,7 @@ function Process(subprop){
                                     <Popup>
                                         <center>
                                         <a target="_blank" rel="noopener noreferrer" href={`${ENV.APP_URL}/${mark.alias}-1`}>
-                                        <Image src={`${ENV.CDN_URL}/user_public_assets/${mark._id}.png`}/>
+                                        <Image src={`${ENV.CDN_URL}/user_public_assets/logos/${mark._id}.png`}/>
                                         <br/>
                                         {mark.rname}</a>
                                         </center>
