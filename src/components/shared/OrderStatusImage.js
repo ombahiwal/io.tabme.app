@@ -37,7 +37,7 @@ return(<ImageHolder>
         </RestaurantLogo>
 
     <OverlayStatusImage>
-        {(props.order.status === 'Completed' || props.order.status === 'Served') && <Image2 src={`${ENV.CDN_URL}"/app-public-assets/green-tick.png`}/>}
+        {(props.order.status === 'Completed' || props.order.status === 'Served') && <Image2 src={`${ENV.CDN_URL}/app-public-assets/green-tick.png`}/>}
     </OverlayStatusImage>
     </ImageHolder>);
 }

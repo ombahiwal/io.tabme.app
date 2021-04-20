@@ -73,7 +73,7 @@ function Process(subprop){
     // const id = subprop.id;  
     // const user = useSelector(state => state.user);
     // const restaurant = useSelector(state=>state.restaurant);
-
+    const ENV = require('../services/env-vars');
     var order = useSelector(state=>state.order);
     const dispatch = useDispatch();
     
@@ -329,7 +329,7 @@ function Process(subprop){
             <div className="row">
             <div className="col-7"> 
             <br/>
-            <a target="_blank" rel="noopener noreferrer" href={`https://www.tabme.info/user_invoices/${order._id}.pdf`}>
+            <a target="_blank" rel="noopener noreferrer" href={`${ENV.CDN_URL}/user_invoices/${order._id}.pdf`}>
             <Button variant="outline-dark" size="small" >
                 <b>{t('order_receipt_btn')}</b>
             </Button>
