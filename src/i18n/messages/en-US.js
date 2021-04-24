@@ -130,5 +130,7 @@ export default {
     'cookie_policy':"Cookie Policy",
     'cart_promo_valid':"Applied!",
     'cart_promo_invalid':"Invalid!",
+    'pickup_msg_addr':"Pickup between {opening}-{closing} Hours at {address} {zip} {city}",
+    'India':"India"
   },
 };

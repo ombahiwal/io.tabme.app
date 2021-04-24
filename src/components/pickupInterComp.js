@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState} from 'react';
 import { Redirect} from "react-router-dom";
 // import Button from 'react-rainbow-components';
@@ -6,7 +5,7 @@ import LoadingOverlay from 'react-loading-overlay';
 import DataService from '../services/data-service';
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'universal-cookie';
-import t from '../i18n/translate';
+// import t from '../i18n/translate';
 const cookies = new Cookies();
 const Actions  = require('../redux/actions/index');
 
@@ -65,9 +64,8 @@ function Process(subprop){
             cookies.remove('gastro', {path:'/'});
         }else{
             setLoading(false);
-            return(<center><b>{t('restaurant_not_found')}</b></center>);
+            // return(<center><b>{t('restaurant_not_found')}</b></center>);
         }
-        
     }
 
     return (

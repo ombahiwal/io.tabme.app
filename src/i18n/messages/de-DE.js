@@ -131,5 +131,7 @@ export default {
     'cookie_policy':"Cookie-Richtlinie",
     'cart_promo_valid':"Angewendet!",
     'cart_promo_invalid':"Ungültig!",
+    'pickup_msg_addr':"Abholung zwischen {opening}-{closing} Uhr an der {address} {zip} {city}",
+    'Germany' : "Deutschland"
   },
 };
