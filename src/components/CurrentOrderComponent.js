@@ -225,7 +225,7 @@ function Process(subprop){
                         
                         {order.status === 'Received' && <><br/><h5><b>{t('order_current_state_msg_placed')} <br/></b></h5></>}
                         {/* {order.status !== 'Received' && <h5><b>Your Order is {order.status}.</b></h5>} */}
-                        {(!pickup.status && order.status !== 'Cancelled' ) &&  <small>{t('order_current_keep')}</small>}
+                        {/* {(!pickup.status && order.status !== 'Cancelled' ) &&  <small>{t('order_current_keep')}</small>} */}
                         {pickup.status &&  <small> {t('order_current_state_msg_pickup',{estimate:pickup.estimate})}</small>}
                         
                     </center>
