@@ -78,8 +78,8 @@ export default function PaypalCheckout(props) {
 
   async function initiateTabmeOrder(paymentData){
     props.cartLoading(true, 'Payment Successful!');
-    // console.log(paymentData, 'Parent');
-    var shipping_address = paymentData.details.purchase_units[0].shipping;
+    console.log(paymentData, 'Parent');
+    var shipping_address = paymentData.details.purchase_units[0].shipping.address;
     shipping_address = shipping_address.address_line_1+ " "+shipping_address.postal_code;
     var billInfoObj;
     setBilluserinfo(paymentData.data.payment_id);

@@ -5,6 +5,7 @@ const cartReducer = (cart={
     taxlabel:"included",
     taxpercent:0,
     tax:0,
+    deliveryCharge:0,
     discountpercent:0,
     promo:0,
     tip:0,
