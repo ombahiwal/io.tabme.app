@@ -216,7 +216,7 @@ function Process(subprop){
             <div className="col-7 d-flex"> 
             <div className="ml-auto"><h5><b>{t(order.status)}</b></h5></div> 
             </div>
-            </div>
+            </div> 
 
             <div className="row">
             <div className="col-5"> 

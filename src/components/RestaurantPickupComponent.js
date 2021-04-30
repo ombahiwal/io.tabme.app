@@ -80,7 +80,7 @@ class RestaurantPickup extends Component{
         
         <div className="register-form col-12 no-padding-float-left background-white">
         
-        <center>
+        {this.props.restaurant._id !=='test' && <center>
             {/* <h4>Welcome!</h4><hr/> */}
             {/* <Image className="restaurant-logo-img-welcome" fluid="true" src={"https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/"+this.props.restaurant._id+".png"} rounded/> */}
             <MenuBanner restaurant={this.props.restaurant}/>
@@ -92,7 +92,10 @@ class RestaurantPickup extends Component{
                         <Form.Label>
                             <h5><b>{t('welcome_order_for_pickup')}</b></h5>
                             {/* <small>{t('pickup_msg_time', {time:this.props.restaurant.pickup_time})}</small> */}
-                            <small>{t('pickup_msg_addr', {zip:this.props.restaurant.zip, address:this.props.restaurant.address, city:this.props.restaurant.city, opening:this.props.restaurant.time_opening, closing:this.props.restaurant.time_closing})} {t(this.props.restaurant.country)}</small>
+                            { this.props.restaurant.info.pickup.pickup_address.length <5 && <small>{t('pickup_msg_addr', {zip:this.props.restaurant.zip, address:this.props.restaurant.address, city:this.props.restaurant.city, opening:this.props.restaurant.time_opening, closing:this.props.restaurant.time_closing})} {t(this.props.restaurant.country)}</small>}
+                            <small>{this.props.restaurant.info.pickup.pickup_msg}</small><br/>
+                            <small>{this.props.restaurant.info.pickup.pickup_address}</small>
+                            
                         </Form.Label><br/>
                         {!this.state.showAlertSuccess && this.state.showTableNumIn && <b><Form.Control min="1" className="table-num-checkin" onChange={this.changetablenum} style={{display:"block"}} variant="outline-success" type="number" inline/> </b> }
                     </FormGroup>
@@ -108,8 +111,10 @@ class RestaurantPickup extends Component{
                     <b>{t('restaurant_closed_msg')}</b>
                 </>}
                 
-                {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
-           </center>
+                
+                
+           </center>}
+           {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
            <span>
      <TnC/>
     </span>

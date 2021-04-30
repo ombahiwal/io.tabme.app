@@ -9,6 +9,7 @@ import {Button, FormGroup, Form} from 'react-bootstrap'
 import {Link} from 'react-router-dom';
 import t from '../i18n/translate';
 import TnC from './shared/TnCFoot';
+import CurrencySymbol from './CurrencySymbolComponent';
 // const cookies = new Cookies();
 
 var Action = require('../redux/actions/index');
@@ -76,7 +77,9 @@ class RestaurantPickup extends Component{
         }
         */
        return(
-        <Button as={Link} to="/menu6" className="welcome-btn" variant="outline-success styled-btn-outline-blue"><b>{t('continue_menu_btn')}</b></Button>
+        <><Button as={Link} to="/menu6" className="welcome-btn" variant="outline-success styled-btn-outline-blue"><b>{t('continue_menu_btn')}</b></Button>
+            {this.props.restaurant.info.delivery.delivery_fee > 0 && <small> <br/><b>{t('delivery_charge_label')} <CurrencySymbol/> {this.props.restaurant.info.delivery.delivery_fee} </b></small>}
+        </>
         );
     }
     render(){
@@ -100,8 +103,9 @@ class RestaurantPickup extends Component{
                         <Form.Label>
                             <h5><b>{t('welcome_order_for_delivery')}</b></h5>
                             {/* <b>Once you place your order, it will be set for delivery in approx. {this.props.restaurant.pickup_time}mins*<br/><small>*(preparation time may vary)</small> </b> */}
+                            <small>{this.props.restaurant.info.delivery.delivery_msg}</small><br/>
                         </Form.Label><br/>
-                    
+                        {/* <small>{this.props.restaurant.info.delivery.delivery_fee}</small> */}
                         {!this.state.showAlertSuccess && this.state.showTableNumIn && <b><Form.Control min="1" className="table-num-checkin" onChange={this.changetablenum} style={{display:"block"}} variant="outline-success" type="number" inline/> </b> }
                     </FormGroup>
                     

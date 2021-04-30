@@ -132,6 +132,7 @@ export default {
     'cart_promo_valid':"Angewendet!",
     'cart_promo_invalid':"Ungültig!",
     'pickup_msg_addr':"Abholung zwischen {opening}-{closing} Uhr an der {address} {zip} {city}",
-    'Germany' : "Deutschland"
+    'Germany' : "Deutschland",
+    'delivery_charge_label':"Liefergebühr",
   },
 };

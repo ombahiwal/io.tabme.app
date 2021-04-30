@@ -61,9 +61,8 @@ class Cart extends Component {
         { name: '10%', value: 0.10 },
         { name: '15%', value: 0.15 },
       ];
-    
+      
     cart = this.props.cart;
-
     current_dish_optionset = [];
     current_dish_count = 0;
     cart_current_dish = {
@@ -351,10 +350,16 @@ class Cart extends Component {
         // this.cart. 
         // Make Final Total
         // this.cart.tax = ((this.cart.cartTotal * this.cart.taxpercent)/100);
+        
+        // Delivery Fee
+        if(this.cart.tablenum === -2 && this.props.restaurant.info.delivery.delivery_fee){
+            this.cart.delivery_fee = parseFloat(this.props.restaurant.info.delivery.delivery_fee);
+        }
+
         this.cart.tax = 0;
         this.cart.promo = ((this.cart.cartTotal * this.cart.discountpercent) / 100);
         this.cart.tip = this.cart.cartTotal * this.state.tip;
-        this.cart.totalCost = this.cart.tip + this.cart.cartTotal + this.cart.tax - this.cart.promo;
+        this.cart.totalCost = this.cart.tip + this.cart.cartTotal + this.cart.tax + this.cart.delivery_fee - this.cart.promo ;
         this.props.updateCartInStore(this.cart);
         this.setState({status:true});
     }
@@ -428,6 +433,12 @@ class Cart extends Component {
                     <div className="col-6"><hr/></div>
                     <div className="col-3"><center><small><CurrencySymbol/>{this.props.cart.cartTotal.toFixed(2)}</small></center></div>
                 </div>
+                { this.props.cart.delivery_fee > 0 &&
+                <div className="row">
+                    <div className="col-3"><small>{t('delivery_charge_label')}</small></div>
+                    <div className="col-6"><hr/></div>
+                    <div className="col-3 no-padding-float-right"><center><small><CurrencySymbol/> {this.cart.delivery_fee.toFixed(2)}</small></center></div>
+                </div> }
                 <div className="row">
                     <div className="col-3">
                     <small>{t('cart_tip')} 
@@ -450,6 +461,7 @@ class Cart extends Component {
                 </div>
                     <div className="col-3 no-padding-float-right"><center><small><CurrencySymbol/>{this.cart.promo.toFixed(2)}</small></center></div>
                 </div>
+               
                 {/* 
                 <div className="row">
                     <div className="col-4"><small>Taxes ({this.props.cart.taxlabel})</small></div>
