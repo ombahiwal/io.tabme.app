@@ -385,7 +385,7 @@ class Cart extends Component {
     renderTipButtons(){
         //   console.log(this.state.tip);
           return (<ButtonGroup toggle style={{width:'100%'}}>
-          {this.radios.forEach((radio, idx) => (    
+          {this.radios.map((radio, idx) => (    
           <ToggleButton
           size="sm"
               key={idx}
@@ -444,11 +444,7 @@ class Cart extends Component {
                     <small>{t('cart_tip')} 
                         &nbsp;
                     </small></div>
-                    <div className="col-6"> 
-                    {/* <InputGroup style={{width:'100%'}}>
-                    <Badge variant="secondary" onClick={()=>{ this.onChangeTip(0.05)}}>5%</Badge>&nbsp;
-                    <Badge variant="success" onClick={()=>{ this.onChangeTip(0.10)}}>10%</Badge>&nbsp;<Badge variant="secondary" onClick={()=>{ this.onChangeTip(0.15)}}>15%</Badge>
-                    </InputGroup> */}
+                    <div className="col-6">  
                         {this.renderTipButtons()}
                     </div>
                     <div className="col-3"><center><small><CurrencySymbol/>{this.cart.tip.toFixed(2)}</small></center></div>
