@@ -91,7 +91,7 @@ const AccountInfoList = props => {
 
               <Form.Group>
               <FormattedMessage id="label_phone" defaultMessage="Phone Number">
-                    {(placeholder)=>    <Form.Control defaultValue={user.phone} name="phone" type="number"  placeholder={placeholder} />}
+                    {(placeholder)=> <Form.Control defaultValue={user.phone} name="phone" type="tel"  placeholder={placeholder} />}
                 </FormattedMessage>
                   <Form.Text className="text-muted">
                     {t('label_phone')}
