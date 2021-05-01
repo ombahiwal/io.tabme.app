@@ -19,7 +19,7 @@ class App extends Component{
     this.state = {
       counter:0,
       state : false,
-      locale:'en-us'
+      locale:'de-de'
     };
     // console.log(props.restaurant)
     ReactGA.initialize('UA-90856241-1');

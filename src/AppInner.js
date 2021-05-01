@@ -56,7 +56,7 @@ class AppInner extends Component{
     this.state = {
       counter:0,
       state : false,
-      locale:'en-us'
+      locale:'de-de'
     };
 
     // console.log(props.restaurant)
