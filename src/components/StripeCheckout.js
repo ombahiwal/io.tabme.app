@@ -140,7 +140,9 @@ export default function StripeCheckout(props) {
                     discountpercent:0,
                     promo:0,
                     tip:0,
-                    totalCost:0
+                    totalCost:0,
+                    delivery_fee:0
+                    
                 }));
                 cookies.remove('cart', {path:'/'});
                   setLoadingText('Order Verified!');
