@@ -134,5 +134,6 @@ export default {
     'pickup_msg_addr':"Abholung zwischen {opening}-{closing} Uhr an der {address} {zip} {city}",
     'Germany' : "Deutschland",
     'delivery_charge_label':"Liefergebühr",
+    'guest_form_security_message':"Wir geben Ihre Informationen nicht an Dritte weiter. Wir gewährleisten angemessene Sicherheitsmaßnahmen, um Ihnen das beste Kundenerlebnis zu bieten."
   },
 };

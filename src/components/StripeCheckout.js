@@ -394,6 +394,11 @@ export default function StripeCheckout(props) {
                   </Form>
                   <div className="col-12">
                     <Link to="/login"><i><small>{t('register_link2')}</small></i></Link>
+                    <Form.Text className="text-muted">
+                            <small> 
+                              {t('guest_form_security_message')}
+                            </small>
+                            </Form.Text>
                   </div>
                   <br/>
                   {showAlertBillInfo && <Alert variant="warning">{t('payment_msg_bill_info')}</Alert>}

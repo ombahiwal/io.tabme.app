@@ -433,8 +433,7 @@ const CheckoutForm = () => {
                                 {(placeholder)=><Form.Control ref={node => (billInfo.phone = node)} name="phone" min="0" type="tel" placeholder={placeholder} required/>}
                             </FormattedMessage>
                             </InputGroup>
-                            <Form.Text className="text-muted">
-                            </Form.Text>
+                            
                         </Form.Group>
 {/* Condition for Delivery  */}
                         {tablenum === -2 && 
@@ -458,8 +457,13 @@ const CheckoutForm = () => {
                   </Form>
                   <div className="col-12">
                     <Link to="/login"><i><small>{t('register_link2')}</small></i></Link>
+                    <Form.Text className="text-muted">
+                            <small> 
+                              {t('guest_form_security_message')}
+                            </small>
+                            </Form.Text>
                   </div>
-                  <br/>
+
                   {showAlertBillInfo && <Alert variant="warning">{t('payment_msg_bill_info')}</Alert>}
 
                 </div>

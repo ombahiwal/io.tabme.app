@@ -132,6 +132,7 @@ export default {
     'cart_promo_invalid':"Invalid!",
     'pickup_msg_addr':"Pickup between {opening}-{closing} Hours at {address} {zip} {city}",
     'India':"India",
-    'delivery_charge_label':"Delivery Charge"
+    'delivery_charge_label':"Delivery Charge",
+    'guest_form_security_message':" We do not share your information with any third parties. We ensure appropriate security measures to provide you the best customer experience."
   },
 };

@@ -11,7 +11,7 @@ import CurrencySymbol from './CurrencySymbolComponent';
 import {Redirect, Link} from 'react-router-dom';
 import LoadingOverlay from 'react-loading-overlay';
 import DataService from '../services/data-service';
-
+// const t = require('../i18n/index')
 var cookies = new Cookies();
 var Actions = require('../redux/actions/index');
 // var CurrencyCode =  require('./shared/CurrencyFromCode');
@@ -363,6 +363,11 @@ export default function RazorpayDialog(){
                       </Form>
                       <div className="col-12">
                         <Link to="/login"><i><small>Login or Register to tabme</small></i></Link>
+                        <Form.Text className="text-muted">
+                            <small> 
+                              We do not share your information with any third parties. We ensure appropriate security measures to provide you the best customer experience.
+                            </small>
+                            </Form.Text>
                     </div>
                     <br/>
                       {showAlertBillInfo && <Alert variant="warning">Please check the Billing info.</Alert>}
