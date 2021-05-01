@@ -86,6 +86,7 @@ function Process(subprop){
                     // console.log(order);
                     if(order._id && order !== undefined){
                         dispatch(Actions.setOrder(order)); 
+                        cookies.remove('current_order', {path:'/'});
                     }
                     
                     // console.log(order);

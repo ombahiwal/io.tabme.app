@@ -268,6 +268,9 @@ const CheckoutForm = () => {
           if(response.data.success){
             // setShowAlertSuccess(true);
             // Paymenr Succeeded
+              cookies.remove('current_order');
+              cookies.remove('current_order', {path:'/'});
+
             setLoadingText('Sending Order!');
             
             // Set Payment Info
@@ -293,7 +296,7 @@ const CheckoutForm = () => {
               dispatch(Actions.setOrder(OrderReq.order));
                //  & Remove Current Order 
                
-               cookies.remove('current_order');
+              cookies.remove('current_order');
               cookies.remove('current_order', {path:'/'});
               cookies.set('current_order', OrderReq.order,  {path:'/'});
               // Refresh or Clear Cart
