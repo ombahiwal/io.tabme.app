@@ -63,7 +63,8 @@ export default function RazorpayDialog(){
     lname:"",
     email:"",
     phone:"",
-    address:""
+    address:"",
+    phone_code:"",
   }
 
   useEffect(()=>{
@@ -168,7 +169,7 @@ export default function RazorpayDialog(){
       fname:billInfo.fname.value,
       lname:billInfo.lname.value,
       email:billInfo.email.value,
-      phone:billInfo.phone.value,
+      phone:billInfo.phone_code.value+billInfo.phone.value,
       guest:true
     }
     
@@ -344,7 +345,18 @@ export default function RazorpayDialog(){
                                 </Form.Text>
                             </Form.Group>
                             <Form.Group controlId="formBasicEmail">
-                                <Form.Control ref={node => (billInfo.phone = node)} name="email" min="0" type="number" placeholder="Phone Number" required/>
+                            <InputGroup>
+                        <InputGroup.Prepend>
+                        <Form.Control defaultValue={"+91"} ref={node => (billInfo.phone_code = node)} as="select" name="phone_code">
+                        <option value="+49">+49</option>
+                        <option value="+44">+44</option>
+                        <option value="+91">+91</option>
+                        </Form.Control>
+                        </InputGroup.Prepend>
+
+                                <Form.Control ref={node => (billInfo.phone = node)} name="phone" min="0" type="tel" placeholder="Phone Number" required/>
+                            
+                            </InputGroup>
                                 <Form.Text className="text-muted">
                                 </Form.Text>
                             </Form.Group>

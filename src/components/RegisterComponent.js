@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import axios from 'axios';
 import {connect} from 'react-redux';
-import {Form, Button, Alert} from 'react-bootstrap';
+import {Form, Button, Alert, InputGroup} from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 import AuthService from '../services/auth.service';
 // import { setState } from 'expect/build/jestMatchersObject';
@@ -53,7 +53,7 @@ class Register extends Component{
                         lname:this.lname.value,
                         email:this.email.value,
                         password:this.pass2.value,
-                        phone:this.phone.value,
+                        phone:this.phone_code.value+this.phone.value,
                         address:this.address.value,
                         city:this.city.value, 
                         zip:this.zip.value,
@@ -165,6 +165,16 @@ class Register extends Component{
                         </Form.Group>
 
                  
+                        <InputGroup>
+                        <InputGroup.Prepend>
+                        <Form.Control defaultValue={"+49"} ref={node => (this.phone_code = node)} as="select" name="phone_code">
+                        <option value="+49">+49</option>
+                        <option value="+44">+44</option>
+                        <option value="+91">+91</option>
+                        </Form.Control>
+                        </InputGroup.Prepend>
+                            <Form.Control ref={node => (this.phone = node)} name="phone" min="0" type="tel" placeholder={'Phone Number'} required/>
+                            </InputGroup>
 
                         <Form.Group>
                             <Form.Control ref={node => (this.address = node)} name="address" type="text" placeholder="Address Line, Street " required />

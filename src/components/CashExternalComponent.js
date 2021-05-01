@@ -58,7 +58,8 @@ const CheckoutForm = () => {
     email:"",
     phone:"",
     address:"",
-    zip:""
+    zip:"",
+    phone_code:""
   }
 
   useEffect(()=>{
@@ -86,17 +87,18 @@ const CheckoutForm = () => {
   const handleSubmit = async (event) =>{
     event.preventDefault();
     // console.log(event)
-
+    
     var billInfoObj = {
         fname:billInfo.fname.value,
         lname:billInfo.lname.value,
         email:billInfo.email.value,
-        phone:billInfo.phone.value,
+        phone:billInfo.phone_code.value+billInfo.phone.value,
         address:billInfo.address.value,
         zip:billInfo.zip.value,
         guest:true
       }; 
-    
+      // console.log(billInfoObj);
+      // return;
     // Alles Conditions (Bendigungen)
 
     // For delivery
@@ -105,7 +107,7 @@ const CheckoutForm = () => {
         fname:billInfo.fname.value,
         lname:billInfo.lname.value,
         email:billInfo.email.value,
-        phone:billInfo.phone.value,
+        phone:billInfo.phone_code.value+billInfo.phone.value,
         address:billInfo.address.value,
         zip:billInfo.zip.value,
         guest:true
@@ -118,7 +120,7 @@ const CheckoutForm = () => {
         fname:billInfo.fname.value,
         lname:billInfo.lname.value,
         email:billInfo.email.value,
-        phone:billInfo.phone.value,
+        phone:billInfo.phone_code.value+billInfo.phone.value,
         guest:true
       }
     }
@@ -419,9 +421,18 @@ const CheckoutForm = () => {
                             </Form.Text>
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
+                        <InputGroup>
+                        <InputGroup.Prepend>
+                        <Form.Control defaultValue={"+49"} ref={node => (billInfo.phone_code = node)} as="select" name="phone_code">
+                        <option value="+49">+49</option>
+                        <option value="+44">+44</option>
+                        <option value="+91">+91</option>
+                        </Form.Control>
+                        </InputGroup.Prepend>
                             <FormattedMessage id="label_phone" defaultMessage="Phone No.">
-                                {(placeholder)=><Form.Control ref={node => (billInfo.phone = node)} name="email" min="0" type="number" placeholder={placeholder} required/>}
+                                {(placeholder)=><Form.Control ref={node => (billInfo.phone = node)} name="phone" min="0" type="tel" placeholder={placeholder} required/>}
                             </FormattedMessage>
+                            </InputGroup>
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
