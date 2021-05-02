@@ -21,14 +21,23 @@ class RestaurantPickup extends Component{
             // console.log('restaurant not set')
             this.state = {user: this.props.user, redirect:{show:true, path:'/'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:false, loading:false };
         }else{
-            this.state = {user: this.props.user, redirect:{show:false, path:'/r/delivery'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:true, loading:false };
+            this.state = {user: this.props.user, redirect:{show:false, path:'/r/delivery'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:true, loading:false, restaurant_open:this.props.restaurant.open};
         }
         
         this.changetablenum = this.changetablenum.bind(this);
     }
     table_num = this.props.tablenum;
     componentDidMount(){
-
+        let now = new Date();
+        now = (now.getHours()* 100) + now.getMinutes();
+        let opening = this.props.restaurant.time_opening.split(":").map(Number);
+        opening = (opening[0] *100) + opening[1];
+        let closing = this.props.restaurant.time_closing.split(":").map(Number);
+        closing = (closing[0] *100) + closing[1];
+        if(now < opening || now > closing){
+            // this.restaurant_open = false;
+            this.setState({restaurant_open:false});
+        }
     }
     renderHomePage(){
         return(
@@ -110,14 +119,14 @@ class RestaurantPickup extends Component{
                     </FormGroup>
                     
                 </Form>
-                { this.props.restaurant.open && <>
+                { this.state.restaurant_open && <>
                 {/* {this.state.showAlertSuccess && <Alert variant="success"><b>You've Opted for Delivery!</b></Alert>} */}
                 {/* {!this.state.showAlertSuccess && <Button onClick={()=>{this.handleCheckin();}} variant="outline-success">Pickup</Button>}{' '} */}
                 {this.state.showAlertSuccess && this.renderContinueBtns()}
                 {this.state.showpage && this.renderHomePage()}
                 </>}
 
-                {!this.props.restaurant.open && <>
+                {!this.state.restaurant_open && <>
                     <b>{t('restaurant_closed_msg')}</b>
                 </>}
                 

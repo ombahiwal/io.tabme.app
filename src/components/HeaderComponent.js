@@ -17,13 +17,28 @@ function Heading(props) {
   const [redirect, setRedirect] = useState({state:false, to:"/"});
   const location = useLocation();
   var logo = restaurant.country === 'India';
-  var to=restaurant.open ? '/menu6': '/';
+  var [to, setTo]= useState(false);
   // console.log(props);
   
   useEffect(()=>{
     // props.history.onpopstate = function(event) {
     //   alert(`location: ${document.location}, state: ${JSON.stringify(event.state)}`)
     // }
+    if(!to){
+      setTo(restaurant.open ? '/menu6': '/');
+    
+    
+      let now = new Date();
+      now = (now.getHours()* 100) + now.getMinutes();
+      let opening = restaurant.time_opening.split(":").map(Number);
+      opening = (opening[0] *100) + opening[1];
+      let closing = restaurant.time_closing.split(":").map(Number);
+      closing = (closing[0] *100) + closing[1];
+      if(now < opening || now > closing){
+          // this.restaurant_open = false;
+          setTo('/');
+      }
+    }
   }, []);
 
   const goBack = () =>{
@@ -54,7 +69,7 @@ function Heading(props) {
       
       case '/menu6':
         setRedirect({state:false});
-        setRedirect({to:"/welcome", state:true});
+        setRedirect({to:"/", state:true});
         break;
 
       case '/welcome':
@@ -97,9 +112,7 @@ function Heading(props) {
       <Link to={to}>
       {/* <span className="tabme-logo-in">tabme.</span> */}
       {logo &&<CenterText>tabme<Dot>.</Dot></CenterText>}         
-      
       {!logo && <Image src={`${ENV.CDN_URL}/public_assets/tabme-logo-proto-small.png`}></Image>}
-
       </Link>
     </Container>
   );

@@ -1,5 +1,7 @@
 const restaurantInfo = (info={rname:".", _id:"test", 
     payment_methods:['cash'],
+    time_opening:"0:0",
+    time_closing:"0:0",
     info:{
     paypal_client_id:"",
     delivery:{

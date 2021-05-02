@@ -22,7 +22,7 @@ class RestaurantWelcome extends Component{
             // console.log('restaurant not set');
             this.state = {user: this.props.user, redirect:{show:true, path:'/'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:false, loading:false, cookies_banner:{show:false} };
         }else{
-            this.state = {user: this.props.user, redirect:{show:false, path:'/welcome'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:false, loading:false, showAlertSuccessPickup:false, cookies_banner:{show:false}};
+            this.state = {user: this.props.user, redirect:{show:false, path:'/welcome'}, showpage:true, verified:false, gastro:this.props.restaurant, showTableNumIn:false, tablenum:this.props.tablenum, showAlertSuccess:false, loading:false, showAlertSuccessPickup:false, cookies_banner:{show:false}, restaurant_open:this.props.restaurant.open};
         }
         this.changetablenum = this.changetablenum.bind(this);
         this.handleChangePickup = this.handleChangePickup.bind(this);
@@ -31,12 +31,25 @@ class RestaurantWelcome extends Component{
         this.renderPickupOption = this.renderPickupOption.bind(this);
     }
     table_num = this.props.tablenum;
+    restaurant_open = this.props.restaurant.open;
+
 
     componentDidMount(){
         // console.log(cookies.get('tabme_consent'));
         if(!cookies.get('tabme_consent')){
             this.setState({cookies_banner:{show:true}});
         }    
+        let now = new Date();
+        now = (now.getHours()* 100) + now.getMinutes();
+        let opening = this.props.restaurant.time_opening.split(":").map(Number);
+        opening = (opening[0] *100) + opening[1];
+        let closing = this.props.restaurant.time_closing.split(":").map(Number);
+        closing = (closing[0] *100) + closing[1];
+        if(now < opening || now > closing){
+            // this.restaurant_open = false;
+            this.setState({restaurant_open:false});
+        }
+        // console.log(now, opening, closing, now < opening || now > closing);
     }
 
     acceptCookie(){
@@ -125,7 +138,7 @@ class RestaurantWelcome extends Component{
                         {!this.state.showAlertSuccess && <div onClick={()=>{this.setState({showTableNumIn:!this.state.showTableNumIn})}}><small><i>{t('another_table')}</i></small></div>}
                     </FormGroup>
                 </Form>
-                { this.props.restaurant.open && <>
+                { this.state.restaurant_open && <>
                 {this.state.showAlertSuccess && <Alert variant="success"><b>{t('welcome_checkin_msg')}</b></Alert>}
                 {this.state.showAlertSuccessPickup && <Alert variant="success"><b>{t('welcome_pickup_msg')}</b></Alert>}
                 {!(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && <Button className="welcome-btn styled-btn-solid-blue" onClick={()=>{this.handleCheckin();}} variant="outline-info"><b>{t('checkin_btn')}</b></Button>}{' '}
@@ -135,7 +148,7 @@ class RestaurantWelcome extends Component{
                 {(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && this.renderContinueBtns()}
                 {this.state.showpage && this.renderHomePage()}
                 </>}
-                {!this.props.restaurant.open && <>
+                {!this.state.restaurant_open && <>
                     <b>{t('restaurant_closed_msg')}</b>
                 </>}
                 {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
