@@ -73,7 +73,7 @@ class RestaurantWelcome extends Component{
                 
             </div>
             <br/>
-            <div className="row">w
+            <div className="row">
                
             </div>
             </div>
