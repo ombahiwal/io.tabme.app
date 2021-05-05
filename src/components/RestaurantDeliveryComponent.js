@@ -119,16 +119,16 @@ class RestaurantPickup extends Component{
                     </FormGroup>
                     
                 </Form>
-                { this.state.restaurant_open && <>
+                { true && <>
                 {/* {this.state.showAlertSuccess && <Alert variant="success"><b>You've Opted for Delivery!</b></Alert>} */}
                 {/* {!this.state.showAlertSuccess && <Button onClick={()=>{this.handleCheckin();}} variant="outline-success">Pickup</Button>}{' '} */}
                 {this.state.showAlertSuccess && this.renderContinueBtns()}
                 {this.state.showpage && this.renderHomePage()}
                 </>}
 
-                {!this.state.restaurant_open && <>
+                {!this.state.restaurant_open && <span className="restaurant_closed">
                     <b>{t('restaurant_closed_msg')}</b>
-                </>}
+                </span>}
                 
                 {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
            </center>

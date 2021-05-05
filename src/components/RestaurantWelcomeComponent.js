@@ -72,7 +72,7 @@ class RestaurantWelcome extends Component{
             <div className="row">
                 
             </div>
-            <br/><br/>
+            <br/>
             <div className="row">
                
             </div>
@@ -138,7 +138,7 @@ class RestaurantWelcome extends Component{
                         {!this.state.showAlertSuccess && <div onClick={()=>{this.setState({showTableNumIn:!this.state.showTableNumIn})}}><small><i>{t('another_table')}</i></small></div>}
                     </FormGroup>
                 </Form>
-                { this.state.restaurant_open && <>
+                { true && <>
                 {this.state.showAlertSuccess && <Alert variant="success"><b>{t('welcome_checkin_msg')}</b></Alert>}
                 {this.state.showAlertSuccessPickup && <Alert variant="success"><b>{t('welcome_pickup_msg')}</b></Alert>}
                 {!(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && <Button className="welcome-btn styled-btn-solid-blue" onClick={()=>{this.handleCheckin();}} variant="outline-info"><b>{t('checkin_btn')}</b></Button>}{' '}
@@ -148,9 +148,9 @@ class RestaurantWelcome extends Component{
                 {(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && this.renderContinueBtns()}
                 {this.state.showpage && this.renderHomePage()}
                 </>}
-                {!this.state.restaurant_open && <>
+                {!this.state.restaurant_open && <span className="restaurant_closed">
                     <b>{t('restaurant_closed_msg')}</b>
-                </>}
+                </span>}
                 {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
            </center>
           {this.state.cookies_banner.show &&  <CookieBanner

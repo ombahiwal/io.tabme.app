@@ -102,24 +102,24 @@ class RestaurantPickup extends Component{
                         <Form.Label>
                             <h5><b>{t('welcome_order_for_pickup')}</b></h5>
                             {/* <small>{t('pickup_msg_time', {time:this.props.restaurant.pickup_time})}</small> */}
-                            { this.props.restaurant.info.pickup.pickup_address.length <5 && <small>{t('pickup_msg_addr', {zip:this.props.restaurant.zip, address:this.props.restaurant.address, city:this.props.restaurant.city, opening:this.props.restaurant.time_opening, closing:this.props.restaurant.time_closing})} {t(this.props.restaurant.country)}</small>}
+                            { this.props.restaurant.info.pickup.pickup_address.length < 5 ? <small>{t('pickup_msg_addr', {zip:this.props.restaurant.zip, address:this.props.restaurant.address, city:this.props.restaurant.city, opening:this.props.restaurant.time_opening, closing:this.props.restaurant.time_closing})} {t(this.props.restaurant.country)}</small> : <small>{this.props.restaurant.info.pickup.pickup_address}</small>}
                             <small>{this.props.restaurant.info.pickup.pickup_msg}</small><br/>
-                            <small>{this.props.restaurant.info.pickup.pickup_address}</small>
+                            
                             
                         </Form.Label><br/>
                         {!this.state.showAlertSuccess && this.state.showTableNumIn && <b><Form.Control min="1" className="table-num-checkin" onChange={this.changetablenum} style={{display:"block"}} variant="outline-success" type="number" inline/> </b> }
                     </FormGroup>
                 </Form>
-                {this.state.restaurant_open && <>
+                {true && <>
                 {/* {this.state.showAlertSuccess && <Alert variant="success"><b>You've Opted for Pickup!</b></Alert>} */}
                 {/* {!this.state.showAlertSuccess && <Button onClick={()=>{this.handleCheckin();}} variant="outline-success">Pickup</Button>}{' '} */}
                 {this.state.showAlertSuccess && this.renderContinueBtns()}
                 {this.state.showpage && this.renderHomePage()}
                 </>}
 
-                {!this.state.restaurant_open && <>
-                    <b>{t('restaurant_closed_msg')}</b>
-                </>}
+                {!this.state.restaurant_open && <span className="restaurant_closed">
+                    <b >{t('restaurant_closed_msg')}</b>
+                </span>}
                 
                 
                 

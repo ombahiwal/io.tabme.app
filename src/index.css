@@ -447,3 +447,9 @@ button[data-id="button-icon-element"] svg{
   .payment_options_stripe_image{margin-left:20px;}
 
 }
+
+.restaurant_closed{
+  padding:5px;
+  color:white;
+  background: #ff9268;
+}
