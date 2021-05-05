@@ -102,7 +102,7 @@ class RestaurantPickup extends Component{
                         <Form.Label>
                             <h5><b>{t('welcome_order_for_pickup')}</b></h5>
                             {/* <small>{t('pickup_msg_time', {time:this.props.restaurant.pickup_time})}</small> */}
-                            { this.props.restaurant.info.pickup.pickup_address.length < 5 ? <small>{t('pickup_msg_addr', {zip:this.props.restaurant.zip, address:this.props.restaurant.address, city:this.props.restaurant.city, opening:this.props.restaurant.time_opening, closing:this.props.restaurant.time_closing})} {t(this.props.restaurant.country)}</small> : <small>{this.props.restaurant.info.pickup.pickup_address}</small>}
+                            { this.props.restaurant.info.pickup.pickup_address.length < 5 ? <small>{t('pickup_msg_addr', {zip:this.props.restaurant.zip, address:this.props.restaurant.address, city:this.props.restaurant.city, opening:this.props.restaurant.time_opening, closing:this.props.restaurant.time_closing})} </small> : <small>{this.props.restaurant.info.pickup.pickup_address}</small>}
                             <small>{this.props.restaurant.info.pickup.pickup_msg}</small><br/>
                             
                             

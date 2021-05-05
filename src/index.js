@@ -11,11 +11,8 @@ import App from './App';
 ReactDOM.render(
   <React.StrictMode>
      <Suspense fallback={<h6>Loading...</h6>}>
-     {/* <Provider store={Store}> */}
     <App />
-    {/* </Provider> */}
     </Suspense>
-    
   </React.StrictMode>,
   document.getElementById('root')
 );

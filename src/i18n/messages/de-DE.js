@@ -131,7 +131,7 @@ export default {
     'cookie_policy':"Cookie-Richtlinie",
     'cart_promo_valid':"Angewendet!",
     'cart_promo_invalid':"Ungültig!",
-    'pickup_msg_addr':"Abholung zwischen {opening}-{closing} Uhr an der {address} {zip} {city}",
+    'pickup_msg_addr':"Abholung zwischen {opening}-{closing} Uhr \n {address} \n {zip} {city}",
     'Germany' : "Deutschland",
     'delivery_charge_label':"Liefergebühr",
     'guest_form_security_message':"Wir geben Ihre Informationen nicht an Dritte weiter. Wir gewährleisten angemessene Sicherheitsmaßnahmen, um Ihnen das beste Kundenerlebnis zu bieten."
