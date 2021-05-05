@@ -73,7 +73,7 @@ class RestaurantWelcome extends Component{
                 
             </div>
             <br/>
-            <div className="row">
+            <div className="row">w
                
             </div>
             </div>
@@ -138,7 +138,7 @@ class RestaurantWelcome extends Component{
                         {!this.state.showAlertSuccess && <div onClick={()=>{this.setState({showTableNumIn:!this.state.showTableNumIn})}}><small><i>{t('another_table')}</i></small></div>}
                     </FormGroup>
                 </Form>
-                { true && <>
+                { this.props.restaurant.open && <>
                 {this.state.showAlertSuccess && <Alert variant="success"><b>{t('welcome_checkin_msg')}</b></Alert>}
                 {this.state.showAlertSuccessPickup && <Alert variant="success"><b>{t('welcome_pickup_msg')}</b></Alert>}
                 {!(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && <Button className="welcome-btn styled-btn-solid-blue" onClick={()=>{this.handleCheckin();}} variant="outline-info"><b>{t('checkin_btn')}</b></Button>}{' '}

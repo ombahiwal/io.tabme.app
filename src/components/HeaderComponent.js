@@ -39,7 +39,7 @@ function Heading(props) {
           setTo('/');
       }
     }
-  }, []);
+  }, [to, restaurant.open, restaurant.time_opening, restaurant.time_closing]);
 
   const goBack = () =>{
     // props.history.push('/sbakery');

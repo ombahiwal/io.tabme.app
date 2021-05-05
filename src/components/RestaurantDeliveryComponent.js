@@ -119,7 +119,7 @@ class RestaurantPickup extends Component{
                     </FormGroup>
                     
                 </Form>
-                { true && <>
+                { this.props.restaurant.open && <>
                 {/* {this.state.showAlertSuccess && <Alert variant="success"><b>You've Opted for Delivery!</b></Alert>} */}
                 {/* {!this.state.showAlertSuccess && <Button onClick={()=>{this.handleCheckin();}} variant="outline-success">Pickup</Button>}{' '} */}
                 {this.state.showAlertSuccess && this.renderContinueBtns()}

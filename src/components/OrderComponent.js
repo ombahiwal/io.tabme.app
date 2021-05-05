@@ -78,9 +78,11 @@ function Process(subprop){
   
 
     useEffect(()=>{       
+
+        if(!order){
         setTimeout(async ()=>{
             try{
-                if(!order){
+                // if(!order){
                 setLoading(true);
                 
                 var newOrder = await DataService.fetchOrder({order_id:id});
@@ -94,13 +96,13 @@ function Process(subprop){
                 setOrder(newOrder.data.order);
                 switch(parseInt(newOrder.data.order.tablenum)){
                     case -1:
-                        pickup = {status:true, msg:"hello", estimate:"30"};
+                        // pickup = {status:true, msg:"hello", estimate:"30"};
                         setPickup({status:true, msg:"hello", estimate:"30" });
                         // console.log(pickup);
                     break;
                     case -2:
                     // Delivery Orange Color    
-                        delivery = {status:true, msg:"hello", estimate:"30"};
+                        // delivery = {status:true, msg:"hello", estimate:"30"};
                         setDelivery({status:true, msg:"hello", estimate:"30" });
                     break;
                     default:
@@ -113,11 +115,12 @@ function Process(subprop){
                     dt_order = ('0'+(dt_order.getMonth()+1)).slice(-2)+ '/'+ ('0'+dt_order.getDate()).slice(-2)+'/'+dt_order.getFullYear()+' at '+('0'+dt_order.getHours()).slice(-2)+":"+('0'+dt_order.getMinutes()).slice(-2);
                     setDt(dt_order);
                 }
-                }
+                // }
              }catch(e){
            
             }
         },0);
+        }
         
      
     },[id, order, pickup, delivery]);
