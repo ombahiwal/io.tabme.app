@@ -110,7 +110,7 @@ class RestaurantPickup extends Component{
                         {!this.state.showAlertSuccess && this.state.showTableNumIn && <b><Form.Control min="1" className="table-num-checkin" onChange={this.changetablenum} style={{display:"block"}} variant="outline-success" type="number" inline/> </b> }
                     </FormGroup>
                 </Form>
-                {true && <>
+                {this.props.restaurant.open && <>
                 {/* {this.state.showAlertSuccess && <Alert variant="success"><b>You've Opted for Pickup!</b></Alert>} */}
                 {/* {!this.state.showAlertSuccess && <Button onClick={()=>{this.handleCheckin();}} variant="outline-success">Pickup</Button>}{' '} */}
                 {this.state.showAlertSuccess && this.renderContinueBtns()}
