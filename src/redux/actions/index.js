@@ -16,6 +16,12 @@ export const updateCart= (cart={})=>{
         payload: cart
     }
 }
+export const updateOrderMeta= (order_meta={})=>{
+    return{
+        type: 'UPDATE',
+        payload: order_meta
+    }
+}
 
 export const setRestaurant= (restaurant)=>{
     return{
@@ -36,6 +42,13 @@ export const setOrder= (order)=>{
         payload: order
     }
 }
+export const setOrderMeta= (order_meta)=>{
+    return{
+        type: 'UPDATE_META',
+        payload: order_meta
+    }
+}
+
 
 export const setTableNumber = (tablenum)=>{
     return{

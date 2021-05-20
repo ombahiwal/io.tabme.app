@@ -94,7 +94,7 @@ class Cart extends Component {
     }
     componentWillMount(){
         document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         // console.log(CurrencyCode.countryToCode('India'))
         this.cart.currency = CurrencyCode.countryToCode(this.props.restaurant.country);
         this.cart.tablenum = this.props.tablenum;
@@ -360,6 +360,7 @@ class Cart extends Component {
         this.cart.promo = ((this.cart.cartTotal * this.cart.discountpercent) / 100);
         this.cart.tip = this.cart.cartTotal * this.state.tip;
         this.cart.totalCost = this.cart.tip + this.cart.cartTotal + this.cart.tax + this.cart.delivery_fee - this.cart.promo ;
+        this.cart.pickup_date = this.props.order_meta.pickup.date;
         this.props.updateCartInStore(this.cart);
         this.setState({status:true});
     }
@@ -629,7 +630,8 @@ const mapStateToProps = state => {
     return {cart:state.cart,
             restaurant:state.restaurant,
             menu:state.menu,
-            tablenum:state.tablenum
+            tablenum:state.tablenum,
+            order_meta:state.order_meta
         }
   }
 const mapDispatchToProps = dispatch =>{

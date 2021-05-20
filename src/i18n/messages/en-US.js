@@ -133,6 +133,8 @@ export default {
     'pickup_msg_addr':"Pickup between {opening}-{closing} Hours \n {address} \n {zip} {city}",
     'India':"India",
     'delivery_charge_label':"Delivery Charge",
-    'guest_form_security_message':" We do not share your information with any third parties. We ensure appropriate security measures to provide you the best customer experience."
+    'guest_form_security_message':" We do not share your information with any third parties. We ensure appropriate security measures to provide you the best customer experience.",
+    'today':"Today",
+    'choose_pickup_time':"Choose Pickup Time"
   },
 };

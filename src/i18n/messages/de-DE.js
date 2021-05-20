@@ -113,7 +113,7 @@ export default {
     'or':'oder',
     'pickup_time':"~{time}min",
     'order_cancelled_msg':"Die Bestellung wurde vom Restaurant aufgrund eines Problems storniert.",
-    'order_cancelled_msg2':"Die Bestellung wurde vom Restaurant aufgrund eines Problems storniert. Alle Online-Zahlungen werden innerhalb von 7 Werktagen zurückerstattet.",
+    'order_cancelled_msg2':"Die Bestellung wurde vom Restaurant aufgrund eines Problems storniert. Alle Online-Zahlungen werden innerhalb von 7 Werktagen zurückerstattet. ",
     'order_complete_msg':"Die Bestellung ist abgeschlossen!",
     'cookies_msg':"Möchten Sie Cookies akzeptieren?",
     'accept':"Akzeptieren",
@@ -134,6 +134,8 @@ export default {
     'pickup_msg_addr':"Abholung zwischen {opening}-{closing} Uhr \n {address} \n {zip} {city}",
     'Germany' : "Deutschland",
     'delivery_charge_label':"Liefergebühr",
-    'guest_form_security_message':"Wir geben Ihre Informationen nicht an Dritte weiter. Wir gewährleisten angemessene Sicherheitsmaßnahmen, um Ihnen das beste Kundenerlebnis zu bieten."
+    'guest_form_security_message':"Wir geben Ihre Informationen nicht an Dritte weiter. Wir gewährleisten angemessene Sicherheitsmaßnahmen, um Ihnen das beste Kundenerlebnis zu bieten.",
+    'today':"Heute",
+    'choose_pickup_time':"Abholzeit wählen"
   },
 };

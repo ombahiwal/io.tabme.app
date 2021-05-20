@@ -14,6 +14,7 @@ const cartReducer = (cart={
     notes:"",
     promo_data:null,
     tax_data:null,
+    pickup_date:null
 }, action) => {
         
         switch(action.type){

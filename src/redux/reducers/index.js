@@ -8,6 +8,7 @@ import userReducer from './userReducer';
 import tablenumReducer from './tablenumreducer';
 import menuReducer from './menuReducer';
 import orderReducer from './orderReducer'
+import orderMetaReducer from './orderMetaReducer';
 // import { useReducer } from 'react';
 
 const allReducers = combineReducers({
@@ -18,7 +19,8 @@ const allReducers = combineReducers({
     user: userReducer,
     tablenum: tablenumReducer,
     menu:menuReducer,
-    order:orderReducer
+    order:orderReducer,
+    order_meta:orderMetaReducer
 });
 
 export default allReducers;
