@@ -95,10 +95,10 @@ class RestaurantPickup extends Component{
             <div className="col-12">
                 <Form.Group controlId="formBasicEmail">
                         <InputGroup>
-                        <Form.Control defaultValue={"0"}  as="select" name="pickup_day">
+                        {/* <Form.Control defaultValue={"0"}  as="select" name="pickup_day">
                             <option value="0">Today</option>                        
-                            {/* <option value="24">Tomorrow</option>                         */}
-                        </Form.Control>
+                            <option value="24">Tomorrow</option>                        
+                        </Form.Control> */}
                         
                         <Form.Control defaultValue={this.state.default_pickup_time} min={this.state.default_pickup_time} step={"00:"+this.props.restaurant.pickup_time+":00"} max={this.props.restaurant.time_closing} onChange={this.setPickupDateObj} type="time" name="pickup_time">
                         
