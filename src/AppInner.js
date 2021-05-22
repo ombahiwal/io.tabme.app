@@ -17,7 +17,7 @@ import CurrentOrder from './components/CurrentOrderComponent';
 import OrderInfo from './components/OrderComponent';
 import RestaurantPickup from './components/RestaurantPickupComponent';
 import RestaurantDelivery from './components/RestaurantDeliveryComponent';
-
+import MenuRedirect from './components/menuInterComp';
 // Paypal
 // import PaypalCheckout from './components/PaypalCheckoutComponent';
 
@@ -177,7 +177,7 @@ render() {
 
           <Route path="/pickup/:id" component={Pickup}/>
           <Route path="/delivery/:id" component={Delivery}/>
-
+          <Route path="/m/:id" component={MenuRedirect}/>
           <Route path="/:id" component={Scanned}/>
           <Route path="/r/:id" component={Scanned}/>
           <Route path="/">
