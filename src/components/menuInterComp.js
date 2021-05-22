@@ -59,7 +59,7 @@ function Process(subprop){
             }catch(e){
                 // console.log('Some Error related to User Login happened');
             }
-            dispatch(Actions.setTableNumber(-2));
+            dispatch(Actions.setTableNumber(0));
             dispatch(Actions.setRestaurant(qr.gastro));
             dispatch(Actions.setMenu(qr.menu));
             cookies.remove('menu', {path:'/'});
