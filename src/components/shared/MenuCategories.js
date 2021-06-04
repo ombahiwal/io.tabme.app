@@ -73,13 +73,13 @@ const MenuCategories = props => {
   return (<>
     <Wrapper key="1" id="menucats" ref={props.innerRef}
       className={props.className}>
-      <center>
+      {props.categories.length > 1 && <center>
         {/* <p></p> */}
         {/* <Button style={{'margin-right':'0', 'margin':'5px'}}  variant="outline-dark"><small><b>{props.activecat}</b></small></Button> */}
                 {props.categories.map((cat, idx)=>{
                     return(<><Button style={{'marginRight':'0', 'margin':'5px'}} key={cat} variant="outline-dark" onClick={()=>{scrollltoTargetAdjusted(`${cat}`)}}><small><b>{cat}</b></small></Button> &nbsp;</>);
                 })}
-      </center>
+      </center>}
     </Wrapper>
 {/* <div key="2">
   <center>

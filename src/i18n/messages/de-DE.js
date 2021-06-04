@@ -20,7 +20,7 @@ export default {
     'delivery': "Lieferung",
     'pickup': "Abholung",
     'pickup_order': "Abholauftrag - \"{id}\"",
-    'delivery_order': "Auslieferungsauftrag - \"{id}\"",
+    'delivery_order': "Lieferbestellung - \"{id}\"",
     'table_num':'Tisch #{tablenum}',
     'another_table': "andere Tisch?",
     'check_in_btn': "Einchecken",
