@@ -14,8 +14,10 @@ function Process(subprop){
     // console.log(subprop);
     const [loading, setLoading] = useState(true);
     const [qr, setQr] = useState(false);
-    const id = String(subprop.id).toLowerCase();  
+    // const [redirect, setRedirect] = useState("/welcome");
+    var id = String(subprop.id).toLowerCase();  
     const user = useSelector(state => state.user);
+    var cart = useSelector(state=> state.cart);
     /*
     Send - QR ID 
     Receive - Object with Restaurant Obj, 
@@ -24,19 +26,24 @@ function Process(subprop){
     - tableNum: tableNum
     */
    useEffect(()=>{
-       setTimeout(async ()=>{
-        await DataService.getQRInfo({id:id, alias:id}).then((res)=>{
-            // console.log(res.data);
-            if(!qr){            
-                if(res.data.success){
-                    setQr(res.data);
-                    // setLoading(true);
-                }else{
-                    setLoading(false)
-                }
-                }
-            });
-       }, 0);   
+       console.log(id);
+
+       if(!qr){
+        setTimeout(async ()=>{
+            await DataService.getQRInfo({id: id.match(/^[0-9a-fA-F]{24}$/) ? id : "" , alias:id}).then((res)=>{
+                console.log(res.data);
+                if(!qr){ 
+                        if(res.data.success){
+                            setQr(res.data);
+                            // setLoading(true);
+                        }else{
+                            setLoading(false);
+                        }
+                    }
+                });
+           }, 0);  
+       }
+        
    },[id, qr]);
    
     const dispatch = useDispatch();
@@ -68,9 +75,18 @@ function Process(subprop){
             dispatch(Actions.setTableNumber(qr.table_number));
             dispatch(Actions.setRestaurant(qr.gastro));
             dispatch(Actions.setMenu(qr.menu));
+            console.log('hrere')
+            if(parseInt(qr.table_number) === -4){
+                console.log('hrere')
+                var new_cart = new Object(cart);
+                new_cart.order_label = qr.qr.label;
+                dispatch(Actions.updateCart(new_cart));
+            }
             cookies.remove('menu', {path:'/'});
             cookies.remove('gastro', {path:'/'});
-            cookies.set('gastro', qr.gastro,  {path: '/' })
+            cookies.set('gastro', qr.gastro,  {path: '/' });
+
+            
         }else
         return(<div><center><b>{t('restaurant_not_found')}</b></center></div>);
     }
@@ -86,7 +102,7 @@ function Process(subprop){
                 <div className="col-12">
                 <div className="loading-div">
                 <center>{t('restaurant_not_found')}</center>
-                {loading && <Redirect to='/welcome'/>}
+                {loading && <Redirect to={parseInt(qr.table_number) === -4 ? '/r/custom' : "/welcome"}/>}
                 </div>
                 </div>    
             </div>

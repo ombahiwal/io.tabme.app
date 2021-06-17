@@ -18,6 +18,7 @@ import OrderInfo from './components/OrderComponent';
 import RestaurantPickup from './components/RestaurantPickupComponent';
 import RestaurantDelivery from './components/RestaurantDeliveryComponent';
 import MenuRedirect from './components/menuInterComp';
+import RestaurantCustomQR from './components/RestaurantCustomQrComponent';
 // Paypal
 // import PaypalCheckout from './components/PaypalCheckoutComponent';
 
@@ -171,7 +172,10 @@ render() {
           <Route path="/r/delivery">
             <RestaurantDelivery/>
           </Route>
-
+          <Route path="/r/custom">
+              <RestaurantCustomQR/>
+          </Route>
+          
 
           <Route path="/order/:id" component={OrderInfo}/>
 

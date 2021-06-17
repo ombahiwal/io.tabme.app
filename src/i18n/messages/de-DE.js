@@ -136,6 +136,7 @@ export default {
     'delivery_charge_label':"Liefergebühr",
     'guest_form_security_message':"Wir geben Ihre Informationen nicht an Dritte weiter. Wir gewährleisten angemessene Sicherheitsmaßnahmen, um Ihnen das beste Kundenerlebnis zu bieten.",
     'today':"Heute",
-    'choose_pickup_time':"Abholzeit wählen"
+    'choose_pickup_time':"Abholzeit wählen",
+    'order':'Bestellung'
   },
 };

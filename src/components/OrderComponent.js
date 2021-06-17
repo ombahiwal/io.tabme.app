@@ -122,7 +122,6 @@ function Process(subprop){
         },0);
         }
         
-     
     },[id, order, pickup, delivery]);
 
     return (
@@ -159,7 +158,8 @@ function Process(subprop){
                        {(!pickup.status && parseInt(order.tablenum) > -1) && <h5><b> {t('table_num', {tablenum:order.tablenum})}</b></h5>}
                         {(pickup.status || parseInt(order.tablenum) === -1) && <h5><b> {t('pickup_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})} </b></h5>}
                         {(delivery.status || parseInt(order.tablenum) === -2) && <h5><b>{t('delivery_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})}</b></h5>} 
-                        
+                        {(parseInt(order.tablenum) === -4) && <h5><b>{order.cart.order_label} - {String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)}</b></h5>} 
+                    
                     </center>
                     <hr/>
                 </div>

@@ -26,6 +26,7 @@ const PaymentButton = props => {
         border 2px solid ${props.color ? props.color: '#0a1e42'};
         border-radius:5px;
         padding: 5px 10px;
+        box-shadow: -3px 4px #888888;
         @media(max-width:450px){
             width: 90%;
         }

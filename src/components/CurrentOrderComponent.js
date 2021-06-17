@@ -223,7 +223,7 @@ function Process(subprop){
                         {(!pickup.status && parseInt(order.tablenum) > -1) && <h5><b> {t('table_num', {tablenum:order.tablenum})}</b></h5>}
                         {(pickup.status || parseInt(order.tablenum) === -1) && <h5><b> {t('pickup_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})} </b></h5>}
                         {(delivery.status || parseInt(order.tablenum) === -2) && <h5><b>{t('delivery_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})}</b></h5>} 
-                        
+                        {(parseInt(order.tablenum) === -4) && <h5><b>{order.cart.order_label} - {String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)}</b></h5>} 
                         {order.status === 'Received' && <><br/><h5><b>{t('order_current_state_msg_placed')} <br/></b></h5></>}
                         {/* {order.status !== 'Received' && <h5><b>Your Order is {order.status}.</b></h5>} */}
                         {/* {(!pickup.status && order.status !== 'Cancelled' ) &&  <small>{t('order_current_keep')}</small>} */}
