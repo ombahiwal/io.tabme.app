@@ -1,9 +1,12 @@
-import React, { useState} from 'react';
+import React, { useState, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {ButtonIcon} from 'react-rainbow-components';
-import {MdRemove, MdAdd} from "react-icons/md";
+import { ButtonIcon} from 'react-rainbow-components';
+
+
 import CurrencySymbol from '../CurrencySymbolComponent';
+// import { ImPlus } from "react-icons/im";
+// import {Button, ButtonGroup} from 'reactstrap';
 
 /**
  * Card is a component that renders a card with a title and image
@@ -12,7 +15,24 @@ import CurrencySymbol from '../CurrencySymbolComponent';
 function format_name_uscore(name){
   return name.split('_')[0];
 }
-const txt_options = (options, flag=true)=>{ 
+const calc_options = (opt) =>{
+  var opt_price = 0;
+  opt.values.map((val)=>{
+    opt_price+=(val.addPrice * 100);
+  });
+  opt_price = opt_price / 100
+  if(opt_price > 0){
+    return(<>(<CurrencySymbol /> {opt_price.toFixed(2)})</>);
+  }else{
+    return('');
+  }
+}
+
+const txt_options = (options, flag=true)=>{
+  // var strarr = []
+  var str = "";
+ 
+ 
     if(options.length === 0 && flag){
       return ""
     }
@@ -20,7 +40,9 @@ const txt_options = (options, flag=true)=>{
     var opt_seperator = ",";
   return(
     <>
-        {options.filter(option => option.values.length >0).forEach((opt)=>{
+        {options.map((opt)=>{
+            if(opt.values.length >0){
+              // str = str + '<b>'+format_name_uscore(opt.title)+ " </b>: " ; 
               option_value_count = opt.values.length;
               return(
                 <span key={opt._id}>
@@ -34,22 +56,27 @@ const txt_options = (options, flag=true)=>{
                     return (<span key={val._id}>{val.value}{opt_seperator}&nbsp;</span>);
                   })}<br/>
                 </span>)
+            }
             })}
+
     </>
+
   );
 }
 const CDCard = props => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  // var count_opt=0;
-  // var count_dish= props.num;
-  // var txt;
+  var count_opt=0;
+  var count_dish= props.num;
+  var txt;
 
+  
   return (
     <Wrapper
       className={props.className}
       centered={props.centered}
       onClick={props.onClick}
       >
+      
       <Image
         src={props.image}
         centered={props.centered}
@@ -65,8 +92,7 @@ const CDCard = props => {
           {txt_options(props.optionobj.optionset)}
         </Text>
         <Price><CurrencySymbol currency={props.currency}/>{((props.cartdish.basePrice + props.optionobj.option_price) * props.optionobj.option_dish_count).toFixed(2)}</Price>
-         {props.remove && <RemoveBtn onClick={props.onClickRemove}><ButtonIcon className="addButton"  variant="border"  size="small" icon={<MdRemove/>}></ButtonIcon></RemoveBtn>}
-         {props.remove && <AddBtn onClick={props.onClickAdd}><ButtonIcon className="addButton"  variant="border"  size="small" icon={<MdAdd/>}></ButtonIcon></AddBtn>}
+         
         {props.children}
       </TextWrapper>
     </Wrapper>
@@ -80,7 +106,6 @@ CDCard.propTypes = {
   cartdish: PropTypes.object,
   num: PropTypes.number,
   remove: PropTypes.bool,
-  add:PropTypes.bool,
   optionobj: PropTypes.object,
   optidx: PropTypes.number,
   customisations:PropTypes.bool,
@@ -96,9 +121,9 @@ CDCard.defaultProps = {
 export default CDCard;
 
 const Wrapper = styled.div`
-margin-left:15px;
+    
 width: 96%;
-min-height:60px;
+min-height:55px;
 background: white;
 cursor: pointer;
 border-radius: 5px;
@@ -131,7 +156,6 @@ overflow-y:scroll;
 
 ___CSS_0___
 `;
-
 
 const Title = styled.h2`
   font-size: 0.9rem;
@@ -186,13 +210,13 @@ const TextWrapper = styled.div`
 `;
 
 const Text = styled.div`
-  margin: 0px 55px 10px 30px;
+  margin: 0px 0px 10px 30px;
   font-size:0.80rem;
   color: #2f4f4f;
 `;
 
 const Price = styled.h2`
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight:600;
   color: #2f4f4f;
   margin: 0 0 4px;
@@ -200,7 +224,7 @@ const Price = styled.h2`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   position: absolute;
-  right: 15px;
+  right: 10px;
   top: 5px;
 `;
 
@@ -213,45 +237,32 @@ const RemoveBtn = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   position: absolute;
-  right: 45px;
+  right: 10px;
   bottom: 0px;
 `;
 
-const AddBtn = styled.div`
-  font-size: 1.35rem;
+const Veg = styled.h3`
+  font-size: 0.9rem;
   font-weight:600;
-  color: #3aa8f2;
-  margin: 5px 0 5px;
+  color: gray;
+  margin: 6px 0 5px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   position: absolute;
-  right: 15px;
-  bottom: 0px;
+  left: 20px;
+  bottom: 5px;
 `;
 
-// const Veg = styled.h3`
-//   font-size: 0.9rem;
-//   font-weight:600;
-//   color: gray;
-//   margin: 6px 0 5px;
-//   overflow: hidden;
-//   display: -webkit-box;
-//   -webkit-line-clamp: 3;
-//   position: absolute;
-//   left: 20px;
-//   bottom: 5px;
-// `;
-
-// const OptPrice = styled.h3`
-//   font-size: 0.9rem;
-//   font-weight:600;
-//   color: gray;
-//   margin: 6px 0 5px;
-//   overflow: hidden;
-//   display: -webkit-box;
-//   -webkit-line-clamp: 3;
-//   position: inherit;
-//   left:100%;
-//   bottom:25%;
-// `;
+const OptPrice = styled.h3`
+  font-size: 0.9rem;
+  font-weight:600;
+  color: gray;
+  margin: 6px 0 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  position: inherit;
+  left:100%;
+  bottom:25%;
+`;
