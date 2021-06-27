@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ButtonIcon} from 'react-rainbow-components';
 
-
+// import {ButtonIcon} from 'react-rainbow-components';
+import {MdRemove, MdAdd} from "react-icons/md";
 import CurrencySymbol from '../CurrencySymbolComponent';
 // import { ImPlus } from "react-icons/im";
 // import {Button, ButtonGroup} from 'reactstrap';
@@ -92,14 +93,18 @@ const CDCard = props => {
           {txt_options(props.optionobj.optionset)}
         </Text>
         <Price><CurrencySymbol currency={props.currency}/>{((props.cartdish.basePrice + props.optionobj.option_price) * props.optionobj.option_dish_count).toFixed(2)}</Price>
-         
+        {props.remove && <RemoveBtn onClick={props.onClickRemove}><ButtonIcon className="addButton"  variant="border"  size="small" icon={<MdRemove/>}></ButtonIcon></RemoveBtn>}
+
+         {props.remove && <AddBtn onClick={props.onClickAdd}><ButtonIcon className="addButton"  variant="border"  size="small" icon={<MdAdd/>}></ButtonIcon></AddBtn>}
         {props.children}
       </TextWrapper>
+      
     </Wrapper>
   );
 };
 
 CDCard.propTypes = {
+  add:PropTypes.bool,
   image: PropTypes.string,
   children: PropTypes.object,
   className: PropTypes.string,
@@ -237,7 +242,7 @@ const RemoveBtn = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   position: absolute;
-  right: 10px;
+  right: 30px;
   bottom: 0px;
 `;
 
@@ -250,7 +255,7 @@ const Veg = styled.h3`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   position: absolute;
-  left: 20px;
+  left: 35px;
   bottom: 5px;
 `;
 
@@ -265,4 +270,17 @@ const OptPrice = styled.h3`
   position: inherit;
   left:100%;
   bottom:25%;
+`;
+
+const AddBtn = styled.div`
+  font-size: 1.35rem;
+  font-weight:600;
+  color: #3aa8f2;
+  margin: 5px 0 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  position: absolute;
+  right: 5px;
+  bottom: 0px;
 `;
