@@ -112,7 +112,7 @@ function Heading(props) {
       <Link to={to}>
       {/* <span className="tabme-logo-in">tabme.</span> */}
       {logo &&<CenterText>tabme<Dot>.</Dot></CenterText>}         
-      {!logo && <Image src={`${ENV.CDN_URL}/public_assets/tabme-logo-proto-small.png`}></Image>}
+      {!logo && <Image src={`${ENV.CDN_URL}/public_assets/tabme-logo-proto-small-pride.png`}></Image>}
       </Link>
     </Container>
   );
@@ -183,9 +183,9 @@ const RightText = styled.span`
 
 const Image = styled.img`
   top: 15px;
-  left: calc(50% - 43px);
-  width: 86px;
-  height: 38px;
+  left: calc(50% - 55px);
+  width: 110px;
+  height: 40px;
   position: absolute;
   object-fit: contain;
 `;
