@@ -29,7 +29,7 @@ const MenuTitleContainer = styled.div`
   margin-top:10px;
   margin-bottom:5px;
   padding:10px;
-  padding-left:15px;
+  padding-left:10px;
   justify-content: space-between;
   align-items: center;
   width: calc(100%);

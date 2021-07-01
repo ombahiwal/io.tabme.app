@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {ButtonIcon} from 'react-rainbow-components';
@@ -7,6 +7,9 @@ import {BsInfoCircle, BsPlus } from "react-icons/bs";
 import CurrencySymbol from '../CurrencySymbolComponent';
 import {Button} from 'react-bootstrap';
 import RoundButton from './RoundButton';
+import {FaLeaf, FaEgg}  from "react-icons/fa";
+import { RiLeafLine } from "react-icons/ri";
+import {ReactComponent as MeatIcon} from './meat-svgrepo-com.svg';
 // import './styledbutton.scss';
 // import { ImPlus } from "react-icons/im";
 // import {Button, ButtonGroup} from 'reactstrap';
@@ -26,9 +29,28 @@ function dishDescShortDisplay(desc){
 const DCardImage = props => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [aboutExpand, setAboutExpand] = useState(false);  
+  const [veg, setVeg] = useState(<BsInfoCircle/>);
    if(!aboutExpand){
     
    }else{}
+   useEffect(()=>{
+
+    switch(props.veg){
+      case 'Vegan':
+        setVeg(<FaLeaf style={{color:"green"}}/>);
+      break;
+      case 'Veg':
+        setVeg(<RiLeafLine style={{color:"green"}}/>);
+        break;
+      case 'Meat':
+        setVeg(<MeatIcon style={{height:'12px'}}/>);
+      break;
+      case 'Egg':
+        setVeg(<FaEgg style={{color:"#ffc107"}}/>);
+      break;  
+    }
+
+   },[]);
 
   return (
     <Wrapper
@@ -38,7 +60,7 @@ const DCardImage = props => {
       style={props.dish.image ? {'min-height':'95px', 'max-height':'95px'}: {'min-height':'70px'}}
       >
       <TextWrapper centered={props.centered}>
-        <Title onClick={props.onClickAllergenInfo}>{props.title} <sup><small><BsInfoCircle/></small></sup></Title>
+        <Title onClick={props.onClickAllergenInfo}>{props.title} <sup>{veg}</sup></Title>
         <Price onClick={props.onClickCustom}><CurrencySymbol/> {props.price.toFixed(2)}</Price>
         {/* <Veg>{props.veg}</Veg> */}
         {(props.text && aboutExpand) && <TextExpanded onClick={()=>{ if(props.text.length > 87) setAboutExpand(!aboutExpand)}}>{props.text}</TextExpanded>}
@@ -93,7 +115,7 @@ const Wrapper = styled.div`
   transition: all 0.3s ease-out;
   transform: translateZ(0);
   @media(min-width:320px){
-    max-width:98%
+    max-width:97%
   }
 
   &:hover {
