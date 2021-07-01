@@ -149,7 +149,7 @@ const Title = styled.h2`
   font-size: 0.96rem;
   font-weight:600;
   color: #333333;
-  margin: 0px 76px 0 0;
+  margin: 2px 76px 0 0;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
