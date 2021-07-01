@@ -44,6 +44,7 @@ const DCardImage = props => {
         break;
       case 'Meat':
         setVeg(<MeatIcon style={{height:'12px'}}/>);
+        setVeg('');
       break;
       case 'Egg':
         setVeg(<FaEgg style={{color:"#ffc107"}}/>);
