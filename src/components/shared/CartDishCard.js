@@ -242,7 +242,7 @@ const RemoveBtn = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   position: absolute;
-  right: 30px;
+  right: 34px;
   bottom: 0px;
 `;
 

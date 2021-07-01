@@ -5,8 +5,10 @@ import {Toast, Badge, Button, ButtonGroup} from 'react-bootstrap';
 // UI Components
 import Grid from './shared/Grid';
 import { Modal } from 'react-rainbow-components';
-import DCard from './shared/Card';
+// import DCard from './shared/Card';
 import CDCard from './shared/CartDishCard';
+import DCardImage from './shared/CardImage';
+
 import MenuBanner from './shared/MenuBanner';
 import MenuCategories from './shared/MenuCategories';
 import MenuCatTitle from './shared/MenuCategoryTitle';
@@ -132,7 +134,9 @@ class Menu6 extends Component {
         <Waypoint
              topOffset = "120px"
              bottomOffset ="80%"
-             onEnter={()=>{console.log(`MEnu leave start`); this.setState({active_category:"Menu"})}}
+             onEnter={()=>{
+                //  console.log(`MEnu leave start`);
+                 this.setState({active_category:"Menu"})}}
          /> 
 
      {this.state.menu.categories.map((cat)=>{
@@ -1042,7 +1046,9 @@ class Menu6 extends Component {
 
         if(dish.active){
             return(
-                <DCard  
+                <DCardImage 
+                    menu_id = {this.state.menu._id}
+                    dish={dish}
                     key={dish.name}
                     title={dish.name}
                     text={dish.description}

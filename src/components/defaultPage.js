@@ -4,6 +4,7 @@ import QRCodeReader from './QRReaderComponent';
 import {Link} from 'react-router-dom';
 import t from '../i18n/translate';
 import TnC from './shared/TnCFoot';
+import RoundButton from './shared/RoundButton';
 const ENV = require('../services/env-vars');
 
 class DefaultPage extends Component{
@@ -24,6 +25,7 @@ class DefaultPage extends Component{
                 <h3><b>
                     {t('default_welcome')}
                     <br/>
+                    
                     <br/>
                     <QRCodeReader/>
                     <br/>
@@ -39,6 +41,7 @@ class DefaultPage extends Component{
                     </b>
                     <br/>
                     </h3>
+                    {/* <RoundButton/> */}
                 <span><Image src={`${ENV.CDN_URL}/public_assets/tabme-logo-proto-small.png`}/></span>
                     <h3>
                         <small>
