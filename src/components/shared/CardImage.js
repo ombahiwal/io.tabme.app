@@ -43,7 +43,7 @@ const DCardImage = props => {
         setVeg(<RiLeafLine style={{color:"green"}}/>);
         break;
       case 'Meat':
-        setVeg(<MeatIcon style={{height:'12px'}}/>);
+        // setVeg(<MeatIcon style={{height:'12px'}}/>);
         setVeg('');
       break;
       case 'Egg':
