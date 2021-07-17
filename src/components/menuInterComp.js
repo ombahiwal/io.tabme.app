@@ -78,7 +78,7 @@ function Process(subprop){
             <div className="row">
                 <div className="col-12">
                 <div className="loading-div">
-                {loading && <Redirect to='/menu6'/>}
+                {loading && <Redirect to='/menu6'/>}.asda
                 </div>
                 </div>    
             </div>

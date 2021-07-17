@@ -23,8 +23,8 @@ border:2px;
 border-radius:20%;
 border-color:rgba(47, 79, 79, 0.9);
 border-style:solid;
-height:30px;
-width:30px;
+height:28px;
+width:28px;
 background: rgba(255, 255, 255, 0.7)
 `
 const Inner = styled.span`

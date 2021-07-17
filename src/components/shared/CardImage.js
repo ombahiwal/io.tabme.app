@@ -20,8 +20,8 @@ import {ReactComponent as MeatIcon} from './meat-svgrepo-com.svg';
  */
 
 function dishDescShortDisplay(desc){
-  if(desc.length > 84){
-      return desc.slice(0,79)+"..."
+  if(desc.length > 65){
+      return desc.slice(0,65)+"..."
   }else{
       return desc
   }
@@ -58,7 +58,7 @@ const DCardImage = props => {
       className={props.className}
       centered={props.centered}
       onClick={props.onClick}
-      style={props.dish.image ? {'min-height':'95px', 'max-height':'95px'}: {'min-height':'70px'}}
+      style={props.dish.image ? {'min-height':'80px', 'max-height':'80px'}: {'min-height':'80px'}}
       >
       <TextWrapper centered={props.centered}>
         <Title onClick={props.onClickAllergenInfo}>{props.title} <sup>{veg}</sup></Title>
@@ -177,7 +177,7 @@ const TextWrapper = styled.div`
 `;
 
    var Text = styled.p`
-    margin: 5px 80px 12px 0px;
+    margin: 5px 60px 12px 0px;
     font-size:0.75rem;
     color: #969696;
     font-weight:400;

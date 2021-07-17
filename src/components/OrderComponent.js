@@ -153,7 +153,7 @@ function Process(subprop){
                         {/* <Image src={`https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/${order.gastro_id}.png`}/>     */}
                         <OrderStatusImage order={order}/>
                         <br/>
-                        <h5><b>{order.rname}</b></h5>                        
+                        <h5><b>{order.rname}</b></h5>
                        <br/>
                        {(!pickup.status && parseInt(order.tablenum) > -1) && <h5><b> {t('table_num', {tablenum:order.tablenum})}</b></h5>}
                         {(pickup.status || parseInt(order.tablenum) === -1) && <h5><b> {t('pickup_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})} </b></h5>}
