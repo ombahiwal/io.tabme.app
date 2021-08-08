@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import styled from 'styled-components';
 // const __DEV__ = ;
 const ENV = require('../../services/env-vars');
-const PROMO_API_URL = document.domain !== 'localhost' ? 'http://localhost:8000/api/v1/ps/promo/': ENV.API_URL+'/api/v1/ps/promo/';  
+const PROMO_API_URL = document.domain === 'localhost' ? 'http://localhost:8000/api/v1/ps/promo/': ENV.API_URL+'/api/v1/ps/promo/';  
 // var Actions = require('../../redux/actions/index');
 
 const PromoField = (props)=>{

@@ -504,6 +504,7 @@ button[data-id="button-icon-element"] svg{
   height:52px;
 }
 .slick-track{
+  height:100px;
   overflow: hidden;
 }
 
