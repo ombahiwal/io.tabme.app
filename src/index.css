@@ -524,13 +524,26 @@ button[data-id="button-icon-element"] svg{
   background: white;
   font-size: 1rem;
   border-radius: 1.25rem 0 0 1.25rem;
+  box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px;
+
 }
 .button-modal-center{
   font-size: 1rem;
   color:#466dd6;
   background: white;
   border-radius: 0;
+  box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px;
 }
+
+.button-modal-right{
+  font-size: 1rem;
+  color:black;
+  background: white;
+  border-radius: 0 1.25rem 1.25rem 0;
+  box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px;
+
+}
+
 .button-modal-center:active{
   color:white; 
   background-color: #466dd6 !important;
@@ -545,14 +558,10 @@ button[data-id="button-icon-element"] svg{
   color:white; 
   background-color: black !important;
   border-radius: 0;
+
 }
 
-.button-modal-right{
-  font-size: 1rem;
-  color:black;
-  background: white;
-  border-radius: 0 1.25rem 1.25rem 0;
-}
+
 .button-modal-addtocart{
   float:right;
   font-size: 1rem;
@@ -571,6 +580,8 @@ button[data-id="button-icon-element"] svg{
   background:white;
   color:#466dd6;
   border-color:#466dd6;
+  box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px;
+
 }
 
 .button-cart-promo-apply:active{
@@ -595,7 +606,7 @@ button[data-id="button-icon-element"] svg{
   font-weight: 700;
   text-align: center;
   border-radius: 1.25rem 0 0 1.25rem !important;
-  box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px, rgb(32 32 32 / 5%) 0px 16px 16px, rgb(49 49 49 / 5%) 0px 0px 0px;
+  box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px;
 }
 
 .toggle-button-wrapper{
