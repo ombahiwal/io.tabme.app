@@ -435,7 +435,7 @@ class Cart extends Component {
     renderBillingInfo(){
         return(
             <div className="row">
-            {this.state.status && <div className="col-12">
+            {this.state.status && <div className="col-12 background-white">
             {/* <hr/> */}
              {/* <center><b>BILL SUMMARY</b></center>  */}
             
@@ -590,7 +590,7 @@ class Cart extends Component {
                     </div>
                 <br/>
                 <div className="row">
-                    {this.state.status && <div className="col-12">
+                    {this.state.status && <div className="col-12  background-white">
 
                     {/* {<center><b>Payment Options</b></center> } */}
                     {/* <SubTitle text={t('cart_payment_options_title')}/> */}
@@ -613,8 +613,9 @@ class Cart extends Component {
 
                         </Link>
                     </div>    */}
+
                     <FormattedMessage id='menu' defaultMessage="Menu">
-                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:"/asd"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:".."}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
                     </FormattedMessage>
                 </div>
             </div>

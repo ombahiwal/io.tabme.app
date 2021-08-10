@@ -92,7 +92,7 @@ const MenuCategories = props => {
       font-size: 1rem;
       line-height: 1.5;
       transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-      box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px, rgb(32 32 32 / 5%) 0px 16px 16px, rgb(49 49 49 / 5%) 0px 0px 0px;
+      box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px;
     `;
 
   var active_menu_cat = props.activecat;
@@ -131,7 +131,7 @@ const MenuCategories = props => {
         {/* <h2> Responsive </h2> */}
         <Slider style={{height:'60px'}} ref={slider => (slideref = slider)} {...settings}>
         {props.categories.map((cat, idx)=>{
-                    return(<div><CategoryButton style={{'marginRight':'0', 'margin':'5px',backgroundColor:props.goTo === idx ? "black" :  "white", color:props.goTo === idx ? "white" :  "black"}} key={cat} onClick={()=>{scrollltoTargetAdjusted(`${cat}`, idx, slideref)}}><small><b>{cat}</b></small></CategoryButton> &nbsp;</div>);
+                    return(<div><CategoryButton style={{'marginRight':'0', 'margin':'0px',backgroundColor:props.goTo === idx ? "black" :  "white", color:props.goTo === idx ? "white" :  "black"}} key={cat} onClick={()=>{scrollltoTargetAdjusted(`${cat}`, idx, slideref)}}><small><b>{cat}</b></small></CategoryButton> &nbsp;</div>);
                 })}
         </Slider>
       </div>
