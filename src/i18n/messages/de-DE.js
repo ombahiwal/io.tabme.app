@@ -49,7 +49,7 @@ export default {
     'cart_total': "Gesamt",
     'cart_tab_summary_title': "Tab Zusammenfassung",
     'cart_payment_options_title': "Zahlungsoptionen",
-    'cart_enter_promo': "Code eingeben...",
+    'cart_enter_promo': "Gutscheincode..",
     'cart_apply_btn': "Anwenden",
     'cart_processing': "Verarbeitung...",
     'cart_sending': "Bestellung abschicken...",
@@ -137,6 +137,7 @@ export default {
     'guest_form_security_message':"Wir geben Ihre Informationen nicht an Dritte weiter. Wir gewährleisten angemessene Sicherheitsmaßnahmen, um Ihnen das beste Kundenerlebnis zu bieten.",
     'today':"Heute",
     'choose_pickup_time':"Abholzeit wählen",
-    'order':'Bestellung'
+    'order':'Bestellung',
+    'menu':'Menü',
   },
 };

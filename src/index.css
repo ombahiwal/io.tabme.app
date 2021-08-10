@@ -17,7 +17,8 @@ body, html {
 
 #root{
   /* padding-top:64px; */
-  background-color:  #fcfcfc;
+  background-color:  white;
+  /* background-color:  #fcfcfc; */
   /* margin-bottom: 70px; */
   white-space: pre-line;
 }
@@ -188,12 +189,13 @@ code {
   border-radius: 1rem;
   border-width: 2px;
   font-weight: 400;
-  border-color: #fcfcfc;
-  color:black;
+  background: black;
+  color:white;
   box-shadow: rgba(45, 45, 45, 0.05) 0px 2px 2px,
   rgba(49, 49, 49, 0.05) 0px 4px 4px, rgba(42, 42, 42, 0.05) 0px 8px 8px,
   rgba(32, 32, 32, 0.05) 0px 16px 16px, rgba(49, 49, 49, 0.05) 0px 32px 32px,
   rgba(35, 35, 35, 0.05) 0px 64px 64px;
+  border-color:transparent;
 }
 
 .styled-btn-solid-blue{
@@ -496,8 +498,8 @@ button[data-id="button-icon-element"] svg{
 
 .theme-button:hover, .welcome-btn:hover{
   color:white;
-  background-color: black;
-  border-color:black;
+  background-color: black;  
+  border-color:transparent;
 }
 
 .slick-list{
@@ -545,8 +547,6 @@ button[data-id="button-icon-element"] svg{
   border-radius: 0;
 }
 
-
-
 .button-modal-right{
   font-size: 1rem;
   color:black;
@@ -565,9 +565,12 @@ button[data-id="button-icon-element"] svg{
 .button-modal-addtocart:disabled{
   background:rgb(85, 85, 85);
 }
+
 .button-cart-promo-apply{
   border-radius: 0 1.25rem 1.25rem 0;
-  background:#466dd6;
+  background:white;
+  color:#466dd6;
+  border-color:#466dd6;
 }
 
 .button-cart-promo-apply:active{
@@ -584,7 +587,8 @@ button[data-id="button-icon-element"] svg{
 }
 
 .button-cart-promo-apply:disabled{
-  background:rgb(85, 85, 85);
+  border-color:#466dd6;
+  background: #466dd6;
 }
 
 .input-cart-promo-code{
@@ -597,4 +601,26 @@ button[data-id="button-icon-element"] svg{
 .toggle-button-wrapper{
   width: 90%;
   margin: 5px 5% 5px 5%;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+  color: #fff;
+    background-color: #466dd6;
+    border-color: #466dd6;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #466dd6;
+  background-color: transparent;
+  border-color: #466dd6;
+}
+
+
+.theme-card{ 
+  border-radius: 8px;
+  padding:10px;
+  margin: 15px 4% 5px 4%;
+  width:92%;
+  max-width: 450px;
+  background: white;
+  box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px, rgb(32 32 32 / 5%) 0px 16px 16px, rgb(49 49 49 / 5%) 0px 0px 0px;
 }

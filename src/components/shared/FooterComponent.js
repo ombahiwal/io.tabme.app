@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 /*
 * @param  {props} props
 */
 import {RiHandbagFill, RiArrowLeftSFill} from 'react-icons/ri';
 // import {IoCaretBack} from 'react-icons/io5'; 
 import CurrencySymbol from '../CurrencySymbolComponent';
-import {ReactComponent as BackIcon} from './caret-left-solid.svg';
+// import {ReactComponent as BackIcon} from './caret-left-solid.svg';
 import {
   Link, Redirect
 } from "react-router-dom";
@@ -20,10 +20,10 @@ const FooterComponent = props => {
   <Container> 
       <LeftWrapper>
         <LeftIconButton>
-              {props.menucart && <><span style={{fontSize:'1.75rem'}}> <RiHandbagFill/></span>  &nbsp;
-                        <b><CurrencySymbol/>{props.total}</b></>}
+              {props.menucart && <Link style={{color:'white'}} to={'/cart'}><span style={{fontSize:'1.75rem'}}> <RiHandbagFill/></span>  &nbsp;
+                        <b><CurrencySymbol/>{props.total}</b></Link>}
               {(!props.menucart && props.back.show) && <Link to={props.back.to}>
-                  <FooterButton style={{color:'black', background: props.back.arrow ? 'url("https://cdn.tabme.io/app-public-assets/caret-left-solid.svg") 34px 5px / 9px no-repeat white' : 'white' }}>
+                  <FooterButton style={{color:'black', background: props.back.arrow ? 'url("https://cdn.tabme.io/app-public-assets/caret-left-solid.svg") 25px 4.5px / 9px no-repeat white' : 'white' }}>
                     <b>{props.back.text}</b>
                   </FooterButton></Link>}
 
@@ -32,8 +32,8 @@ const FooterComponent = props => {
 
       <RightWrapper>
         <RightIconButton>
-        <Link to="/cart"> 
-                        <FooterButton style={{color:'white', background:'#466dd6'}}><b>{t('proceed_btn', {text:""})}</b>
+        <Link to={props.next.to}> 
+                        <FooterButton style={{color:'white', background:'#466dd6'}}><b>{props.next.text}</b>
                         {/* &nbsp;<small><b><CurrencySymbol/>{this.renderCartTotal()}</b></small> */}
                         </FooterButton>
                     </Link>

@@ -136,6 +136,7 @@ export default {
     'guest_form_security_message':" We do not share your information with any third parties. We ensure appropriate security measures to provide you the best customer experience.",
     'today':"Today",
     'choose_pickup_time':"Choose Pickup Time",
-    'order':'Order'
+    'order':'Order',
+    'menu':'Menu'
   },
 };

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import styled from 'styled-components';
 // const __DEV__ = ;
 const ENV = require('../../services/env-vars');
-const PROMO_API_URL = document.domain === 'localhost' ? 'http://localhost:8000/api/v1/ps/promo/': ENV.API_URL+'/api/v1/ps/promo/';  
+const PROMO_API_URL = document.domain !== 'localhost' ? 'http://localhost:8000/api/v1/ps/promo/': ENV.API_URL+'/api/v1/ps/promo/';  
 // var Actions = require('../../redux/actions/index');
 
 const PromoField = (props)=>{
@@ -38,7 +38,7 @@ const PromoField = (props)=>{
                     var promo_data = request.data.promo_data
                     setPromo({valid:true, value:promo.value ,discount:promo_data.discount, discountpercent:promo_data.discountpercent , data:promo_data});
                     props.getPromo({valid:true, discount:promo_data.discount, discountpercent:promo_data.discountpercent , data:promo_data});
-                    setAlert({show:true, response:'cart_promo_valid', variant:"success", style:{color:'green'}})
+                    setAlert({show:true, response:'cart_promo_valid', variant:"success", style:{color:'#6cff6c'}})
                 }else{
                     // OInValid
                     setAlert({show:false, response:'cart_promo_invalid', variant:"danger", style:{color:'palevioletred'}});
@@ -63,18 +63,14 @@ const PromoField = (props)=>{
     }
 
        return( <Wrapper>
-                <InputGroup  size="sm" className="mb-3">
-                    <FormattedMessage id='cart_enter_promo' defaultMessage="Enter Code...">
-                            {(placeholder)=><FormControl className="input-cart-promo-code" disabled={promo.valid} aria-label="Small" aria-describedby="inputGroup-sizing-sm" value={promo.value} placeholder={placeholder} onChange={onChangePromo}/>}
-                        </FormattedMessage>
-                        <InputGroup.Append>
-                            <button className="theme-button button-cart-promo-apply" disabled={promo.valid} style={alert.style} variant="outline-secondary" onClick={handlePromoSubmit}><small><b>{t(alert.response)} {promo.valid  && <FaRegTimesCircle onClick={()=>{removeCode()}} />}</b></small></button>
-                        </InputGroup.Append>    
-                </InputGroup>
-                {/* { alert.show && <span style={alert.style} className="promo">{t(alert.response)}
-                 {' '}&nbsp;  <FaRegTimesCircle onClick={()=>{removeCode()}} />
-                </span>} */}
-                
+                    <InputGroup  size="sm" className="mb-3">
+                        <FormattedMessage id='cart_enter_promo' defaultMessage="Enter Code...">
+                                {(placeholder)=><FormControl className="input-cart-promo-code" disabled={promo.valid} aria-label="Small" aria-describedby="inputGroup-sizing-sm" value={promo.value} placeholder={placeholder} onChange={onChangePromo}/>}
+                            </FormattedMessage>
+                            <InputGroup.Append>
+                                <button className="theme-button button-cart-promo-apply" disabled={promo.valid} style={alert.style} variant="outline-secondary" onClick={handlePromoSubmit}><small><b>{t(alert.response)} {promo.valid  && <FaRegTimesCircle onClick={()=>{removeCode()}} />}</b></small></button>
+                            </InputGroup.Append>    
+                    </InputGroup>
                 </Wrapper>);
 
 }

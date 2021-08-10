@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import CurrencySymbol from './CurrencySymbolComponent';
 import SubTitle from './shared/SubTitle';
+import HeadTitle from './shared/HeadTitle';
 import LoadingOverlay from 'react-loading-overlay';
 import { FaPencilAlt} from 'react-icons/fa';
 import PromoField from './shared/PromoField';
@@ -18,6 +19,7 @@ import PaymentButton from './shared/PaymentButton';
 import {FaRegMoneyBillAlt} from 'react-icons/fa';
 import {RiSecurePaymentLine} from 'react-icons/ri';
 import FooterComponent from './shared/FooterComponent';
+import {RiHandbagFill} from 'react-icons/ri';
 
 var CurrencyCode =  require('./shared/CurrencyFromCode');
 var Action = require('../redux/actions/index');
@@ -387,10 +389,14 @@ class Cart extends Component {
 
     renderTipButtons(){
         //   console.log(this.state.tip);
-          return (<div className="toggle-button-wrapper"><ButtonGroup toggle style={{width:'100%'}}>
+          return (<div className="toggle-button-wrapper">
+          
+          <ButtonGroup toggle style={{width:'100%'}}>
+        
           {this.radios.map((radio, idx) => {
               var classN = idx === 0 ? "button-modal-left theme-button" : "button-modal-center theme-button";
                 classN = idx === (this.radios.length - 1) ? "button-modal-right theme-button" : classN;
+                
           return <ToggleButton
                     size="sm"
                     className={classN}
@@ -430,7 +436,7 @@ class Cart extends Component {
         return(
             <div className="row">
             {this.state.status && <div className="col-12 background-white">
-            <hr/>
+            {/* <hr/> */}
              {/* <center><b>BILL SUMMARY</b></center>  */}
             
                 <div className="row">
@@ -472,7 +478,7 @@ class Cart extends Component {
                 <div className="row">
                     <div className="col-3"><b style={{fontWeight:'bold'}}>{t('cart_total')}</b></div>
                     <div className="col-6"><hr/></div>
-                    <div className="col-3 no-padding-float-right"><center><b><CurrencySymbol/>{this.cart.totalCost.toFixed(2)}</b></center></div>
+                    <div className="col-3 no-padding-float-right"><center><b style={{fontWeight:'bold'}}><CurrencySymbol/>{this.cart.totalCost.toFixed(2)}</b></center></div>
                 </div>
             </div>}
             </div>
@@ -486,10 +492,10 @@ class Cart extends Component {
             // console.log('BANK DETAILS not added');
         }else{
             return (<>
-            {/* <Form.Check onChange={()=>{this.onChangePaymentMethod('razorpay')}} name="paymentmenthod" type="radio" id="2" label="Card, UPI & More."/> <br/> */}
-            {/* <span ><Link to={"/razorpay"}><Button variant="light" className='payment_option_btn' onChange={()=>{this.onChangePaymentMethod('razorpay')}} name="payment_method"  type="razorpay">Card, UPI, Wallets and More.</Button></Link><br/><br/></span> */}
-            <span ><PaymentButton color={'#0a1e42'} link={'/razorpay'}name="payment_method"  value={'razorpay'} text={'Card, UPI & More'} icon1={<RiSecurePaymentLine/>}/></span>
-            <center><small><br/></small><Image src="https://tabme.info/app-public-assets/india-payment-options.png"/></center>  
+                    {/* <Form.Check onChange={()=>{this.onChangePaymentMethod('razorpay')}} name="paymentmenthod" type="radio" id="2" label="Card, UPI & More."/> <br/> */}
+                    {/* <span ><Link to={"/razorpay"}><Button variant="light" className='payment_option_btn' onChange={()=>{this.onChangePaymentMethod('razorpay')}} name="payment_method"  type="razorpay">Card, UPI, Wallets and More.</Button></Link><br/><br/></span> */}
+                    <span ><PaymentButton color={'#0a1e42'} link={'/razorpay'}name="payment_method"  value={'razorpay'} text={'Card, UPI & More'} icon1={<RiSecurePaymentLine/>}/></span>
+                    <center><small><br/></small><Image src="https://tabme.info/app-public-assets/india-payment-options.png"/></center>  
               </>)
         }
     }
@@ -554,33 +560,41 @@ class Cart extends Component {
                 </div> */}
                 <div className="row">
                 
-                <div className="col-12">
-                <SubTitle text={t('cart_tab_summary_title')}/>
+                <div className="col-12 no-padding-float-left ">
+                <HeadTitle text={"Tab Warenkrob"} icon={<RiHandbagFill/>}/>
+                {/* <SubTitle text={t('cart_tab_summary_title')}/> */}
                 {/* {this.state.status && <center><b>DISH SUMMARY</b></center> } */}
                 <br/>
-                    {this.renderDishes()}
+                <div className="theme-card">
+                 {this.renderDishes()}
+                </div>
+                    
                 </div>
                 </div>
 
                 <div className="row">
-                <div className="col-12 background-white">
+                <div className="col-12">
                     {/* <Button as={Link} to='/menu' size="sm" variant="outline-secondary"><FaUtensils/> </Button> */}
                     {/* {this.renderNotesBox()} */}
-                    
+                    <div className="theme-card">
+                    {/* <SubTitle text={"Promo"} /> */}
                     {this.renderPromo()}
+                    {/* <SubTitle text={"Trinkgeld"}/> */}
                     {this.renderTipButtons()}
+                     </div>
+                    
                 </div>
                 </div>
+                <div className="theme-card">
                     {this.state.status && this.renderBillingInfo()}
-            
+                    </div>
                 <br/>
                 <div className="row">
                     {this.state.status && <div className="col-12  background-white">
-                    
+
                     {/* {<center><b>Payment Options</b></center> } */}
-                    <SubTitle text={t('cart_payment_options_title')}/>
- 
-                    {this.renderPaymentOptions()}
+                    {/* <SubTitle text={t('cart_payment_options_title')}/> */}
+                    {/* {this.renderPaymentOptions()} */}
                     <hr/>
                     
                     {/* <center><Link to="/checkout"><Button className="wide-btn" variant="dark"><b>Proceed to Pay</b></Button></Link></center> */}
@@ -600,8 +614,9 @@ class Cart extends Component {
                         </Link>
                     </div>    */}
 
-                    <FooterComponent back={{show:true, to:"/menu6", type:"route", text:"Menu", arrow:true}} ></FooterComponent>
-
+                    <FormattedMessage id='menu' defaultMessage="Menu">
+                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:".."}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                    </FormattedMessage>
                 </div>
             </div>
         );

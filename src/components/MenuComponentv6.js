@@ -20,6 +20,7 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import sampleMenu from './shared/sampleMenu';
 import { Waypoint } from 'react-waypoint';
 import Drawer from './shared/drawer/dist/Drawer';
+import {FormattedMessage} from 'react-intl';
 import {
     Link, Redirect
   } from "react-router-dom";
@@ -846,7 +847,7 @@ class Menu6 extends Component {
     
     renderTotal(){
             return(
-                  <FooterComponent back={{show:false}} menucart={true} total={this.renderCartTotal()}/>
+                  <FormattedMessage values={{text:""}} id="proceed_btn">{placeholder=><FooterComponent back={{show:false}} menucart={true} total={this.renderCartTotal()} next={{text:placeholder, to:'/cart'}}/>}</FormattedMessage>
             );
 
     }

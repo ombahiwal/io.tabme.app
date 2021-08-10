@@ -126,18 +126,18 @@ class RestaurantWelcome extends Component{
         
             {/* <hr/> */}
             {/* <Image className="restaurant-logo-img-welcome" fluid="true" src={"https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/"+this.props.restaurant._id+".png"} rounded/> */}
-            <center>
-                <MenuBanner restaurant={this.props.restaurant}/>
+           
+                 <center><MenuBanner restaurant={this.props.restaurant}/>
             
             {/* <h4>Welcome!</h4> */}
             
             <div className="about-restaurant-wrapper">
-            <h3><b>{this.props.restaurant.rname}</b></h3>
+            <h4><b>{this.props.restaurant.rname}</b></h4>
              <p className="about-restaurant">
                 {this.props.restaurant.about}
               </p> 
               </div>
-            </center>   
+              </center>  
               <center>
               <TableNumberSelector tablenum={this.table_num} onChange={this.changetablenum}/>
                 {/* <Form>
@@ -152,7 +152,7 @@ class RestaurantWelcome extends Component{
                 <br/><br/>
                 { this.props.restaurant.open && <>
                 
-                    {this.state.showAlertSuccess && <Alert variant="success"><b>{t('welcome_checkin_msg')}</b></Alert>}
+                {this.state.showAlertSuccess && <Alert variant="success"><b>{t('welcome_checkin_msg')}</b></Alert>}
                 {this.state.showAlertSuccessPickup && <Alert variant="success"><b>{t('welcome_pickup_msg')}</b></Alert>}
                 {!(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && <Button className="welcome-btn" onClick={()=>{this.handleCheckin();}} variant="outline-info"><b>{t('checkin_btn')}</b></Button>}{' '}
                 

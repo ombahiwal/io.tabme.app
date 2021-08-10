@@ -127,7 +127,7 @@ export default CDCard;
 
 const Wrapper = styled.div`
     
-width: 90%;
+width: 92%;
 margin:10px 4% 10px 4%;
 min-height:70px;
 background: white;
