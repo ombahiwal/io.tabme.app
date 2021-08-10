@@ -435,36 +435,36 @@ class Cart extends Component {
     renderBillingInfo(){
         return(
             <div className="row">
-            {this.state.status && <div className="col-12 background-white">
+            {this.state.status && <div className="col-12 margin-middle">
             {/* <hr/> */}
              {/* <center><b>BILL SUMMARY</b></center>  */}
             
                 <div className="row">
                     <div className="col-3"><small>{t('cart_subtotal')}</small></div>
-                    <div className="col-6"></div>
-                    <div className="col-3"><center><small><CurrencySymbol/>{this.props.cart.cartTotal.toFixed(2)}</small></center></div>
+                    <div className="col-5"></div>
+                    <div className="col-4"><center><small><CurrencySymbol/>{this.props.cart.cartTotal.toFixed(2)}</small></center></div>
                 </div>
                 { this.props.cart.delivery_fee > 0 &&
                 <div className="row">
                     <div className="col-3"><small>{t('delivery_charge_label')}</small></div>
-                    <div className="col-6"><hr/></div>
-                    <div className="col-3 no-padding-float-right"><center><small><CurrencySymbol/> {this.cart.delivery_fee.toFixed(2)}</small></center></div>
+                    <div className="col-5"><hr/></div>
+                    <div className="col-4 no-padding-float-right"><center><small><CurrencySymbol/> {this.cart.delivery_fee.toFixed(2)}</small></center></div>
                 </div> }
                 <div className="row">
                     <div className="col-3">
                     <small>{t('cart_tip')} 
                         &nbsp;
                     </small></div>
-                    <div className="col-6">  
+                    <div className="col-5">  
                         {/* {this.renderTipButtons()} */}
                     </div>
-                    <div className="col-3"><center><small><CurrencySymbol/>{this.cart.tip.toFixed(2)}</small></center></div>
+                    <div className="col-4"><center><small><CurrencySymbol/>{this.cart.tip.toFixed(2)}</small></center></div>
                 </div>
                 <div className="row">
                     <div className="col-3"><small>{t('cart_promo')} </small>    </div>
-                    <div className="col-6">
+                    <div className="col-5">
                 </div>
-                    <div className="col-3 no-padding-float-right"><center><small><CurrencySymbol/>{this.cart.promo.toFixed(2)}</small></center></div>
+                    <div className="col-4 no-padding-float-right"><center><small><CurrencySymbol/>{this.cart.promo.toFixed(2)}</small></center></div>
                 </div>
                
                 {/* 
@@ -477,8 +477,8 @@ class Cart extends Component {
                 <br/>
                 <div className="row">
                     <div className="col-3"><b style={{fontWeight:'bold'}}>{t('cart_total')}</b></div>
-                    <div className="col-6"><hr/></div>
-                    <div className="col-3 no-padding-float-right"><center><b style={{fontWeight:'bold'}}><CurrencySymbol/>{this.cart.totalCost.toFixed(2)}</b></center></div>
+                    <div className="col-5"><hr/></div>
+                    <div className="col-4 no-padding-float-right"><center><b style={{fontWeight:'bold'}}><CurrencySymbol/>{this.cart.totalCost.toFixed(2)}</b></center></div>
                 </div>
             </div>}
             </div>
@@ -561,7 +561,7 @@ class Cart extends Component {
                 <div className="row">
                 
                 <div className="col-12 no-padding-float-left ">
-                <HeadTitle text={"Tab Warenkrob"} icon={<RiHandbagFill/>}/>
+                <HeadTitle text={"Tab Warenkorb"} icon={<RiHandbagFill/>}/>
                 {/* <SubTitle text={t('cart_tab_summary_title')}/> */}
                 {/* {this.state.status && <center><b>DISH SUMMARY</b></center> } */}
                 <br/>
@@ -578,8 +578,10 @@ class Cart extends Component {
                     {/* {this.renderNotesBox()} */}
                     <div className="theme-card">
                     {/* <SubTitle text={"Promo"} /> */}
+                    {/* <small><b>{t('cart_promo')}</b></small> */}
                     {this.renderPromo()}
                     {/* <SubTitle text={"Trinkgeld"}/> */}
+                    <small><b>{t('cart_tip')}</b></small>
                     {this.renderTipButtons()}
                      </div>
                     
@@ -590,7 +592,7 @@ class Cart extends Component {
                     </div>
                 <br/>
                 <div className="row">
-                    {this.state.status && <div className="col-12  background-white">
+                    {this.state.status && <div className="col-12">
 
                     {/* {<center><b>Payment Options</b></center> } */}
                     {/* <SubTitle text={t('cart_payment_options_title')}/> */}
@@ -613,9 +615,8 @@ class Cart extends Component {
 
                         </Link>
                     </div>    */}
-
                     <FormattedMessage id='menu' defaultMessage="Menu">
-                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:".."}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:"/asd"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
                     </FormattedMessage>
                 </div>
             </div>

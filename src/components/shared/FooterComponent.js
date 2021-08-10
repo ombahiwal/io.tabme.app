@@ -23,7 +23,7 @@ const FooterComponent = props => {
               {props.menucart && <Link style={{color:'white'}} to={'/cart'}><span style={{fontSize:'1.75rem'}}> <RiHandbagFill/></span>  &nbsp;
                         <b><CurrencySymbol/>{props.total}</b></Link>}
               {(!props.menucart && props.back.show) && <Link to={props.back.to}>
-                  <FooterButton style={{color:'black', background: props.back.arrow ? 'url("https://cdn.tabme.io/app-public-assets/caret-left-solid.svg") 25px 4.5px / 9px no-repeat white' : 'white' }}>
+                  <FooterButton style={{color:'black', background: props.back.arrow ? 'url("https://cdn.tabme.io/app-public-assets/caret-left-solid.svg") 9% 4.5px / 9px no-repeat white' : 'white' }}>
                     <b>{props.back.text}</b>
                   </FooterButton></Link>}
 

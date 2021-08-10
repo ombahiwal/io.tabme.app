@@ -18,8 +18,12 @@ import {Redirect, Link} from 'react-router-dom';
 import t from '../i18n/translate';
 import {FormattedMessage} from 'react-intl';
 import TnC from './shared/TnCFoot';
-
+import FooterComponent from './shared/FooterComponent';
 import { Image, Alert, Form, InputGroup, Button} from "react-bootstrap";
+import {RiSecurePaymentLine, RiHandbagFill} from 'react-icons/ri';
+import SPMGrid from './shared/StripePaymentMethodsGrid';
+import HeadTitle from './shared/HeadTitle';
+
 var cookies = new Cookies();
 var Actions = require('../redux/actions/index');
 var payment_server_url;
@@ -443,6 +447,11 @@ export default function StripeCheckout(props) {
         
         <div className="row">
           <div className="col-12">
+          <HeadTitle text={"Tab Warenkorb"} icon={<RiHandbagFill/>}/>
+          <br/>
+          <SubTitle text={t('cart_payment_options_title')}/>
+
+          <SPMGrid/>
           {/* <center><h4><b>Payment</b></h4></center> */}
           {/* <hr/> */}
           </div>
@@ -457,12 +466,12 @@ export default function StripeCheckout(props) {
     
         <div className="row">
         <div className="col-12 background-white">
-        <SubTitle text={t('payment_bill_info_title')}/>
+        {/* <SubTitle text={t('payment_bill_info_title')}/> */}
         {/* <center><b>Billing Info.</b></center><br/>
          */}
         </div>  
         
-        {renderBillingInfo()}
+        {/* {renderBillingInfo()} */}
         <br/>
         </div>
        
@@ -470,11 +479,11 @@ export default function StripeCheckout(props) {
         <div className="row">
         
           
-          <div className="col-12 background-white">
+          <div className="col-12 ">
               <center>
               </center>
           </div>
-          {renderCheckoutForm()}
+          {/* {renderCheckoutForm()} */}
           <div className="col-12 background-white">
          <br/>
          <center>
@@ -488,8 +497,11 @@ export default function StripeCheckout(props) {
         </div>
         </div>
         {/* <hr/> */}
-        </div>
         
+        </div>
+        <div> <FormattedMessage id='cart' defaultMessage="Cart">
+                {(placeholder)=><FormattedMessage values={{text:""}} id="order2">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:"/stripe"}}back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                    </FormattedMessage></div>
     </LoadingOverlay>
   );
 }

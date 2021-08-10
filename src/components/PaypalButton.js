@@ -48,7 +48,7 @@ class PaypalButton extends React.Component {
 
   componentDidMount() {
     setTimeout(async ()=>{
-      await loadScript(`https://www.paypal.com/sdk/js?currency=${this.state.currency}&client-id=${this.state.client_id}&locale=de_DE&disable-funding=card`).then(loaded=>{
+      await loadScript(`https://www.paypal.com/sdk/js?currency=${this.state.currency}&client-id=${this.state.client_id}&locale=de_DE&disable-funding=card,credit,giropay,sepa,sofort,ideal`).then(loaded=>{
         // console.log('PAYPAL LOADED?', loaded);
         if(loaded){
           PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });

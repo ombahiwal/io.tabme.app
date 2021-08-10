@@ -137,6 +137,8 @@ export default {
     'today':"Today",
     'choose_pickup_time':"Choose Pickup Time",
     'order':'Order',
-    'menu':'Menu'
+    'menu':'Menu',
+    'order2':'Order',
+    'cart':"Cart"
   },
 };

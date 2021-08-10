@@ -129,7 +129,7 @@ const MenuCategories = props => {
       
         <div>
         {/* <h2> Responsive </h2> */}
-        <Slider style={{height:'60px'}} ref={slider => (slideref = slider)} {...settings}>
+        <Slider style={{height:'54px'}} ref={slider => (slideref = slider)} {...settings}>
         {props.categories.map((cat, idx)=>{
                     return(<div><CategoryButton style={{'marginRight':'0', 'margin':'0px',backgroundColor:props.goTo === idx ? "black" :  "white", color:props.goTo === idx ? "white" :  "black"}} key={cat} onClick={()=>{scrollltoTargetAdjusted(`${cat}`, idx, slideref)}}><small><b>{cat}</b></small></CategoryButton> &nbsp;</div>);
                 })}

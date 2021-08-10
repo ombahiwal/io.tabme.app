@@ -635,3 +635,7 @@ button[data-id="button-icon-element"] svg{
   background-color: white;
   box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px;
 }
+.margin-middle{
+  margin: 15px 4% 5px 4%;
+  width:92%;
+}

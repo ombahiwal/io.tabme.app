@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import CurrencySymbol from './CurrencySymbolComponent';
-import SubTitle from './shared/SubTitle';
+// import SubTitle from './shared/SubTitle';
 import HeadTitle from './shared/HeadTitle';
 import LoadingOverlay from 'react-loading-overlay';
 import { FaPencilAlt} from 'react-icons/fa';
@@ -435,7 +435,7 @@ class Cart extends Component {
     renderBillingInfo(){
         return(
             <div className="row">
-            {this.state.status && <div className="col-12">
+            {this.state.status && <div className="col-12 margin-middle">
             {/* <hr/> */}
              {/* <center><b>BILL SUMMARY</b></center>  */}
             
@@ -561,7 +561,7 @@ class Cart extends Component {
                 <div className="row">
                 
                 <div className="col-12 no-padding-float-left ">
-                <HeadTitle text={"Tab Warenkrob"} icon={<RiHandbagFill/>}/>
+                <HeadTitle text={"Tab Warenkorb"} icon={<RiHandbagFill/>}/>
                 {/* <SubTitle text={t('cart_tab_summary_title')}/> */}
                 {/* {this.state.status && <center><b>DISH SUMMARY</b></center> } */}
                 <br/>
@@ -578,7 +578,7 @@ class Cart extends Component {
                     {/* {this.renderNotesBox()} */}
                     <div className="theme-card">
                     {/* <SubTitle text={"Promo"} /> */}
-                    <small><b>{t('cart_promo')}</b></small>
+                    {/* <small><b>{t('cart_promo')}</b></small> */}
                     {this.renderPromo()}
                     {/* <SubTitle text={"Trinkgeld"}/> */}
                     <small><b>{t('cart_tip')}</b></small>
@@ -616,7 +616,7 @@ class Cart extends Component {
                         </Link>
                     </div>    */}
                     <FormattedMessage id='menu' defaultMessage="Menu">
-                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:"/asd"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:"/stripe"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
                     </FormattedMessage>
                 </div>
             </div>

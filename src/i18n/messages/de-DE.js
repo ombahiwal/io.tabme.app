@@ -138,6 +138,9 @@ export default {
     'today':"Heute",
     'choose_pickup_time':"Abholzeit wählen",
     'order':'Bestellung',
+    'order2':'Bestellen',
     'menu':'Menü',
+    'cart':"Warenkorb",
+    
   },
 };
