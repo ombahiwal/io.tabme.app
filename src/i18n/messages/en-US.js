@@ -139,6 +139,7 @@ export default {
     'order':'Order',
     'menu':'Menu',
     'order2':'Order',
-    'cart':"Cart"
+    'cart':"Cart",
+    'cart_other_payment_options':'Other Options'
   },
 };

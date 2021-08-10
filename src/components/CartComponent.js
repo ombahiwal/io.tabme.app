@@ -634,7 +634,7 @@ class Cart extends Component {
                 >
                 {this.renderCheckoutForm()}
 
-                <PaypalCheckout cartLoading={this.setCartLoading}/>
+                {/* <PaypalCheckout cartLoading={this.setCartLoading}/> */}
                 {/* <PaymentButton color={'#0a1e42'}link="/cart" text={"Karte und Mehr"} icon1={<RiSecurePaymentLine/>}/>
                 <center>
                     <Image src="https://www.tabme.info/app-public-assets/accepted_cards.png" fluid/>

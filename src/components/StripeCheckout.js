@@ -23,6 +23,7 @@ import { Image, Alert, Form, InputGroup, Button} from "react-bootstrap";
 import {RiSecurePaymentLine, RiHandbagFill} from 'react-icons/ri';
 import SPMGrid from './shared/StripePaymentMethodsGrid';
 import HeadTitle from './shared/HeadTitle';
+import PaypalCheckout from './PaypalButtonCheckout';
 
 var cookies = new Cookies();
 var Actions = require('../redux/actions/index');
@@ -82,7 +83,10 @@ export default function StripeCheckout(props) {
   }
 
  
-
+  function loadingScreen(show, text){
+    setLoadingText(text);
+    setLoading(show);
+  }
   function setEnvironment(order, restaurant, menu){
     dispatch(Actions.setRestaurant(restaurant));
     dispatch(Actions.updateCart(order.cart));
@@ -454,6 +458,9 @@ export default function StripeCheckout(props) {
           <SPMGrid/>
           {/* <center><h4><b>Payment</b></h4></center> */}
           {/* <hr/> */}
+          <br/>
+          <SubTitle text={t('cart_other_payment_options')}/>
+          <PaypalCheckout cartLoading={loadingScreen}/>
           </div>
         </div>
         <div className="row">

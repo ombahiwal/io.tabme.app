@@ -141,6 +141,6 @@ export default {
     'order2':'Bestellen',
     'menu':'Menü',
     'cart':"Warenkorb",
-    
+    'cart_other_payment_options':'Andere Optionen'
   },
 };
