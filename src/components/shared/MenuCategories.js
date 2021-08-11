@@ -160,6 +160,7 @@ const FixedMenuWrapper = styled.div`
   fill:#2f4f4f !important;
   width: 100%;
   padding:8px;
+  padding-top: 20px;
   padding-bottom:0px;
   background-color: white;
   cursor: pointer;

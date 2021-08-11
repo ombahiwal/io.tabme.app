@@ -20,7 +20,7 @@ import {FormattedMessage} from 'react-intl';
 import TnC from './shared/TnCFoot';
 import FooterComponent from './shared/FooterComponent';
 import { Image, Alert, Form, InputGroup, Button} from "react-bootstrap";
-import {RiSecurePaymentLine, RiHandbagFill} from 'react-icons/ri';
+import { RiHandbagFill} from 'react-icons/ri';
 import SPMGrid from './shared/StripePaymentMethodsGrid';
 import HeadTitle from './shared/HeadTitle';
 import PaypalCheckout from './PaypalButtonCheckout';
@@ -216,63 +216,63 @@ export default function StripeCheckout(props) {
   // Alles Conditions (Bendigungen)
 
       // For delivery
-      if(tablenum === -2){
-        billInfoObj = {
-          fname:billInfo.fname.value,
-          lname:billInfo.lname.value,
-          email:billInfo.email.value,
-          phone:billInfo.phone_code.value+billInfo.phone.value,
-          address:billInfo.address.value,
-          zip:billInfo.zip.value,
-          guest:true
-        }
-        // if(!(billInfoObj.address && billInfoObj.zip)){
-        //   return
-        // }
-      }else{
-        billInfoObj = {
-          fname:billInfo.fname.value,
-          lname:billInfo.lname.value,
-          email:billInfo.email.value,
-          phone:billInfo.phone_code.value+billInfo.phone.value,
-          guest:true
-        }
-      }
-    if(restaurant === undefined)
-      return
-    if(restaurant._id === 'test'){
-      return   
-    }
-    if(!restaurant.open){
-      return
-    }
+      // if(tablenum === -2){
+      //   billInfoObj = {
+      //     fname:billInfo.fname.value,
+      //     lname:billInfo.lname.value,
+      //     email:billInfo.email.value,
+      //     phone:billInfo.phone_code.value+billInfo.phone.value,
+      //     address:billInfo.address.value,
+      //     zip:billInfo.zip.value,
+      //     guest:true
+      //   }
+      //   // if(!(billInfoObj.address && billInfoObj.zip)){
+      //   //   return
+      //   // }
+      // }else{
+      //   billInfoObj = {
+      //     fname:billInfo.fname.value,
+      //     lname:billInfo.lname.value,
+      //     email:billInfo.email.value,
+      //     phone:billInfo.phone_code.value+billInfo.phone.value,
+      //     guest:true
+      //   }
+      // }
+    // if(restaurant === undefined)
+    //   return
+    // if(restaurant._id === 'test'){
+    //   return   
+    // }
+    // if(!restaurant.open){
+    //   return
+    // }
 
-    if(cart.totalCost <=0){
-      return
-    }
+    // if(cart.totalCost <=0){
+    //   return
+    // }
     
-    if(billInfoObj.fname !== "" && billInfoObj.lname !== ""  && billInfoObj.phone !== ""  && billInfoObj.email !== "" && user.email === null){
-      setShowAlertBillInfo(false);
-    }else if(user.email === null){
-      setShowAlertBillInfo(true);
-      // console.log('Guest User');
-      return
-    }
+    // if(billInfoObj.fname !== "" && billInfoObj.lname !== ""  && billInfoObj.phone !== ""  && billInfoObj.email !== "" && user.email === null){
+    //   setShowAlertBillInfo(false);
+    // }else if(user.email === null){
+    //   setShowAlertBillInfo(true);
+    //   // console.log('Guest User');
+    //   return
+    // }
     
     
-    // Condition for Regular User
-    if(user.email !== null){
-      billInfoObj = user;
-      // console.log('user is present', billInfoObj)
-    }
+    // // Condition for Regular User
+    // if(user.email !== null){
+    //   billInfoObj = user;
+    //   // console.log('user is present', billInfoObj)
+    // }
 
-    //condition for delivery address
+    // //condition for delivery address
 
-    if(billInfoObj.address === "" || /^\\d{5}$/.test(billInfoObj.zip) || billInfoObj.zip === ""){
-      setShowAlertBillInfo(true);
-      // console.log('Guest User, Delivery Addres not valid');
-      return
-    }
+    // if(billInfoObj.address === "" || /^\\d{5}$/.test(billInfoObj.zip) || billInfoObj.zip === ""){
+    //   setShowAlertBillInfo(true);
+    //   // console.log('Guest User, Delivery Addres not valid');
+    //   return
+    // }
 
     setLoading(true);
     setLoadingText('Loading...');
@@ -458,9 +458,11 @@ export default function StripeCheckout(props) {
           <SPMGrid/>
           {/* <center><h4><b>Payment</b></h4></center> */}
           {/* <hr/> */}
-          <br/>
-          <SubTitle text={t('cart_other_payment_options')}/>
-          <PaypalCheckout cartLoading={loadingScreen}/>
+          <br/><br/>
+          { restaurant.info.paypal_client_id && <>
+                <SubTitle text={t('cart_other_payment_options')}/>
+                <PaypalCheckout cartLoading={loadingScreen}/>
+           </>}
           </div>
         </div>
         <div className="row">
@@ -490,7 +492,7 @@ export default function StripeCheckout(props) {
               <center>
               </center>
           </div>
-          {/* {renderCheckoutForm()} */}
+          {renderCheckoutForm()}
           <div className="col-12 background-white">
          <br/>
          <center>

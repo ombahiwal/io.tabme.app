@@ -79,7 +79,7 @@ export  function   symbolCode(code){
             break;
 
             default:
-            currentSymbol = '__';            
+            currentSymbol = 'EUR';            
         }
         return currentSymbol;
     }
