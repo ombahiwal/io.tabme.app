@@ -71,7 +71,7 @@ export default function StripeCheckout(props) {
   const [loadingText, setLoadingText] = useState("Processing...");
   const [redirect, setRedirectPage ] = useState(false);
   // const [billuserinfo, setBilluserinfo] = useState(false);
-  
+  const [stripe_payment_method, setStripePaymentMethod] = useState('card');
   var billInfo = {
     fname:"",
     lname:"",
@@ -82,7 +82,9 @@ export default function StripeCheckout(props) {
     phone_code:""
   }
 
- 
+//  function getPaymentMethodStripe(method){
+//     setStripePaymentMethod(method)
+//  }
   function loadingScreen(show, text){
     setLoadingText(text);
     setLoading(show);
@@ -453,9 +455,10 @@ export default function StripeCheckout(props) {
           <div className="col-12">
           <HeadTitle text={"Tab Warenkorb"} icon={<RiHandbagFill/>}/>
           <br/>
+          {/* <SubTitle text={stripe_payment_method}/> */}
           <SubTitle text={t('cart_payment_options_title')}/>
 
-          <SPMGrid/>
+          <SPMGrid setMethod={setStripePaymentMethod}/>
           {/* <center><h4><b>Payment</b></h4></center> */}
           {/* <hr/> */}
           <br/><br/>
