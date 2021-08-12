@@ -202,15 +202,27 @@ export default function StripeCheckout(props) {
 
     // Stage Bill info object
     
+    // var billInfoObj = {
+    //   fname:billInfo.fname.value,
+    //   lname:billInfo.lname.value,
+    //   email:billInfo.email.value,
+    //   phone:billInfo.phone_code.value+billInfo.phone.value,
+    //   address:billInfo.address.value,
+    //   zip:billInfo.zip.value,
+    //   guest:true
+    // }; 
+
     var billInfoObj = {
-      fname:billInfo.fname.value,
-      lname:billInfo.lname.value,
-      email:billInfo.email.value,
-      phone:billInfo.phone_code.value+billInfo.phone.value,
-      address:billInfo.address.value,
-      zip:billInfo.zip.value,
+      fname:'Anonymous',
+      lname:'User',
+      email:' ',
+      phone:' ',
+      address:' ',
+      zip:' ',
       guest:true
     }; 
+  
+
   
   // Alles Conditions (Bendigungen)
 
@@ -260,10 +272,10 @@ export default function StripeCheckout(props) {
     
     
     // // Condition for Regular User
-    // if(user.email !== null){
-    //   billInfoObj = user;
-    //   // console.log('user is present', billInfoObj)
-    // }
+    if(user.email !== null){
+      billInfoObj = user;
+      // console.log('user is present', billInfoObj)
+    }
 
     // //condition for delivery address
 
