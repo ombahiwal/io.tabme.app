@@ -50,7 +50,7 @@ if(__DEV__){
 
 // Lukas key 
 // const stripe_key = "pk_test_51HueKdEbwHix940Zm1UZaCl9eOwJHkiLaEo2HdJpZGTsuxXMLZBDBENZ1wAC4G0Q6LoERrpuq5rZC4TBKg4mJQ2x00BWMCo0DS";
-// Omkar Key 
+// Omkar Key
 // const stripe_key = "pk_test_51HBhc2Cmx7edPwMa2vgiiUlonAhCJDf6VGEDmirOgBbrOGQFsGUpMel7aROUfQi9lirsEGeYVQpzjNClNGnAgpIZ00I9Ey33uE";
 const stripePromise = loadStripe(stripe_key);
 
@@ -282,7 +282,7 @@ export default function StripeCheckout(props) {
     try{
     const stripe = await stripePromise;
     // Call your backend to create the Checkout Session
-    const response = await Axios.post(payment_server_url+'stripe/checkout/create_session', { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart, stripe_payment_method:stripe_payment_method });
+    const response = await Axios.post(payment_server_url+'stripe/checkout/create_session', { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart, stripe_payment_method:[stripe_payment_method]});
         // console.log(response.data, { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart  });
     const session = response.data;
     if(response.data.success){
@@ -469,8 +469,6 @@ export default function StripeCheckout(props) {
         </div>
         <div className="row">
           <div className="col-12">
-          {/* <center><h6><b>Debit / Credit Card</b></h6></center> */}
-          
           {showAlertOrderFailure && <Alert variant="danger"><b>{t('error_message_order_creation')}</b></Alert>}  
           </div>
         </div>
@@ -489,19 +487,23 @@ export default function StripeCheckout(props) {
           <br/><br/>
           
           <div className="col-12">
-                    {/* <Link to="/login"><i><small>{t('register_link2')}</small></i></Link> */}
+
                     {showAlertSuccess && <Alert variant="success"><b>{t('payment_success')}</b><small><br/>{t('payment_msg_order_failed')}</small></Alert>}
-            {showAlertFailure && <Alert variant="danger"><b>{t('payment_failed')}</b><small><br/>{t('payment_msg_failed')}</small></Alert>}  
-                            <Form.Text className="text-muted"><small> {t('guest_form_security_message')}</small></Form.Text>
+                    {showAlertFailure && <Alert variant="danger"><b>{t('payment_failed')}</b><small><br/>{t('payment_msg_failed')}</small></Alert>}  
+                    <Form.Text className="text-muted"><small> {t('guest_form_security_message')}</small></Form.Text>
                   </div>
           <div className="col-12">
             <center>
-         {/* <Image src="https://www.tabme.info/app-public-assets/accepted_cards.png" fluid/> */}
-         <Image src={`${ENV.CDN_URL}/app-public-assets/accepted_stripe4.png`} style={{height:'40px'}} fluid/>
-          <br/>
-             <Image src={`${ENV.CDN_URL}/app-public-assets/powered_by_stripe.png`} fluid/>
-             <center><small><a href={`${ENV.CDN_URL}/public_assets/app_public_assets/tc/Datenschutzerklarung_06012021.1_18.docx.html`} rel="noopener noreferrer" target="_blank"><small>{t('payment_privacy')}</small></a></small></center>
-         </center>
+                <Image src={`${ENV.CDN_URL}/app-public-assets/accepted_stripe4.png`} style={{height:'40px'}} fluid/>
+                  <br/>
+                <Image src={`${ENV.CDN_URL}/app-public-assets/powered_by_stripe.png`} fluid/>
+                <center>
+                  <small>
+                        <a href={`${ENV.CDN_URL}/public_assets/app_public_assets/tc/Datenschutzerklarung_06012021.1_18.docx.html`} rel="noopener noreferrer" target="_blank">
+                          <small>{t('payment_privacy')}</small> </a>
+                  </small>
+                </center>
+           </center>
          {/* <TnC/> */}
         </div>
         </div>
