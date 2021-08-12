@@ -611,7 +611,7 @@ class Cart extends Component {
                         </Link>
                     </div>    */}
                     <FormattedMessage id='menu' defaultMessage="Menu">
-                                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent tnc={true} next={{text:placeholder2, to:"/stripe", type:"route"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent  tnc={true} next={{text:placeholder2, to:"/stripe", type:"route"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
                     </FormattedMessage>
                 </div>
             </div>

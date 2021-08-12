@@ -442,10 +442,9 @@ export default function StripeCheckout(props) {
         active={loading}
         spinner
         text={loadingText}
-        style={{'z-index':'200'}}
+        style={{'z-index':'200', height:'90vh'}}
         >
         <div className="col-12 margin-btm">
-        
         <div className="row">
           <div className="col-12">
           <HeadTitle text={"Tab Warenkorb"} icon={<RiHandbagFill/>}/>
@@ -508,7 +507,7 @@ export default function StripeCheckout(props) {
         
         </div>
         <div> <FormattedMessage id='cart' defaultMessage="Cart">
-                    {(placeholder)=><FormattedMessage values={{text:""}} id="order2">{(placeholder2)=><FooterComponent tnc={true} next={{text:placeholder2, to:"/stripe", type:"function", func:handleClick}} back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                    {(placeholder)=><FormattedMessage values={{text:""}} id="order2">{(placeholder2)=><FooterComponent hide={loading} tnc={true} next={{text:placeholder2, to:"/stripe", type:"function", func:handleClick}} back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
               </FormattedMessage></div>
     </LoadingOverlay>
   );

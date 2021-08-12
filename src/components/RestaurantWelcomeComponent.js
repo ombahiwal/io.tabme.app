@@ -101,6 +101,7 @@ class RestaurantWelcome extends Component{
     handleChangePickup(){
         this.props.setTableNum(-1);
         this.setState({showAlertSuccessPickup:true});
+        this.setState({redirect:{show:true, path:'/menu6'}});
     }
 
     renderContinueBtns(){

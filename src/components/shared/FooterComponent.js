@@ -16,13 +16,14 @@ const FooterComponent = props => {
 
   return(
   <div>
-  <Container style={{bottom: props.tnc ? 22 : 0}}> 
+   {props.hide && <Container></Container>}
+  {!props.hide && <Container style={{bottom: props.tnc ? 22 : 0}}> 
       <LeftWrapper>
         <LeftIconButton>
               {props.menucart && <Link style={{color:'white'}} to={'/cart'}><span style={{fontSize:'1.75rem'}}> <RiHandbagFill/></span>  &nbsp;
                         <b><CurrencySymbol/>{props.total}</b></Link>}
               {(!props.menucart && props.back.show) && <Link to={props.back.to}>
-                  <FooterButton style={{color:'black', background: props.back.arrow ? 'url("https://cdn.tabme.io/app-public-assets/caret-left-solid.svg") 9% 4.5px / 9px no-repeat white' : 'white' }}>
+                  <FooterButton  style={{color:'black', background: props.back.arrow ? 'url("https://cdn.tabme.io/app-public-assets/caret-left-solid.svg") 9% 4.5px / 9px no-repeat white' : 'white' }}>
                     <b>{props.back.text}</b>
                   </FooterButton></Link>}
 
@@ -32,7 +33,7 @@ const FooterComponent = props => {
       <RightWrapper>
         <RightIconButton>
         { props.next.type==="route" && <Link to={props.next.to}> 
-                        <FooterButton style={{color:'white', background:'#466dd6'}}><b>{props.next.text}</b>
+                        <FooterButton  style={{color:'white', background:'#466dd6'}}><b>{props.next.text}</b>
                         {/* &nbsp;<small><b><CurrencySymbol/>{this.renderCartTotal()}</b></small> */}
                         </FooterButton>
                     </Link>}
@@ -43,8 +44,8 @@ const FooterComponent = props => {
         </RightIconButton>
       </RightWrapper>
       {props.children}
-      </Container>
-      {props.tnc && <TnCContainer> 
+      </Container>}
+      {(props.tnc && !props.hide) && <TnCContainer> 
                           <ItemWrapper><a href={`${ENV.CDN_URL}/agb.html`} rel="noopener noreferrer" target="_blank" >{t('tnc')}</a></ItemWrapper>
                           <ItemWrapper><a href={`${ENV.CDN_URL}/datapolicy.html`} rel="noopener noreferrer" target="_blank">{t('privacy_data_policy')}</a></ItemWrapper>
                           <ItemWrapper><a href={`${ENV.CDN_URL}/impressum.html`} rel="noopener noreferrer" target="_blank">{t('imprint')}</a></ItemWrapper>
@@ -129,6 +130,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  min-height:60px;
   position: fixed;
   bottom:0;
   padding:20px;
