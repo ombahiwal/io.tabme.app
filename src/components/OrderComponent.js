@@ -126,9 +126,9 @@ function Process(subprop){
 
     return (
         <LoadingOverlay
-        active={loading}
-        spinner
-        text='Fetching Order Details...'
+            active={loading}
+            spinner
+            text='Fetching Order Details...'
         >
         <div className="col-12">
             <div className="row">
@@ -175,60 +175,61 @@ function Process(subprop){
             </div>
             </div>  */}
 
-
-            <div className="row m-3">
-            <div className="col-12">
-            
-                {renderDishes(order)}
-                
-            </div>
+            <div className="theme-card">
+                <div className="row m-3">
+                    <div className="col-12 no-padding-float-left">
+                        {renderDishes(order)}
+                    </div>
+                </div>
             </div> 
             
             
-            <div className="row">
-                <div className="col-12  background-white">
-                <hr/>
-            <div className="row">
-            <div className="col-5"> 
-            <small><b>{t('order_status')}</b></small>
-            </div>
-            <div className="col-7 d-flex"> 
-            <div className="ml-auto"><h5><b>{t(order.status)}</b></h5></div> 
-            </div>
-            </div> 
-
-            <div className="row">
-            <div className="col-5"> 
-            <small><b>{t('order_total')}</b>  </small>
-            </div>
-            <div className="col-7 d-flex"> 
-            <div className="ml-auto">
-            <CurrencySymbol currency={order.cart.currency}/> {order.cart.totalCost.toFixed(2)}</div> 
-            </div>
-            </div>
-            
+          
             
             <div className="row">
-            <div className="col-5"> 
-            <small> <b>{t('order_id')}</b></small>
-            </div>
-            <div className="col-7 d-flex"> 
-            <div className="ml-auto"><small>{order._id.slice(18, 24).toUpperCase()}
-            
-            </small></div> 
-            </div>
-            </div>
+                <div className="col-12">
+                <div className="theme-card">
+            <div className="margin-middle">
+                        <div className="row">
+                        <div className="col-5"> 
+                        <small><b>{t('order_status')}</b></small>
+                        </div>
+                        <div className="col-7 d-flex"> 
+                        <div className="ml-auto"><h5><b>{t(order.status)}</b></h5></div> 
+                        </div>
+                        </div> 
 
+                        <div className="row">
+                        <div className="col-5"> 
+                        <small><b>{t('order_total')}</b>  </small>
+                        </div>
+                        <div className="col-7 d-flex"> 
+                        <div className="ml-auto">
+                        <CurrencySymbol currency={order.cart.currency}/> {order.cart.totalCost.toFixed(2)}</div> 
+                        </div>
+                        </div>
+                        
+                        
+                        <div className="row">
+                        <div className="col-5"> 
+                        <small> <b>{t('order_id')}</b></small>
+                        </div>
+                        <div className="col-7 d-flex"> 
+                        <div className="ml-auto"><small>{order._id.slice(18, 24).toUpperCase()}
+                        
+                        </small></div> 
+                        </div>
+                        </div>
 
-            <div className="row">
-            <div className="col-5"> 
-            <small><b>{t('order_time_placed')}</b></small>
-            </div>
-            <div className="col-7 d-flex"> 
-            <div className="ml-auto"><small>{dt}</small></div> 
-            </div>
-            </div>
-
+                        <div className="row">
+                        <div className="col-5"> 
+                        <small><b>{t('order_time_placed')}</b></small>
+                        </div>
+                        <div className="col-7 d-flex"> 
+                        <div className="ml-auto"><small>{dt}</small></div> 
+                        </div>
+                        </div>
+            </div></div>
 
             {/* <div className="row">
             <div className="col-5"> 
@@ -284,7 +285,6 @@ function Process(subprop){
 
             </div>
             </div>
-            
         </div>}
         </LoadingOverlay>
     );

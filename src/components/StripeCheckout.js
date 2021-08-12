@@ -100,23 +100,20 @@ export default function StripeCheckout(props) {
   async function checkSession(){
         setLoadingText('Processing...');
         try{
-        /*
-          let search = window.location.search;
-          let params = new URLSearchParams(search);
-        */
+          /*
+            let search = window.location.search;
+            let params = new URLSearchParams(search);
+          */
           let session_id;
           if(props.match){
             session_id = props.match.params.session_id; 
           }else{
             session_id = false; 
           }
-
           // // console.log(session_id);
-
         if(session_id){
             // setLoadingText('Processing...');
             setLoading(true);
-            
           const session_request_call = await Axios.post(payment_server_url+'stripe/checkout/tabme/process_order_session', {session_id:session_id});
           const retrieved_session = session_request_call.data.session;
           const retrieved_order = session_request_call.data.order_data;
@@ -131,7 +128,6 @@ export default function StripeCheckout(props) {
               setEnvironment(retrieved_order, retrieved_restaurant, retrieved_menu);
               // Order Success..
                     // Set order_id in store.
-                      
                     //  & Remove Current Order 
                   try{
                       cookies.remove('current_order');
@@ -153,8 +149,7 @@ export default function StripeCheckout(props) {
                     tip:0,
                     totalCost:0,
                     delivery_fee:0
-                    
-                }));
+                  }));
                 cookies.remove('cart', {path:'/'});
                   setLoadingText('Order Verified!');
                   setLoading(false);
@@ -167,7 +162,6 @@ export default function StripeCheckout(props) {
               setLoading(true);
               setShowAlertFailure(true);
               setLoadingText('Retrieving Session...');
-              
               // Environment 
               dispatch(Actions.setTableNumber(retrieved_cart.tablenum));
               dispatch(Actions.updateCart(retrieved_cart));

@@ -200,7 +200,7 @@ function Process(subprop){
         <div className="col-12">
             <div className="row">
             {/* <hr/> */}
-                <div className="col-12 background-white">
+                <div className="col-12">
                 {/* <br/> */}
                     <center><h5><b>
                     {/* {t('order_current_head')} */}
@@ -213,7 +213,7 @@ function Process(subprop){
             {/* <hr/> */}
             {/* <br/> */}
             <div className="row">
-                <div className="col-12 no-padding-float-left background-white">
+                <div className="col-12 no-padding-float-left">
                     <center>
                         <br/>
                         {/* <img crossOrigin="anonymous" id="acceptance-img" /> */}
@@ -242,19 +242,19 @@ function Process(subprop){
 
             </div>
             </div> 
-
-            <div className="row m-3">
-            <div className="col-12 no-padding-float-left">
-            
-                {renderDishes(order)}
-                
+            <div className="theme-card">
+                <div className="row m-3">
+                    <div className="col-12 no-padding-float-left">
+                        {renderDishes(order)}
+                    </div>
+                </div> 
             </div>
-            </div> 
             
-            <div className="row ">
-                <div className="col-12 background-white">
+            
+            <div className="row">
+                <div className="col-12">
                 <hr/>
-            
+            <div className="theme-card">
             <div className="col-12">
             <div className="row">
             <div className="col-5"> 
@@ -317,14 +317,18 @@ function Process(subprop){
             </div>
            <br/> */}
 
-            <div className="row">
-            <div className="col-5"> 
-            <small> <b>{t('order_time_placed')}</b></small>
+                <div className="row">
+                <div className="col-5"> 
+                <small> <b>{t('order_time_placed')}</b></small>
+                </div>
+                <div className="col-7 d-flex"> 
+                <div className="ml-auto"><small>{dt}</small></div> 
+                </div>
+                </div>
             </div>
-            <div className="col-7 d-flex"> 
-            <div className="ml-auto"><small>{dt}</small></div> 
-            </div>
-            </div>
+            </div>   
+
+
             <hr/>
             {!order.open &&
             <div className="row">
@@ -353,9 +357,8 @@ function Process(subprop){
                 </span>
             </div>
             </div>
-
             </div>
-            </div>
+        
             </div>
             
         </div>}
