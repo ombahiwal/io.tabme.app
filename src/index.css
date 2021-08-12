@@ -332,12 +332,11 @@ div[data-id='accordion-section-content']{
 
 /* Link Colors */
 a:link {
-  color: #2f4f4f;
-  
+  color: #466dd6;
   text-decoration: none;
 }
 a:visited {
-  color: #2f4f4f;
+  color: #466dd6;
   
   text-decoration: none;
 }

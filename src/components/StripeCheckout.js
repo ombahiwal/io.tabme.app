@@ -282,10 +282,8 @@ export default function StripeCheckout(props) {
     try{
     const stripe = await stripePromise;
     // Call your backend to create the Checkout Session
-    const response = await Axios.post(payment_server_url+'stripe/checkout/create_session', { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart  });
+    const response = await Axios.post(payment_server_url+'stripe/checkout/create_session', { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart, stripe_payment_method:stripe_payment_method });
         // console.log(response.data, { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart  });
-    
-    
     const session = response.data;
     if(response.data.success){
         // When the customer clicks on the button, redirect them to Checkout.
@@ -458,11 +456,12 @@ export default function StripeCheckout(props) {
           {/* <SubTitle text={stripe_payment_method}/> */}
           <SubTitle text={t('cart_payment_options_title')}/>
 
-          <SPMGrid setMethod={setStripePaymentMethod}/>
+          <SPMGrid  setMethod={setStripePaymentMethod}/>
           {/* <center><h4><b>Payment</b></h4></center> */}
           {/* <hr/> */}
-          <br/><br/>
-          { restaurant.info.paypal_client_id && <>
+          
+          {restaurant.info.paypal_client_id && <>
+            <br/><br/>
                 <SubTitle text={t('cart_other_payment_options')}/>
                 <PaypalCheckout cartLoading={loadingScreen}/>
            </>}
@@ -471,49 +470,47 @@ export default function StripeCheckout(props) {
         <div className="row">
           <div className="col-12">
           {/* <center><h6><b>Debit / Credit Card</b></h6></center> */}
+          
           {showAlertOrderFailure && <Alert variant="danger"><b>{t('error_message_order_creation')}</b></Alert>}  
           </div>
         </div>
         
     
         <div className="row">
-        <div className="col-12 background-white">
-        {/* <SubTitle text={t('payment_bill_info_title')}/> */}
-        {/* <center><b>Billing Info.</b></center><br/>
-         */}
-        </div>  
-        
+      
         {/* {renderBillingInfo()} */}
         <br/>
         </div>
        
         <br/>
         <div className="row">
-        
+      
+          {/* {renderCheckoutForm()} */}
+          <br/><br/>
           
-          <div className="col-12 ">
-              <center>
-              </center>
-          </div>
-          {renderCheckoutForm()}
-          <div className="col-12 background-white">
-         <br/>
-         <center>
+          <div className="col-12">
+                    {/* <Link to="/login"><i><small>{t('register_link2')}</small></i></Link> */}
+                    {showAlertSuccess && <Alert variant="success"><b>{t('payment_success')}</b><small><br/>{t('payment_msg_order_failed')}</small></Alert>}
+            {showAlertFailure && <Alert variant="danger"><b>{t('payment_failed')}</b><small><br/>{t('payment_msg_failed')}</small></Alert>}  
+                            <Form.Text className="text-muted"><small> {t('guest_form_security_message')}</small></Form.Text>
+                  </div>
+          <div className="col-12">
+            <center>
          {/* <Image src="https://www.tabme.info/app-public-assets/accepted_cards.png" fluid/> */}
-         <Image src={`${ENV.CDN_URL}/app-public-assets/accepted_stripe.png`} style={{height:'125px'}} fluid/>
+         <Image src={`${ENV.CDN_URL}/app-public-assets/accepted_stripe4.png`} style={{height:'40px'}} fluid/>
           <br/>
              <Image src={`${ENV.CDN_URL}/app-public-assets/powered_by_stripe.png`} fluid/>
              <center><small><a href={`${ENV.CDN_URL}/public_assets/app_public_assets/tc/Datenschutzerklarung_06012021.1_18.docx.html`} rel="noopener noreferrer" target="_blank"><small>{t('payment_privacy')}</small></a></small></center>
          </center>
-         <TnC/>
+         {/* <TnC/> */}
         </div>
         </div>
         {/* <hr/> */}
         
         </div>
         <div> <FormattedMessage id='cart' defaultMessage="Cart">
-                {(placeholder)=><FormattedMessage values={{text:""}} id="order2">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:"/stripe"}}back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
-                    </FormattedMessage></div>
+                    {(placeholder)=><FormattedMessage values={{text:""}} id="order2">{(placeholder2)=><FooterComponent tnc={true} next={{text:placeholder2, to:"/stripe", type:"function", func:handleClick}} back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+              </FormattedMessage></div>
     </LoadingOverlay>
   );
 }

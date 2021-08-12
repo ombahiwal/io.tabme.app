@@ -847,7 +847,7 @@ class Menu6 extends Component {
     
     renderTotal(){
             return(
-                  <FormattedMessage values={{text:""}} id="proceed_btn">{placeholder=><FooterComponent back={{show:false}} menucart={true} total={this.renderCartTotal()} next={{text:placeholder, to:'/cart'}}/>}</FormattedMessage>
+                  <FormattedMessage values={{text:""}} id="proceed_btn">{placeholder=><FooterComponent back={{show:false}} menucart={true} total={this.renderCartTotal()} next={{text:placeholder, to:'/cart', type:"route"}}/>}</FormattedMessage>
             );
 
     }

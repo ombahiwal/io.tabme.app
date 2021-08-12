@@ -29,18 +29,15 @@ class Cart extends Component {
 
     constructor(props){
         super(props);
-       
         this.state = {
             cart:props.cart, status:false, payment:"external", menu:props.menu, tip:0, 
             tipstate:false, promo:0, notesbox:{show:true, note:""}, 
             currency:'INR', loading:false, loadingText:"Processing",
             isPaypal:(this.props.restaurant.info && this.props.restaurant.payment_methods.includes('paypal') && this.props.restaurant.info.paypal_client_id)
         };
-
         this.onChangePaymentMethod = this.onChangePaymentMethod.bind(this);
         this.onChangeTip = this.onChangeTip.bind(this);
         this.renderTipButtons = this.renderTipButtons.bind(this);
-    
         this.renderNotesBox = this.renderNotesBox.bind(this);
         this.renderPromo = this.renderPromo.bind(this);
         this.getPromo = this.getPromo.bind(this);
@@ -53,7 +50,6 @@ class Cart extends Component {
     }
 
     payment_options = [
-        
         {type:"cash", route:'/external', label:t('payment_optn_cash'), icon1:<FaRegMoneyBillAlt/>, color:'#2f4f4f'},
         {type:"stripe", route:'/stripe', label:t('payment_optn_stripe'), icon1:<RiSecurePaymentLine/>, color:'#0a1e42'},
         {type:"razorpay", route:'/razorpay', label:t('payment_optn_razorpay'), icon1:<RiSecurePaymentLine/>, color:'#0a1e42'}
@@ -64,8 +60,8 @@ class Cart extends Component {
         { name: '10%', value: 0.10 },
         { name: '15%', value: 0.15 },
         { name: '20%', value: 0.20 },
-      ];
-      
+    ];
+
     cart = this.props.cart;
     current_dish_optionset = [];
     current_dish_count = 0;
@@ -383,7 +379,6 @@ class Cart extends Component {
         this.setState({tip:act});
         // this.cart.tip = this.cart.cartTotal * act;
         this.calcCartSum();
-
         return
     }
 
@@ -616,7 +611,7 @@ class Cart extends Component {
                         </Link>
                     </div>    */}
                     <FormattedMessage id='menu' defaultMessage="Menu">
-                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent next={{text:placeholder2, to:"/stripe"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent tnc={true} next={{text:placeholder2, to:"/stripe", type:"route"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
                     </FormattedMessage>
                 </div>
             </div>
@@ -644,7 +639,7 @@ class Cart extends Component {
                 {/* <PaymentButton text={"GPay"} icon1={<RiGoogleLine/>}/> */}
                 {/* <PaymentButton text={"Cash at Counter"} icon1={<FaRegMoneyBillAlt/>}/> */}
                 <br/>   
-                <TnC/>
+                {/* <TnC/> */}
                 </LoadingOverlay>
             </div>
         );

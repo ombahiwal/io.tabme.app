@@ -4,20 +4,19 @@ import styled from "styled-components";
 /*
 * @param  {props} props
 */
-import {RiHandbagFill, RiArrowLeftSFill} from 'react-icons/ri';
+import {RiHandbagFill} from 'react-icons/ri';
 // import {IoCaretBack} from 'react-icons/io5'; 
 import CurrencySymbol from '../CurrencySymbolComponent';
 // import {ReactComponent as BackIcon} from './caret-left-solid.svg';
-import {
-  Link, Redirect
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 import t from '../../i18n/translate';
+const ENV = require('../../services/env-vars')
 
 const FooterComponent = props => {
 
   return(
   <div>
-  <Container> 
+  <Container style={{bottom: props.tnc ? 22 : 0}}> 
       <LeftWrapper>
         <LeftIconButton>
               {props.menucart && <Link style={{color:'white'}} to={'/cart'}><span style={{fontSize:'1.75rem'}}> <RiHandbagFill/></span>  &nbsp;
@@ -32,15 +31,24 @@ const FooterComponent = props => {
 
       <RightWrapper>
         <RightIconButton>
-        <Link to={props.next.to}> 
+        { props.next.type==="route" && <Link to={props.next.to}> 
                         <FooterButton style={{color:'white', background:'#466dd6'}}><b>{props.next.text}</b>
                         {/* &nbsp;<small><b><CurrencySymbol/>{this.renderCartTotal()}</b></small> */}
                         </FooterButton>
-                    </Link>
+                    </Link>}
+        { props.next.type==="function" && 
+            <FooterButton onClick={props.next.func} style={{color:'white', background:'#466dd6'}}><b>{props.next.text}</b>
+                {/* &nbsp;<small><b><CurrencySymbol/>{this.renderCartTotal()}</b></small> */}
+            </FooterButton>}
         </RightIconButton>
       </RightWrapper>
       {props.children}
       </Container>
+      {props.tnc && <TnCContainer> 
+                          <ItemWrapper><a href={`${ENV.CDN_URL}/agb.html`} rel="noopener noreferrer" target="_blank" >{t('tnc')}</a></ItemWrapper>
+                          <ItemWrapper><a href={`${ENV.CDN_URL}/datapolicy.html`} rel="noopener noreferrer" target="_blank">{t('privacy_data_policy')}</a></ItemWrapper>
+                          <ItemWrapper><a href={`${ENV.CDN_URL}/impressum.html`} rel="noopener noreferrer" target="_blank">{t('imprint')}</a></ItemWrapper>
+                   </TnCContainer>}
       </div>
       );
   }
@@ -115,6 +123,8 @@ const FooterButton = styled.button`
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     /*box-shadow: rgb(45 45 45 / 5%) 0px 2px 2px, rgb(49 49 49 / 5%) 0px 4px 4px, rgb(42 42 42 / 5%) 0px 8px 8px, rgb(32 32 32 / 5%) 0px 16px 16px, rgb(49 49 49 / 5%) 0px 0px 0px;*/
 `;
+
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -132,6 +142,37 @@ const Container = styled.div`
       width:78%;
   }
 `;
+
+const ItemWrapper = styled.div`
+  flex: 1 1 0%;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  text-align:center;
+  align-items:center;
+  font-weight:600;
+  font-size:0.75rem;
+  color:red;
+
+  `;
+
+const TnCContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: fixed;
+  bottom:0;
+  padding:5px 5px 8px 5px;
+  background-color: black;
+  z-index: 100;
+  color:white;
+  @media screen and (min-width: 600px) {
+      width:78%;
+  }
+  
+`;
+
 
 const SubTitleText = styled.span`
   

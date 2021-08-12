@@ -215,7 +215,7 @@ const TextWrapper = styled.div`
 `;
 
 const Text = styled.div`
-  margin: 0px 0px 10px 30px;
+  margin: 0px 0px 20px 39px;
   font-size:0.80rem;
   color: black;
 `;
