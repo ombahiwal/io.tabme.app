@@ -183,11 +183,13 @@ export default function StripeCheckout(props) {
             dispatch(Actions.setMenu(retrieved_menu));
           }
         }
+      
       }catch(e){
        // console.log(e);
         // setShowAlertFailure(true);
         setLoading(false);
       }
+      setLoading(false);
   }
 
   
@@ -197,7 +199,8 @@ export default function StripeCheckout(props) {
     document.documentElement.scrollTop = 0;
     // console.log(props);
     checkSession();
-  }, [props]);
+    console.log('update')
+  }, []);
 
 
   const handleClick = async (event) => {
