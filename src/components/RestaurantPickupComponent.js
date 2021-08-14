@@ -145,9 +145,12 @@ class RestaurantPickup extends Component{
             {/* <h4>Welcome!</h4><hr/> */}
             {/* <Image className="restaurant-logo-img-welcome" fluid="true" src={"https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/"+this.props.restaurant._id+".png"} rounded/> */}
             <MenuBanner restaurant={this.props.restaurant}/>
-            <h3><b>{this.props.restaurant.rname}</b>
-            </h3>
-            <p className="about-restaurant">{this.props.restaurant.about}</p> 
+            <div className="theme-card"> 
+                <h3><b>{this.props.restaurant.rname}</b>
+                </h3>
+                <p className="about-restaurant">{this.props.restaurant.about}</p> 
+            </div>
+            <br/>
                 <Form>
                     <FormGroup>
                         <Form.Label>

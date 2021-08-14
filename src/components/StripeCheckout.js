@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import React, { useEffect , useState} from 'react';
 // import ReactDOM from 'react-dom';
 import { loadStripe } from '@stripe/stripe-js';
@@ -17,7 +16,7 @@ import {Redirect, Link} from 'react-router-dom';
 // import DataService from '../services/data-service';
 import t from '../i18n/translate';
 import {FormattedMessage} from 'react-intl';
-import TnC from './shared/TnCFoot';
+// import TnC from './shared/TnCFoot';
 import FooterComponent from './shared/FooterComponent';
 import { Image, Alert, Form, InputGroup, Button} from "react-bootstrap";
 import { RiHandbagFill} from 'react-icons/ri';

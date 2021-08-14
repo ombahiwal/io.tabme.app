@@ -101,24 +101,28 @@ class RestaurantPickup extends Component{
             <hr/> */}
             {/* <Image className="restaurant-logo-img-welcome" fluid="true" src={"https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/"+this.props.restaurant._id+".png"} rounded/> */}
             <MenuBanner restaurant={this.props.restaurant}/>
-
-            <h3><b>{this.props.restaurant.rname}</b>
-            </h3>
-            <p className="about-restaurant"><small>
-                {this.props.restaurant.about}
-                </small></p> 
+            <div  className="theme-card">
+                <h3><b>{this.props.restaurant.rname}</b>
+                </h3>
+                <p className="about-restaurant"><small>
+                    {this.props.restaurant.about}
+                    </small></p> 
+            </div>
+            <br/>
                 <Form>
                     <FormGroup>
                         <Form.Label>
                             <h5><b>{t('welcome_order_for_delivery')}</b></h5>
                             {/* <b>Once you place your order, it will be set for delivery in approx. {this.props.restaurant.pickup_time}mins*<br/><small>*(preparation time may vary)</small> </b> */}
                             <small>{this.props.restaurant.info.delivery.delivery_msg}</small><br/>
-                        </Form.Label><br/>
+                        </Form.Label>
+                        
                         {/* <small>{this.props.restaurant.info.delivery.delivery_fee}</small> */}
                         {!this.state.showAlertSuccess && this.state.showTableNumIn && <b><Form.Control min="1" className="table-num-checkin" onChange={this.changetablenum} style={{display:"block"}} variant="outline-success" type="number" inline/> </b> }
                     </FormGroup>
                     
                 </Form>
+         
                 { this.props.restaurant.open && <>
                 {/* {this.state.showAlertSuccess && <Alert variant="success"><b>You've Opted for Delivery!</b></Alert>} */}
                 {/* {!this.state.showAlertSuccess && <Button onClick={()=>{this.handleCheckin();}} variant="outline-success">Pickup</Button>}{' '} */}
@@ -131,6 +135,7 @@ class RestaurantPickup extends Component{
                 </span>}
                 
                 {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
+            
            </center>
                     
            <span>
