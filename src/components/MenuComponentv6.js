@@ -87,7 +87,7 @@ class Menu6 extends Component {
                 }else{
                     this.setState({redirect:true});
                 }
-                
+                // 
             // Redirect to  (set True after dev)
             this.state = {cart:props.cart, status:false, menu:this.props.menu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:true, tooltip:false, active_category:"Menu", menu_rendered:[]};
             console.log(this.state.menu);
