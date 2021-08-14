@@ -213,7 +213,7 @@ export default function StripeCheckout(props) {
     // }; 
 
     var billInfoObj = {
-      fname:'Anonymous',
+      fname:'Guest',
       lname:'User',
       email:' ',
       phone:' ',

@@ -186,7 +186,7 @@ code {
 .welcome-btn{
   width:50%;
   border-style: solid;
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   border-width: 2px;
   font-weight: 400;
   background: black;
