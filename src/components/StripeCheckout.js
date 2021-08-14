@@ -483,7 +483,7 @@ export default function StripeCheckout(props) {
         
     
         <div className="row">
-      
+        {redirect && <Redirect to='/order/current'/>}
         {/* {renderBillingInfo()} */}
         <br/>
         </div>
