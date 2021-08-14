@@ -191,6 +191,8 @@ function Process(subprop){
         spinner
         text='Loading...'
         >
+           {/* <OrderStatusImage order={order}/> */}
+
         <div className="col-12">
             <div className="row">
             {redirect && <Redirect to="/home"/>}
@@ -211,37 +213,40 @@ function Process(subprop){
                 </div>
             </div>
             {/* <hr/> */}
-            {/* <br/> */}
-            <div className="row">
-                <div className="col-12 no-padding-float-left">
-                    <center>
-                        <br/>
-                        {/* <img crossOrigin="anonymous" id="acceptance-img" /> */}
-                        <OrderStatusImage order={order}/>
-                        <br/>
-                        {/* {parseInt(order.tablenum) === -1 && <h5><b>Pickup Order</b></h5>} */}
-                        {(!pickup.status && parseInt(order.tablenum) > -1) && <h5><b> {t('table_num', {tablenum:order.tablenum})}</b></h5>}
-                        {(pickup.status || parseInt(order.tablenum) === -1) && <h5><b> {t('pickup_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})} </b></h5>}
-                        {(delivery.status || parseInt(order.tablenum) === -2) && <h5><b>{t('delivery_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})}</b></h5>} 
-                        {(parseInt(order.tablenum) === -4) && <h5><b>{order.cart.order_label} - {String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)}</b></h5>} 
-                        {order.status === 'Received' && <><br/><h5><b>{t('order_current_state_msg_placed')} <br/></b></h5></>}
-                        {/* {order.status !== 'Received' && <h5><b>Your Order is {order.status}.</b></h5>} */}
-                        {/* {(!pickup.status && order.status !== 'Cancelled' ) &&  <small>{t('order_current_keep')}</small>} */}
-                        {pickup.status &&  <small> {t('order_current_state_msg_pickup',{estimate:pickup.estimate})}</small>}
-                        
-                    </center>
+            {/* <br/> */} 
+            <div className="theme-card">
+                <div className="row">
+                    <div className="col-12 no-padding-float-left">
+                        <center>
+                            <br/>
+                            {/* <img crossOrigin="anonymous" id="acceptance-img" /> */}
+                            <OrderStatusImage order={order}/>
+                            <br/>
+                            {/* {parseInt(order.tablenum) === -1 && <h5><b>Pickup Order</b></h5>} */}
+                            {(!pickup.status && parseInt(order.tablenum) > -1) && <h5><b> {t('table_num', {tablenum:order.tablenum})}</b></h5>}
+                            {(pickup.status || parseInt(order.tablenum) === -1) && <h5><b> {t('pickup_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})} </b></h5>}
+                            {(delivery.status || parseInt(order.tablenum) === -2) && <h5><b>{t('delivery_order', {id:String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)})}</b></h5>} 
+                            {(parseInt(order.tablenum) === -4) && <h5><b>{order.cart.order_label} - {String(parseInt(order._id.slice(18, 24), 16)).slice(5,8)}</b></h5>} 
+                            {order.status === 'Received' && <><br/><h5><b>{t('order_current_state_msg_placed')} <br/></b></h5></>}
+                            {/* {order.status !== 'Received' && <h5><b>Your Order is {order.status}.</b></h5>} */}
+                            {/* {(!pickup.status && order.status !== 'Cancelled' ) &&  <small>{t('order_current_keep')}</small>} */}
+                            {pickup.status &&  <small> {t('order_current_state_msg_pickup',{estimate:pickup.estimate})}</small>}
+                            
+                        </center>
+                    </div>
                 </div>
-            </div>
-            {/* <hr/> */}
-            <div className="row m-2">
-            <div className="col-12">
-            <center>
-                {/* {order.open && <b>( Live )</b>} */}
-                {alertParams.show &&  <Alert variant={alertParams.variant}><b>{t(alertParams.text)}</b></Alert>}
-            </center>
+                {/* <hr/> */}
+                <div className="row m-2">
+                <div className="col-12">
+                <center>
+                    {/* {order.open && <b>( Live )</b>} */}
+                    {alertParams.show &&  <Alert variant={alertParams.variant}><b>{t(alertParams.text)}</b></Alert>}
+                </center>
+
+                </div>
+                </div> 
 
             </div>
-            </div> 
             <div className="theme-card">
                 <div className="row m-3">
                     <div className="col-12 no-padding-float-left">
