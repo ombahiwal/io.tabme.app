@@ -215,7 +215,7 @@ export default function StripeCheckout(props) {
     var billInfoObj = {
       fname:'Guest',
       lname:'User',
-      email:' ',
+      email:false,
       phone:' ',
       address:' ',
       zip:' ',
