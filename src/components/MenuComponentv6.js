@@ -75,10 +75,10 @@ class Menu6 extends Component {
         // else
         if(this.props.menu === null){
             // Temporary for dev.. set menu to store
-                props.updateMenuInStore(sampleMenu);
-                cookies.set('menu', sampleMenu, {path:'/'});
-                this.state = {cart:props.cart, status:false, menu:sampleMenu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:false};
-                console.log(this.state.menu);
+                // props.updateMenuInStore(sampleMenu);
+                // cookies.set('menu', sampleMenu, {path:'/'});
+                // this.state = {cart:props.cart, status:false, menu:sampleMenu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:false};
+                // console.log(this.state.menu);
                 // // Set cart
             
                 var cookie_menu = cookies.get('menu');
@@ -89,8 +89,8 @@ class Menu6 extends Component {
                 }
                 
             // Redirect to  (set True after dev)
-            // this.state = {cart:props.cart, status:false, menu:this.props.menu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:true, tooltip:false, active_category:"Menu", menu_rendered:[]};
-            // console.log(this.state.menu);
+            this.state = {cart:props.cart, status:false, menu:this.props.menu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:true, tooltip:false, active_category:"Menu", menu_rendered:[]};
+            console.log(this.state.menu);
         }else{
             cookies.set('menu', props.menu, {path:'/'});
             this.state = {cart:props.cart, status:false, menu:this.props.menu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:false, tooltip:false, active_category:"Menu", menu_rendered:[]};

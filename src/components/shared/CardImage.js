@@ -61,12 +61,12 @@ const DCardImage = props => {
       style={props.dish.image ? {minHeight:'110px', maxHeight:'110px'}: {minHeight:'80px'}}
       >
       {/* <ClickSpace  onClick={props.onClickCustom}/> */}
-      <Title onClick={props.onClickAllergenInfo}>{props.title} <sup>{veg}</sup></Title>
+      <Title onClick={props.onClickCustom} >{props.title} <sup onClick={props.onClickAllergenInfo}>{veg}</sup></Title>
       <TextWrapper onClick={props.onClickCustom}   centered={props.centered} >
         <Price onClick={props.onClickCustom} ><CurrencySymbol/>&nbsp;{props.price.toFixed(2)}</Price>
         {/* <Veg>{props.veg}</Veg> */}
         {/* {(props.text && aboutExpand) && <TextExpanded onClick={()=>{ if(props.text.length > 87) setAboutExpand(!aboutExpand)}}>{props.text}</TextExpanded>} */}
-        {(props.text && !aboutExpand) && <Text 
+        {(props.text && !aboutExpand) && <Text onClick={props.onClickCustom}
         // onClick={()=>{if(props.text.length > 87) setAboutExpand(!aboutExpand)}}
         >{dishDescShortDisplay(props.text)}</Text>}
         {props.dish.image && <Image src={`https://cdn.tabme.io/user_public_assets/menus/${props.menu_id}/items/${props.dish._id}.png`}
