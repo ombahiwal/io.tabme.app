@@ -55,9 +55,10 @@ return(<GridWrapper>
                         </GridItem>
             })}
            
-            {/* <GridItem><ItemBox>
-              {props.paypal && props.paypal}
-              </ItemBox></GridItem> */}
+            {/* <GridItem>
+              {props.paypal}
+              // <ItemLabel>{'paypal'}</ItemLabel>
+              </GridItem> */}
             {/* <GridItem className="active">5</GridItem> */}
     </GridWrapper>);
 }

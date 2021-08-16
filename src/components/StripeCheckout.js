@@ -463,7 +463,7 @@ export default function StripeCheckout(props) {
           {/* <SubTitle text={stripe_payment_method}/> */}
           <SubTitle text={t('cart_payment_options_title')}/>
 
-          <SPMGrid  setMethod={setStripePaymentMethod}/>
+          <SPMGrid  setMethod={setStripePaymentMethod} />
           {/* <center><h4><b>Payment</b></h4></center> */}
           {/* <hr/> */}
           

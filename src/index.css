@@ -434,7 +434,7 @@ button[data-id="button-icon-element"] svg{
   max-width: 370px;
 }
 .payment_option_div_paypal{
-  width:90%;
+  width:50px;
   color:black;
   margin-left:15px;
   background: none;
@@ -467,7 +467,7 @@ button[data-id="button-icon-element"] svg{
 }
 
 @media(max-width:450px){
-  .payment_option_div_paypal{width:90%;}
+  .payment_option_div_paypal{width:50px;}
 };
 @media(min-width:451px){
   .payment_option_div_paypal{width:35%;}
