@@ -69,6 +69,8 @@ export default function StripeCheckout(props) {
   const [loading, setLoading] = useState(false);
   const [loadingText, setLoadingText] = useState("Processing...");
   const [redirect, setRedirectPage ] = useState(false);
+  const [grid_items, setGridItems] = useState([]);
+  // const [next_action_button, setNextAction] = useState({text:placeholder2, to:"/stripe", type:"function", func:handleClick});
   // const [billuserinfo, setBilluserinfo] = useState(false);
   const [stripe_payment_method, setStripePaymentMethod] = useState('card');
   var billInfo = {
@@ -192,7 +194,19 @@ export default function StripeCheckout(props) {
     document.documentElement.scrollTop = 0;
     // console.log(props);
     checkSession();
-    console.log('update')
+    console.log('update');
+    var grid_item_stage = [
+      {value:"card", class:"active", label:"cards", background:'url(https://cdn.tabme.io/app-public-assets/credit-card-regular.svg) 50% 0 / 45px no-repeat transparent'},
+      {value:"wallet", class:"", label:"wallets", background:'url("https://cdn.tabme.io/app-public-assets/applepay.svg") 15% 30% / 26px no-repeat, url("https://cdn.tabme.io/app-public-assets/gpay.svg") 80% 30% / 26px no-repeat'},
+      {value:"giropay", class:"", label:"Giropay", background:'url(https://cdn.tabme.io/app-public-assets/giropay.svg) 50% 0 / 45px no-repeat transparent'},
+      {value:"ideal", class:"", label:"iDeal", background:'url(https://cdn.tabme.io/app-public-assets/ideal.svg) 50% 0 / 45px no-repeat transparent'},
+      {value:"bancontact", class:"", label:"Bancontact", background:'url(https://cdn.tabme.io/app-public-assets/bancontact.svg) 50% 0 / 50px no-repeat transparent'},
+
+    ];
+    if(restaurant.info.paypal_client_id){
+      grid_item_stage.push({value:"paypal_chkout", class:"", label:"", background:'url(https://cdn.tabme.io/app-public-assets/paypal.svg) 50% 50% / 70px no-repeat transparent'})
+    }
+    setGridItems(grid_item_stage);
   }, []);
 
 
@@ -226,49 +240,50 @@ export default function StripeCheckout(props) {
   // Alles Conditions (Bendigungen)
 
       // For delivery
-      // if(tablenum === -2){
-      //   billInfoObj = {
-      //     fname:billInfo.fname.value,
-      //     lname:billInfo.lname.value,
-      //     email:billInfo.email.value,
-      //     phone:billInfo.phone_code.value+billInfo.phone.value,
-      //     address:billInfo.address.value,
-      //     zip:billInfo.zip.value,
-      //     guest:true
-      //   }
-      //   // if(!(billInfoObj.address && billInfoObj.zip)){
-      //   //   return
-      //   // }
-      // }else{
-      //   billInfoObj = {
-      //     fname:billInfo.fname.value,
-      //     lname:billInfo.lname.value,
-      //     email:billInfo.email.value,
-      //     phone:billInfo.phone_code.value+billInfo.phone.value,
-      //     guest:true
-      //   }
-      // }
-    // if(restaurant === undefined)
-    //   return
-    // if(restaurant._id === 'test'){
-    //   return   
-    // }
-    // if(!restaurant.open){
-    //   return
-    // }
+      /* 
+      if(tablenum === -2){
+        billInfoObj = {
+          fname:billInfo.fname.value,
+          lname:billInfo.lname.value,
+          email:billInfo.email.value,
+          phone:billInfo.phone_code.value+billInfo.phone.value,
+          address:billInfo.address.value,
+          zip:billInfo.zip.value,
+          guest:true
+        }
+        // if(!(billInfoObj.address && billInfoObj.zip)){
+        //   return
+        // }
+      }else{
+        billInfoObj = {
+          fname:billInfo.fname.value,
+          lname:billInfo.lname.value,
+          email:billInfo.email.value,
+          phone:billInfo.phone_code.value+billInfo.phone.value,
+          guest:true
+        }
+      }
+    if(restaurant === undefined)
+      return
+    if(restaurant._id === 'test'){
+      return   
+    }
+    if(!restaurant.open){
+      return
+    }
 
-    // if(cart.totalCost <=0){
-    //   return
-    // }
+    if(cart.totalCost <=0){
+      return
+    }
     
-    // if(billInfoObj.fname !== "" && billInfoObj.lname !== ""  && billInfoObj.phone !== ""  && billInfoObj.email !== "" && user.email === null){
-    //   setShowAlertBillInfo(false);
-    // }else if(user.email === null){
-    //   setShowAlertBillInfo(true);
-    //   // console.log('Guest User');
-    //   return
-    // }
-    
+    if(billInfoObj.fname !== "" && billInfoObj.lname !== ""  && billInfoObj.phone !== ""  && billInfoObj.email !== "" && user.email === null){
+      setShowAlertBillInfo(false);
+    }else if(user.email === null){
+      setShowAlertBillInfo(true);
+      // console.log('Guest User');
+      return
+    }
+    */
     
     // // Condition for Regular User
     if(user.email !== null){
@@ -463,14 +478,14 @@ export default function StripeCheckout(props) {
           {/* <SubTitle text={stripe_payment_method}/> */}
           <SubTitle text={t('cart_payment_options_title')}/>
 
-          <SPMGrid  setMethod={setStripePaymentMethod} />
+          <SPMGrid grid_items={grid_items} setMethod={setStripePaymentMethod} />
           {/* <center><h4><b>Payment</b></h4></center> */}
           {/* <hr/> */}
           
           {restaurant.info.paypal_client_id && <>
             <br/><br/>
                 <SubTitle text={t('cart_other_payment_options')}/>
-                <PaypalCheckout cartLoading={loadingScreen}/>
+                {/* <PaypalCheckout cartLoading={loadingScreen}/> */}
            </>}
           </div>
         </div>
@@ -518,7 +533,14 @@ export default function StripeCheckout(props) {
         
         </div>
         <div> <FormattedMessage id='cart' defaultMessage="Cart">
-                    {(placeholder)=><FormattedMessage values={{text:""}} id="order2">{(placeholder2)=><FooterComponent hide={loading} tnc={true} next={{text:placeholder2, to:"/stripe", type:"function", func:handleClick}} back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
+                    {(placeholder)=><FormattedMessage values={{text:""}} id="order2">{(placeholder2)=>(
+                                  <FooterComponent 
+                                      hide={loading} 
+                                      tnc={true} 
+                                      next={stripe_payment_method === 'paypal_chkout' ? {text:"", to:"", type:"paypal", func:<PaypalCheckout cartLoading={loadingScreen}/>} : {text:placeholder2, to:"/stripe", type:"function", func:handleClick}} 
+                                      back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}>
+                                  </FooterComponent>)}
+                                  </FormattedMessage>}
               </FormattedMessage></div>
     </LoadingOverlay>
   );

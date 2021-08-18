@@ -5,14 +5,7 @@ import styled from "styled-components";
 * @param  {props} props
 */
 const SPMGrid = props => {
-  const grid_items = [
-    {value:"card", class:"active", label:"cards", background:'url(https://cdn.tabme.io/app-public-assets/credit-card-regular.svg) 50% 0 / 45px no-repeat transparent'},
-    {value:"giropay", class:"", label:"Giropay", background:'url(https://cdn.tabme.io/app-public-assets/giropay.svg) 50% 0 / 45px no-repeat transparent'},
-    {value:"ideal", class:"", label:"iDeal", background:'url(https://cdn.tabme.io/app-public-assets/ideal.svg) 50% 0 / 45px no-repeat transparent'},
-    {value:"bancontact", class:"", label:"Bancontact", background:'url(https://cdn.tabme.io/app-public-assets/bancontact.svg) 50% 0 / 50px no-repeat transparent'},
-    {value:"wallet", class:"", label:"wallets", background:'url("https://cdn.tabme.io/app-public-assets/applepay.svg") 15% 30% / 26px no-repeat, url("https://cdn.tabme.io/app-public-assets/gpay.svg") 80% 30% / 26px no-repeat'},
-  ];
-
+  var grid_items = props.grid_items;
   const [stripe_payment_method, setStripePaymentMethod] = useState('card');
   
   function changeStripeMethod(m){
@@ -48,11 +41,11 @@ return(<GridWrapper>
             {/* <GridItem style={{border:"5px solid rgb(70, 109, 214)"}}>1</GridItem> */} 
             {/* {stripe_payment_method} */}
             {grid_items.map((item, idx)=>{
-                return  <GridItem className={item.class} onClick={()=>changeStripeMethod(item.value)} key={item.value} id={item.value}>
-                            <ItemBox style={{background:item.background}}>
-                              <ItemLabel>{item.label}</ItemLabel>
-                            </ItemBox>
-                        </GridItem>
+                  return(<GridItem className={item.class} onClick={()=>changeStripeMethod(item.value)} key={item.value} id={item.value}>
+                              <ItemBox style={{background:item.background}}>
+                                <ItemLabel>{item.label}</ItemLabel>
+                              </ItemBox>
+                          </GridItem>)
             })}
            
             {/* <GridItem>

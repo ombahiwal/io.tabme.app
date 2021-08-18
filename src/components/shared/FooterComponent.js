@@ -41,6 +41,8 @@ const FooterComponent = props => {
             <FooterButton onClick={props.next.func} style={{color:'white', background:'#466dd6'}}><b>{props.next.text}</b>
                 {/* &nbsp;<small><b><CurrencySymbol/>{this.renderCartTotal()}</b></small> */}
             </FooterButton>}
+
+            { props.next.type==="paypal" && props.next.func}
         </RightIconButton>
       </RightWrapper>
       {props.children}

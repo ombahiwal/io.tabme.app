@@ -434,13 +434,12 @@ button[data-id="button-icon-element"] svg{
   max-width: 370px;
 }
 .payment_option_div_paypal{
-  width:50px;
   color:black;
-  margin-left:15px;
   background: none;
   border-color: #0a1e42;
   border-width:2px;
   max-width: 370px;
+  margin-bottom: -7px;
 }
 .payment_options_stripe_image{
   
@@ -467,7 +466,9 @@ button[data-id="button-icon-element"] svg{
 }
 
 @media(max-width:450px){
-  .payment_option_div_paypal{width:50px;}
+  .payment_option_div_paypal{
+    
+  }
 };
 @media(min-width:451px){
   .payment_option_div_paypal{width:35%;}

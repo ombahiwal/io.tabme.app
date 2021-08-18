@@ -28,6 +28,7 @@ const TableNumberSelector = props => {
         <Title>Tischnummer: <b>{_.padStart(props.tablenum, 2, 0)}</b>
         <br/>
         {switchTable && <Selector defaultValue={props.tablenum} onChange={props.onChange}>
+            {/* {for(var i = 0; i <=10; i+=1;){}} */}
             <option value={0}>
                00
             </option>
@@ -36,6 +37,32 @@ const TableNumberSelector = props => {
             </option>
             <option value={2}>
                02
+            </option>
+
+            <option value={3}>
+               03
+            </option>
+            
+            <option value={4}>
+               04
+            </option>
+            <option value={5}>
+               05
+            </option>
+            <option value={6}>
+               06
+            </option>
+            <option value={7}>
+               07
+            </option>
+            <option value={8}>
+               08
+            </option>
+            <option value={9}>
+               09
+            </option>
+            <option value={10}>
+               10
             </option>
         </Selector>}
             {!switchTable && <Btn onClick={()=>{setSwitchTable(!switchTable)}}>Tischnummer Änderen</Btn>}

@@ -95,7 +95,7 @@ class PaypalButton extends React.Component {
         <PayPalButton
               createOrder={(data, actions) => this.createOrder(data, actions)}
               onApprove={(data, actions) => this.onApprove(data, actions)}
-              style={{color:"silver", height:35}}
+              style={{color:"gold", height:34, shape:'pill'}}
             />}
 
         {paid && (
