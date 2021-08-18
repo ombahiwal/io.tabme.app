@@ -482,11 +482,12 @@ export default function StripeCheckout(props) {
           {/* <center><h4><b>Payment</b></h4></center> */}
           {/* <hr/> */}
           
-          {restaurant.info.paypal_client_id && <>
+          {/* {restaurant.info.paypal_client_id && <>
             <br/><br/>
-                <SubTitle text={t('cart_other_payment_options')}/>
-                {/* <PaypalCheckout cartLoading={loadingScreen}/> */}
-           </>}
+                 <SubTitle text={t('cart_other_payment_options')}/>
+                <PaypalCheckout cartLoading={loadingScreen}/>
+           </>} */}
+           <br/><br/>
           </div>
         </div>
         <div className="row">
