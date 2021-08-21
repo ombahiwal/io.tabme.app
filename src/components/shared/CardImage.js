@@ -61,12 +61,13 @@ const DCardImage = props => {
       style={props.dish.image ? {minHeight:'110px', maxHeight:'110px'}: {minHeight:'80px'}}
       >
       {/* <ClickSpace  onClick={props.onClickCustom}/> */}
-      <Title onClick={props.onClickAllergenInfo} >{props.title} <sup>{veg}</sup></Title>
+      <Title style={!props.dish.image ? {margin: "2px 20px 0 0"} : {margin: "2px 90px 0 0"}} 
+      onClick={props.onClickAllergenInfo} >{props.title} <sup>{veg}</sup></Title>
       <TextWrapper onClick={props.onClickCustom}   centered={props.centered} >
         <Price onClick={props.onClickCustom} ><CurrencySymbol/>&nbsp;{props.price.toFixed(2)}</Price>
         {/* <Veg>{props.veg}</Veg> */}
         {/* {(props.text && aboutExpand) && <TextExpanded onClick={()=>{ if(props.text.length > 87) setAboutExpand(!aboutExpand)}}>{props.text}</TextExpanded>} */}
-        {(props.text && !aboutExpand) && <Text
+        {(props.text && !aboutExpand) && <Text style={!props.dish.image ? {margin: "5px 20px 12px 0px"} : {margin: "5px 100px 12px 0px"}}
         // onClick={()=>{if(props.text.length > 87) setAboutExpand(!aboutExpand)}}
         >{dishDescShortDisplay(props.text)}</Text>}
         {props.dish.image && <Image src={`https://cdn.tabme.io/user_public_assets/menus/${props.menu_id}/items/${props.dish._id}.png`}

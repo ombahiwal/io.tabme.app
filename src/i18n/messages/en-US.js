@@ -28,7 +28,7 @@ export default {
     'pickup_btn':"Pickup",
     'minute_short':"min",
     'tnc':'T&C',
-    'privacy_data_policy':'Privacy & Data Policy',
+    'privacy_data_policy':'Privacy Policy',
     'imprint':'Imprint',
     'restaurant_not_found':"Restaurant Not Found or Invalid QR. Please Try Again!",
     'login':'Login',

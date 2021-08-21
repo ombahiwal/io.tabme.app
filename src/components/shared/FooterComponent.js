@@ -43,10 +43,10 @@ const FooterComponent = props => {
             </FooterButton>}
 
             { props.next.type==="paypal" && props.next.func}
-        </RightIconButton>
-      </RightWrapper>
-      {props.children}
-      </Container>}
+              </RightIconButton>
+            </RightWrapper>
+            {props.children}
+            </Container>}
       {(props.tnc && !props.hide) && <TnCContainer> 
                           <ItemWrapper><a href={`${ENV.CDN_URL}/agb.html`} rel="noopener noreferrer" target="_blank" >{t('tnc')}</a></ItemWrapper>
                           <ItemWrapper><a href={`${ENV.CDN_URL}/datapolicy.html`} rel="noopener noreferrer" target="_blank">{t('privacy_data_policy')}</a></ItemWrapper>
