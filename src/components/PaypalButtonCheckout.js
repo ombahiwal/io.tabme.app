@@ -138,7 +138,12 @@ export default function PaypalCheckout(props) {
           // console.log(response.data);
           return response.data;
         }).finally((obj, err) =>{
-          // console.log(obj);
+          // console.log(obj, err);
+
+          if(err){
+            // order failed
+            props.cartLoading(true, 'Bestellung fehlgeschlagen!');
+          }
         });
 
         if(!OrderReq.success){
@@ -157,9 +162,11 @@ export default function PaypalCheckout(props) {
            
            cookies.remove('current_order');
           cookies.remove('current_order', {path:'/'});
+          cookies.remove('cart', {path:'/'});
           cookies.set('current_order', OrderReq.order,  {path:'/'});
+
           // Refresh or Clear Cart
-          dispatch(Actions.updateCart({
+          var clearCart = {
             dishes:[],
             itemCount:0,
             cartTotal:0,
@@ -177,10 +184,13 @@ export default function PaypalCheckout(props) {
             tax_data:null,
             pickup_date:null,
             order_label:null
-        }));
-        cookies.remove('cart', {path:'/'});
+        };
+          dispatch(Actions.updateCart(clearCart));
+          props.redirect(true);
+          // setRedirectPage(true);
+          
         //   setLoading(false);
-          setRedirectPage(true);
+          
           // setShowAlertFailure(false);
         }
       }else{            
@@ -195,7 +205,7 @@ export default function PaypalCheckout(props) {
   // }, []);
   return (
         <div>
-            {redirect && <Redirect to={'/order/current'}/>}
+            {redirect && <Redirect to="/order/current"/>}
            {showAlertOrderFailure && <Alert variant="danger">Es ist ein Fehler aufgetreten!
                 Falls ein Betrag abgezogen wurde, kontaktieren Sie bitte das Restaurant für eine Rückerstattung mit <b>Ref. {billuserinfo}</b>.</Alert>}
             {(restaurant.info && restaurant.payment_methods.includes('paypal') && restaurant.info.paypal_client_id)  && <PaypalButton restaurant={restaurant} cart={cart} orderCancelled={paypalOrderCancelled} initiateTabmeOrder={initiateTabmeOrder}/>}

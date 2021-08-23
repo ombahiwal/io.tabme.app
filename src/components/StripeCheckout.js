@@ -538,7 +538,7 @@ export default function StripeCheckout(props) {
                                   <FooterComponent 
                                       hide={loading} 
                                       tnc={true} 
-                                      next={stripe_payment_method === 'paypal_chkout' ? {text:"", to:"", type:"paypal", func:<PaypalCheckout cartLoading={loadingScreen}/>} : {text:placeholder2, to:"/stripe", type:"function", func:handleClick}} 
+                                      next={stripe_payment_method === 'paypal_chkout' ? {text:"", to:"", type:"paypal", func:<PaypalCheckout redirect={setRedirectPage} cartLoading={loadingScreen}/>} : {text:placeholder2, to:"/stripe", type:"function", func:handleClick}} 
                                       back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}>
                                   </FooterComponent>)}
                                   </FormattedMessage>}
