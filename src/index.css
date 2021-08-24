@@ -60,17 +60,22 @@ code {
   font-weight: 900;
   font-size: 2rem;
 }
-
+.dot{
+  color:#ff9268;
+  font-weight: 900;
+  font-size: 2rem;
+}
 
 .logo{
   float: left;
   font-weight: 800;
-  color:#282c34;
-  font-size: 1.5rem;
+  color:#0a1e42;
+  font-size: 1.6rem;
   width:3em;
+  letter-spacing: -1.5px;
   vertical-align: middle;
   margin-right: 5px;
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .navbar-brand{
   line-height: 20px;

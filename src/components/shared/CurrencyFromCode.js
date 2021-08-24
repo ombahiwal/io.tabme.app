@@ -37,7 +37,7 @@ export  function   symbolCode(code){
         switch(country){
             case "Germany":
             
-            locales = 'de-de';
+            locales = 'en-us';
             break;
 
             case "India":

@@ -32,7 +32,7 @@ import RazorPayDialog from './components/RazorPayCheckoutComponent';
 import CheckoutExternal from './components/CashExternalComponent';
 import Menu6 from './components/MenuComponentv6';
 import SimpleMapView from './components/SimpleMapViewComponent';
-
+import WebShop from './components/WebShop/WebShop';
 // QR Code
 // import QRCodeDisplay from "react-qr-code";
 // Redux
@@ -118,8 +118,8 @@ render() {
         <Route path="/scan">
             <QRCodeReader/>
         </Route>
-          <Route path="/menu">
-            {/* <Menu /> */}
+          <Route path="/webshop">
+            <WebShop/>
           </Route>
 
           <Route path="/menu6">

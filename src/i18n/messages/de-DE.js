@@ -141,6 +141,8 @@ export default {
     'order2':'Bestellen',
     'menu':'Menü',
     'cart':"Warenkorb",
-    'cart_other_payment_options':'Andere Optionen'
+    'cart_other_payment_options':'Andere Optionen',
+    'table_num_label':"Tischnummer",
+    'table_num_another':"Tischnummer Änderen"
   },
 };

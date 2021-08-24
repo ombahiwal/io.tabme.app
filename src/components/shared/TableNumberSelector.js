@@ -6,6 +6,7 @@ import {RiCloseFill} from 'react-icons/ri';
 // import {Image} from 'react-bootstrap';
 import CurrencySymbol from '../CurrencySymbolComponent';
 import _ from 'lodash';
+import t from '../../i18n/translate';
 /**
  * Card is a component that renders a card with a title and image
  * @param  {props} props
@@ -25,7 +26,7 @@ const TableNumberSelector = props => {
         onLoad={() => setImageLoaded(true)}
         isLoaded={imageLoaded}
         />
-        <Title>Tischnummer: <b>{_.padStart(props.tablenum, 2, 0)}</b>
+        <Title>{t('table_num_label')} <b>{_.padStart(props.tablenum, 2, 0)}</b>
         <br/>
         {switchTable && <Selector defaultValue={props.tablenum} onChange={props.onChange}>
             {/* {for(var i = 0; i <=10; i+=1;){}} */}
@@ -38,11 +39,9 @@ const TableNumberSelector = props => {
             <option value={2}>
                02
             </option>
-
             <option value={3}>
                03
             </option>
-            
             <option value={4}>
                04
             </option>
@@ -65,7 +64,7 @@ const TableNumberSelector = props => {
                10
             </option>
         </Selector>}
-            {!switchTable && <Btn onClick={()=>{setSwitchTable(!switchTable)}}>Tischnummer Änderen</Btn>}
+            {!switchTable && <Btn onClick={()=>{setSwitchTable(!switchTable)}}>{t('table_num_another')}</Btn>}
         </Title>
          {/* <Text><Btn>Tischnummer Änderen</Btn></Text> */}
         {props.children}

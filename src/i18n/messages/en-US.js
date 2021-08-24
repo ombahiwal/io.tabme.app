@@ -140,6 +140,8 @@ export default {
     'menu':'Menu',
     'order2':'Order',
     'cart':"Cart",
-    'cart_other_payment_options':'Other Options'
+    'cart_other_payment_options':'Other Options',
+    'table_num_label':"Table No. ",
+    'table_num_another':"Change Table"
   },
 };

@@ -31,7 +31,7 @@ const SPMGrid = props => {
     // console.log(m);
     setStripePaymentMethod(m); 
     if(m === 'wallet'){
-      m = 'card'
+      m = 'card';
     }
     props.setMethod(m);
     
