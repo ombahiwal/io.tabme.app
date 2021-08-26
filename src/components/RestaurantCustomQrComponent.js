@@ -101,17 +101,18 @@ class RestaurantCustomQR extends Component{
             <hr/> */}
             {/* <Image className="restaurant-logo-img-welcome" fluid="true" src={"https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/"+this.props.restaurant._id+".png"} rounded/> */}
             <MenuBanner restaurant={this.props.restaurant}/>
-
-            <h3><b>{this.props.restaurant.rname}</b>
-            </h3>
-            <p className="about-restaurant"><small>
-                {this.props.restaurant.about}
-                </small></p> 
+            <div className="theme-card">
+                <h3><b>{this.props.restaurant.rname}</b>
+                </h3>
+                <p className="about-restaurant"><small>
+                    {this.props.restaurant.about}
+                    </small></p> 
+                </div>
                 <Form>
                     <FormGroup>
                         <Form.Label>
                             {/* <h5><b>{t('welcome_order_for_delivery')}</b></h5> */}
-                            
+                            <br/>
                             <h6><b>{t('order')}</b></h6>
                             <h5><b>{this.props.cart.order_label}</b></h5>
                             
