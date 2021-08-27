@@ -20,8 +20,8 @@ import {ReactComponent as MeatIcon} from './meat-svgrepo-com.svg';
  */
 
 function dishDescShortDisplay(desc){
-  if(desc.length > 84){
-      return desc.slice(0,79)+"..."
+  if(desc.length > 60){
+      return desc.slice(0,55)+"..."
   }else{
       return desc
   }
