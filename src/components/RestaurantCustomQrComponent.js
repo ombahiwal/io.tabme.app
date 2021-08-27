@@ -63,7 +63,8 @@ class RestaurantCustomQR extends Component{
 
     handleCheckin(){
         this.props.setTableNum(this.table_num);
-        this.setState({showAlertSuccess:true})
+        this.setState({showAlertSuccess:true, redirect:{show:true, path:'/menu6'}});
+        
     }
 
     renderContinueBtns(){
