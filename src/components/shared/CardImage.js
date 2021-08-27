@@ -21,7 +21,7 @@ import {ReactComponent as MeatIcon} from './meat-svgrepo-com.svg';
 
 function dishDescShortDisplay(desc){
   if(desc.length > 60){
-      return desc.slice(0,55)+"..."
+      return desc.slice(0,60)+"..."
   }else{
       return desc
   }
@@ -58,7 +58,7 @@ const DCardImage = props => {
       className={props.className}
       centered={props.centered}
       onClick={props.onClick}
-      style={props.dish.image ? {minHeight:'110px', maxHeight:'110px'}: {minHeight:'80px'}}
+      style={props.dish.image ? {minHeight:'110px', maxHeight:'160px'}: {minHeight:'80px'}}
       >
       {/* <ClickSpace  onClick={props.onClickCustom}/> */}
       <Title style={!props.dish.image ? {margin: "2px 20px 0 0"} : {margin: "2px 90px 0 0"}} 
