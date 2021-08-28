@@ -142,6 +142,8 @@ export default {
     'cart':"Cart",
     'cart_other_payment_options':'Other Options',
     'table_num_label':"Table No. ",
-    'table_num_another':"Change Table"
+    'table_num_another':"Change Table",
+    'description':"Description",
+    
   },
 };

@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React, {Component} from 'react';
 // import {FormGroup, Form, ListGroup, Tooltip} from 'reactstrap';
-import {Toast, Badge, Button, ButtonGroup} from 'react-bootstrap';
+import {Toast, Badge, Button, ButtonGroup, Collapse} from 'react-bootstrap';
+import {BsInfoCircle } from "react-icons/bs";
 // UI Components
 import Grid from './shared/Grid';
 import { Modal } from 'react-rainbow-components';
@@ -93,7 +94,7 @@ class Menu6 extends Component {
             // console.log(this.state.menu);
         }else{
             cookies.set('menu', props.menu, {path:'/'});
-            this.state = {cart:props.cart, status:false, menu:this.props.menu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:false, tooltip:false, active_category:"Menu", menu_rendered:[]};
+            this.state = {cart:props.cart, status:false, menu:this.props.menu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:false, tooltip:false, active_category:"Menu", menu_rendered:[], collapses:{desc:false, allergen:false}};
         }
     }
 
@@ -710,10 +711,46 @@ class Menu6 extends Component {
                                                                                                                         this.current_dish_count = 1;
                                                                                                                         this.current_required_ispresent = false;
                                                                                                                         this.current_required_isselected = false;}}>
-                <h4 style={{"marginRight":"28px"}}><b>{dish.name} {' '} </b></h4>
-               <h6><b><CurrencySymbol/> {dish.price.toFixed(2)}</b> </h6>
+                <h4 
+                 onClick={() => this.setState({collapses:{desc:!this.state.collapses.desc}})}
+                 aria-controls="dish-description-collapse"
+                 aria-expanded={this.state.collapses.desc}
+                style={{"marginRight":"28px"}}><b>{dish.name}{' '} <sup><small><BsInfoCircle/></small></sup></b></h4>
+               <h6><b><CurrencySymbol/> {dish.price.toFixed(2)}</b></h6>
                 <small>{this.dishCatBreadCrumb(dish.category, dish.subcategory)}</small>
                 <hr/>
+                 <div className="row">
+                        <div className="col-12"> 
+                        {/* <b>Allergen Info</b> */}
+                    {/* {this.dishAllergenDisplay(dish.allergen)} */}
+                    {/* <span
+                            onClick={() => this.setState({collapses:{desc:!this.state.collapses.desc}})}
+                            aria-controls="dish-description-collapse"
+                            aria-expanded={this.state.collapses.desc}
+                        ><small><b>Description</b></small></span> */}
+                    <Collapse in={this.state.collapses.desc}>
+                            <div id="dish-description-collapse">
+                            {dish.description}<br/><hr/>
+                            {this.dishAllergenDisplay(dish.allergen)}
+                            </div>
+                        </Collapse>
+                        </div>
+                    </div>
+                    {/* <div className="row">
+                        <div className="col-12"> 
+                        <span
+                            onClick={() => this.setState({collapses:{desc:this.state.collapses.desc, allergen:!this.state.collapses.allergen}})}
+                            aria-controls="dish-allergen-collapse"
+                            aria-expanded={this.state.collapses.allergen}
+                        ><b>Allergen</b></span>
+                        <Collapse in={this.state.collapses.allergen}>
+                        <div id="dish-allergen-collapse">
+                            
+                        </div>
+                        </Collapse>
+                        </div>
+                    </div> */}
+                
                 <div className="col-12">
                         {dish.options.map((option)=>{
                             var optn  = new Object({
@@ -996,7 +1033,8 @@ class Menu6 extends Component {
 
     dishAllergenDisplay(aller){
         if(aller === "true"){
-            return(<><h6><b>Allergen Info</b></h6>
+            return(<>
+           <h6><b>Allergen Info</b></h6> 
                 <p><small>This dish may contain any of the following allergy inducing ingredients - Milk, Eggs, Wheat, gluten, Soy, Tree nuts, Fish, Shellfish, Peanuts.</small></p>
                 </>
             );

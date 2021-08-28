@@ -143,6 +143,7 @@ export default {
     'cart':"Warenkorb",
     'cart_other_payment_options':'Andere Optionen',
     'table_num_label':"Tischnummer",
-    'table_num_another':"Tischnummer Änderen"
+    'table_num_another':"Tischnummer Änderen",
+    'description':"Beschreibung"
   },
 };

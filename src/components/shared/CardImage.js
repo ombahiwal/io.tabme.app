@@ -62,7 +62,9 @@ const DCardImage = props => {
       >
       {/* <ClickSpace  onClick={props.onClickCustom}/> */}
       <Title style={!props.dish.image ? {margin: "2px 20px 0 0"} : {margin: "2px 90px 0 0"}} 
-       ><span onClick={props.onClickAllergenInfo}>{props.title} <sup>{veg}</sup></span></Title>
+       ><span 
+      //  onClick={props.onClickAllergenInfo}
+       >{props.title} <sup>{veg}</sup></span></Title>
       <TextWrapper onClick={props.onClickCustom}   centered={props.centered} >
         <Price onClick={props.onClickCustom} ><CurrencySymbol/>&nbsp;{props.price.toFixed(2)}</Price>
         {/* <Veg>{props.veg}</Veg> */}
