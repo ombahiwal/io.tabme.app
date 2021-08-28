@@ -690,6 +690,7 @@ class Menu6 extends Component {
         return this.cart.itemCount;
     }
     
+    
     renderCustomisationModal(){
         var dish = this.state.dishCustom;
         // reference of menu dish
@@ -1103,9 +1104,9 @@ class Menu6 extends Component {
         this.checkCurentRequiredSelected(dish);
         if(flag){
             dish = this.getDishfromMenu(dishId);
-            return this.setState({isOpenCustom: true, dishCustom:dish});
+            // return this.setState({isOpenCustom: true, dishCustom:dish, collapses:{allergen:false, desc:false}});
         }
-        return this.setState({isOpenCustom: true, dishCustom:dish});
+        return this.setState({isOpenCustom: true, dishCustom:dish,  collapses:{allergen:false, desc:false}});
     }
 
     ModalCustomOnClose(){

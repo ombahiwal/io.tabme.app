@@ -9,7 +9,7 @@ import {Button} from 'react-bootstrap';
 import RoundButton from './RoundButton';
 import {FaLeaf, FaEgg}  from "react-icons/fa";
 import { RiLeafLine } from "react-icons/ri";
-import {ReactComponent as MeatIcon} from './meat-svgrepo-com.svg';
+// import {ReactComponent as MeatIcon} from './meat-svgrepo-com.svg';
 // import './styledbutton.scss';
 // import { ImPlus } from "react-icons/im";
 // import {Button, ButtonGroup} from 'reactstrap';
@@ -29,7 +29,7 @@ function dishDescShortDisplay(desc){
 const DCardImage = props => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [aboutExpand, setAboutExpand] = useState(false);  
-  const [veg, setVeg] = useState(<BsInfoCircle/>);
+  const [veg, setVeg] = useState("");
    if(!aboutExpand){
     
    }else{}
@@ -44,7 +44,8 @@ const DCardImage = props => {
         break;
       case 'Meat':
         // setVeg(<MeatIcon style={{height:'12px'}}/>);
-        setVeg(<BsInfoCircle/>);
+        // setVeg(<BsInfoCircle/>);
+        setVeg("");
       break;
       case 'Egg':
         setVeg(<FaEgg style={{color:"#ffc107"}}/>);
@@ -57,7 +58,7 @@ const DCardImage = props => {
     <Wrapper
       className={props.className}
       centered={props.centered}
-      onClick={props.onClick}
+      onClick={props.onClickCustom}
       style={props.dish.image ? {minHeight:'110px', maxHeight:'160px'}: {minHeight:'80px'}}
       >
       {/* <ClickSpace  onClick={props.onClickCustom}/> */}
@@ -65,8 +66,12 @@ const DCardImage = props => {
        ><span 
       //  onClick={props.onClickAllergenInfo}
        >{props.title} <sup>{veg}</sup></span></Title>
-      <TextWrapper onClick={props.onClickCustom}   centered={props.centered} >
-        <Price onClick={props.onClickCustom} ><CurrencySymbol/>&nbsp;{props.price.toFixed(2)}</Price>
+      <TextWrapper 
+      // onClick={props.onClickCustom} 
+        centered={props.centered} >
+        <Price 
+        // onClick={props.onClickCustom}
+         ><CurrencySymbol/>&nbsp;{props.price.toFixed(2)}</Price>
         {/* <Veg>{props.veg}</Veg> */}
         {/* {(props.text && aboutExpand) && <TextExpanded onClick={()=>{ if(props.text.length > 87) setAboutExpand(!aboutExpand)}}>{props.text}</TextExpanded>} */}
         {(props.text && !aboutExpand) && <Text style={!props.dish.image ? {margin: "5px 20px 12px 0px"} : {margin: "5px 100px 12px 0px"}}
