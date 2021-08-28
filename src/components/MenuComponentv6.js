@@ -304,27 +304,6 @@ class Menu6 extends Component {
                 }
             });
 
-            // console.log(c);
-            /*
-            console.log(dish_optionsets.find((optsetobj, idx)=>{
-                console.log(optsetobj, idx);
-                    return optsetobj.optionset.find((optn)=>{
-                            new_optionset.find((n_opt)=>{
-                                if(n_opt._id === optn._id){
-                                    if(_.isEqual(n_opt, optn)){
-                                        find = true;
-                                    }else{
-                                        find = false;
-                                        return false;
-                                    }
-                                }
-                            });
-                            return find;
-
-                    })
-            })); 
-            */
-            // console.log('index of option set', flag);
             return flag;
     }
 
