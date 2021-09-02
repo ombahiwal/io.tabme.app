@@ -31,7 +31,8 @@ class Cart extends Component {
         super(props);
         this.state = {
             cart:props.cart, status:false, payment:"external", menu:props.menu, tip:0, 
-            tipstate:false, promo:0, notesbox:{show:false, note:""}, 
+            tipstate:false, promo:0, 
+            notesbox:{show:this.props.cart.notes.length > 0, note:this.props.cart.notes}, 
             currency:'INR', loading:false, loadingText:"Processing",
             isPaypal:(this.props.restaurant.info && this.props.restaurant.payment_methods.includes('paypal') && this.props.restaurant.info.paypal_client_id)
         };
@@ -175,7 +176,7 @@ class Cart extends Component {
         //         </div>);
         // }else{
             return (<div className="col-12">
-            {!this.state.notesbox.show && <span><small>{this.cart.notes}</small></span>}
+            {/* {!this.state.notesbox.show && <span><small>{this.cart.notes}</small></span>} */}
             <Collapse in={this.state.notesbox.show}>
             <div id="notes-collapse" >
                 <FormattedMessage id='cart_note_msg' defaultMessage="Write a note for the staff along with your order...">
@@ -193,7 +194,7 @@ class Cart extends Component {
                         aria-expanded={this.state.notesbox.show} 
                         style={{float:'right'}} 
                         className="theme-button-small-invert" 
-                            onClick={()=>{this.setState( {notesbox:{show:!this.state.notesbox.show, msg:''}})}} size="sm" variant="outline-secondary">{this.state.notesbox.show ? <RiCloseFill style={{color:"indianred"}}/> : <FaPencilAlt style={{color:"#466dd6"}}/>}</button>
+                            onClick={()=>{this.cart.notes="";this.setState( {notesbox:{show:!this.state.notesbox.show, msg:''}});this.calcCartSum();}} size="sm" variant="outline-secondary">{this.state.notesbox.show ? <RiCloseFill style={{color:"indianred"}}/> : <FaPencilAlt style={{color:"#466dd6"}}/>}</button>
                 </div>);
         // }
 

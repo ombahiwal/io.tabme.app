@@ -146,7 +146,10 @@ export default {
     'table_num_another':"Tischnummer Änderen",
     'description':"Beschreibung",
     'cookie_consent_msg':"Durch die Nutzung dieser Website erklären Sie sich damit einverstanden, dass wir Cookies verwenden. Wir verwenden Cookies, um Ihnen ein tolles Erlebnis zu bieten und unsere Website effektiv zu betreiben.",
-    'cart_heading':"Warenkorb"
+    'cart_heading':"Warenkorb",
+    'show_more':"mehr anzeigen",
+    'show_less':"weniger anzeigen"
+
 
   },
 };

@@ -2,8 +2,11 @@
 import React, {Component} from 'react';
 // import {FormGroup, Form, ListGroup, Tooltip} from 'reactstrap';
 import {Toast, Badge, Button, ButtonGroup, Collapse} from 'react-bootstrap';
-import {BsInfoCircle } from "react-icons/bs";
+// import {BsInfoCircle } from "react-icons/bs";
 // UI Components
+import AnimatedShowMore from 'react-animated-show-more';
+// import ShowMoreText from "react-show-more-text";
+
 import Grid from './shared/Grid';
 import { Modal } from 'react-rainbow-components';
 // import DCard from './shared/Card';
@@ -16,7 +19,7 @@ import CurrencySymbol from './CurrencySymbolComponent';
 import Cookies from 'universal-cookie';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 // import DataService from '../services/data-service';
-import sampleMenu from './shared/sampleMenu';
+// import sampleMenu from './shared/sampleMenu';
 import { Waypoint } from 'react-waypoint';
 import Drawer from './shared/drawer/dist/Drawer';
 import {FormattedMessage} from 'react-intl';
@@ -711,30 +714,70 @@ class Menu6 extends Component {
                                                                                                                         this.current_required_ispresent = false;
                                                                                                                         this.current_required_isselected = false;}}>
                 <h4 
-                 onClick={() => this.setState({collapses:{desc:!this.state.collapses.desc}})}
+                //  onClick={() => this.setState({collapses:{desc:!this.state.collapses.desc}})}
                  aria-controls="dish-description-collapse"
                  aria-expanded={this.state.collapses.desc}
-                style={{"marginRight":"28px"}}><b>{dish.name}{' '} <sup><small><BsInfoCircle/></small></sup></b></h4>
+                style={{"marginRight":"28px"}}>
+                <b>{dish.name}{' '} {/* <sup><small><BsInfoCircle/></small></sup> */}</b>
+                </h4>
                <h6><b><CurrencySymbol/> {dish.price.toFixed(2)}</b></h6>
                 {/* <small>{this.dishCatBreadCrumb(dish.category, dish.subcategory)}</small> */}
+                {/* <small>
+                         <ShowMoreText
+                            lines={1}
+                            more="Show more"
+                            less="Show less"
+                            className="content-css"
+                            anchorClass="my-anchor-css-class"
+                            expanded={false}
+                            truncatedEndingComponent={"... "}
+                        >
+                        {dish.description}
+                        <br/><hr/>
+                            {this.dishAllergenDisplay(dish.allergen)}
+                        </ShowMoreText></small> */}
+                         <small> <AnimatedShowMore
+                            height={35}
+                            toggle={({ isOpen }) => isOpen ? t('show_less') : t('show_more') }
+                            speed={200}
+                            shadowColor="white">                            
+                            {dish.description}<br/><hr/>
+                            {this.dishAllergenDisplay(dish.allergen)}
+                            <br/><br/>
+                            </AnimatedShowMore>
+                            </small>
                 <hr/>
-                 <div className="row">
+                 {/* <div className="row">
                         <div className="col-12"> 
-                        {/* <b>Allergen Info</b> */}
-                    {/* {this.dishAllergenDisplay(dish.allergen)} */}
-                    {/* <span
+                        <b>Allergen Info</b>
+                    {this.dishAllergenDisplay(dish.allergen)}
+                    <span
                             onClick={() => this.setState({collapses:{desc:!this.state.collapses.desc}})}
                             aria-controls="dish-description-collapse"
                             aria-expanded={this.state.collapses.desc}
-                        ><small><b>Description</b></small></span> */}
-                    <Collapse in={this.state.collapses.desc}>
-                            <div id="dish-description-collapse">
+                        ><small><b>Description</b></small></span>
+                         
+                        <br/>
+                         <small> <AnimatedShowMore
+                            height={30}
+                            toggle={({ isOpen }) => isOpen ? 'show less' : 'show more' }
+                            speed={200}
+                            shadowColor="white">                            
                             {dish.description}<br/><hr/>
                             {this.dishAllergenDisplay(dish.allergen)}
+                            <br/><br/>
+                            </AnimatedShowMore>
+                            </small>
+                           
+                    <Collapse in={this.state.collapses.desc}>
+                            <div id="dish-description-collapse">
+    
                             </div>
                         </Collapse>
+
+
                         </div>
-                    </div>
+                    </div> */}
                     {/* <div className="row">
                         <div className="col-12"> 
                         <span
@@ -1038,9 +1081,7 @@ class Menu6 extends Component {
                 </>
             );
         }else{
-            return(
-                <p>-</p>
-            );
+            return(<span></span>);
         }
     }
 
