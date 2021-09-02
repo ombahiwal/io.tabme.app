@@ -142,14 +142,20 @@ export default function StripeCheckout(props) {
                     dishes:[],
                     itemCount:0,
                     cartTotal:0,
-                    taxlabel:"-",
-                    taxpercent:5,
+                    taxlabel:"included",
+                    taxpercent:0,
                     tax:0,
+                    delivery_fee:0,
                     discountpercent:0,
                     promo:0,
                     tip:0,
+                    currency:'',
                     totalCost:0,
-                    delivery_fee:0
+                    notes:"",
+                    promo_data:null,
+                    tax_data:null,
+                    pickup_date:null,
+                    order_label:null
                   }));
                 cookies.remove('cart', {path:'/'});
                   setLoadingText('Order Verified!');
@@ -473,7 +479,7 @@ export default function StripeCheckout(props) {
         <div className="col-12 margin-btm">
         <div className="row">
           <div className="col-12">
-          <HeadTitle text={"Tab Warenkorb"} icon={<RiHandbagFill/>}/>
+          <HeadTitle text={t('cart_heading')} icon={<RiHandbagFill/>}/>
           <br/>
           {/* <SubTitle text={stripe_payment_method}/> */}
           <SubTitle text={t('cart_payment_options_title')}/>

@@ -75,7 +75,27 @@ function Process(subprop){
             dispatch(Actions.setTableNumber(qr.table_number));
             dispatch(Actions.setRestaurant(qr.gastro));
             dispatch(Actions.setMenu(qr.menu));
-            console.log('hrere')
+            cookies.remove('cart', {path:'/'});
+            var newCart = Object({dishes:[],
+                itemCount:0,
+                cartTotal:0,
+                taxlabel:"included",
+                taxpercent:0,
+                tax:0,
+                delivery_fee:0,
+                discountpercent:0,
+                promo:0,
+                tip:0,
+                currency:'',
+                totalCost:0,
+                notes:"",
+                promo_data:null,
+                tax_data:null,
+                pickup_date:null,
+                order_label:null});
+            dispatch(Actions.updateCart(newCart));
+            cookies.set('cart',newCart, {path:'/'});
+            // console.log('hrere')
             if(parseInt(qr.table_number) === -4){
                 console.log('hrere')
                 var new_cart = new Object(cart);
@@ -85,7 +105,8 @@ function Process(subprop){
             cookies.remove('menu', {path:'/'});
             cookies.remove('gastro', {path:'/'});
             cookies.set('gastro', qr.gastro,  {path: '/' });
-
+            cookies.set('table_num', qr.table_number,  {path: '/' });
+            
             
         }else
         return(<div><center><b>{t('restaurant_not_found')}</b></center></div>);
@@ -93,20 +114,20 @@ function Process(subprop){
 
     return (
         <LoadingOverlay
-        active={loading}
-        spinner
-        text='Loading...'
+            active={loading}
+            spinner
+            text='Loading...'
         >
-        <div className="col-12">
-            <div className="row">
-                <div className="col-12">
-                <div className="loading-div">
-                <center>{t('restaurant_not_found')}</center>
-                {loading && <Redirect to={parseInt(qr.table_number) === -4 ? '/r/custom' : "/welcome"}/>}
+            <div className="col-12">
+                <div className="row">
+                    <div className="col-12">
+                    <div className="loading-div">
+                    <center>{t('restaurant_not_found')}</center>
+                    {loading && <Redirect to={parseInt(qr.table_number) === -4 ? '/r/custom' : "/welcome"}/>}
+                    </div>
+                    </div>    
                 </div>
-                </div>    
             </div>
-        </div>
         </LoadingOverlay>
     );
 }

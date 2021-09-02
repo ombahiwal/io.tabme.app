@@ -10,7 +10,7 @@ import PromoField from './shared/PromoField';
 import CDCard from './shared/CartDishCard'
 import {connect} from 'react-redux';
 import Cookies from 'universal-cookie';
-import { Form, FormGroup, FormControl, Button, ButtonGroup, ToggleButton, Image} from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button, ButtonGroup, ToggleButton, Image, Collapse} from 'react-bootstrap';
 import PaypalCheckout from './PaypalButtonCheckout';
 import t from '../i18n/translate';
 import {FormattedMessage} from 'react-intl';
@@ -19,7 +19,7 @@ import PaymentButton from './shared/PaymentButton';
 import {FaRegMoneyBillAlt} from 'react-icons/fa';
 import {RiSecurePaymentLine} from 'react-icons/ri';
 import FooterComponent from './shared/FooterComponent';
-import {RiHandbagFill} from 'react-icons/ri';
+import {RiHandbagFill, RiCloseFill} from 'react-icons/ri';
 
 var CurrencyCode =  require('./shared/CurrencyFromCode');
 var Action = require('../redux/actions/index');
@@ -31,7 +31,7 @@ class Cart extends Component {
         super(props);
         this.state = {
             cart:props.cart, status:false, payment:"external", menu:props.menu, tip:0, 
-            tipstate:false, promo:0, notesbox:{show:true, note:""}, 
+            tipstate:false, promo:0, notesbox:{show:false, note:""}, 
             currency:'INR', loading:false, loadingText:"Processing",
             isPaypal:(this.props.restaurant.info && this.props.restaurant.payment_methods.includes('paypal') && this.props.restaurant.info.paypal_client_id)
         };
@@ -169,26 +169,32 @@ class Cart extends Component {
 
     renderNotesBox(){
 
-        if(!this.state.notesbox.show){
-            return (<div className="background-white" style={{float:'right'}}>
-            <br/>
-                        <Button onClick={()=>{this.setState( {notesbox:{show:true, msg:''}})}} size="sm" variant="outline-secondary"> <FaPencilAlt/> </Button>
+        // if(!this.state.notesbox.show){
+        //     return (<div className="col-12" >
+        //                 <button className="theme-button-small-invert" style={{float:"right", color:"rgb(70, 109, 214)"}} onClick={()=>{this.setState( {notesbox:{show:true, msg:''}})}} size="sm" variant="outline-secondary"><FaPencilAlt/></button>
+        //         </div>);
+        // }else{
+            return (<div className="col-12">
+            <Collapse in={this.state.notesbox.show}>
+            <div id="notes-collapse" >
+                <FormattedMessage id='cart_note_msg' defaultMessage="Write a note for the staff along with your order...">
+                            {(placeholder)=><FormControl onChange={(e)=>{
+                                this.cart.notes = e.target.value;
+                                this.calcCartSum();
+                                this.setState({notesbox:{show:true, msg:e.target.value}});
+                                }} value={this.cart.notes} as="textarea" className="user-notes" aria-label="With textarea"
+                                placeholder={placeholder} />}
+                                </FormattedMessage>
+            </div>
+            
+            </Collapse>
+                        <button aria-controls="notes-collapse"
+                        aria-expanded={this.state.notesbox.show} 
+                        style={{float:'right'}} 
+                        className="theme-button-small-invert" 
+                            onClick={()=>{this.setState( {notesbox:{show:!this.state.notesbox.show, msg:''}})}} size="sm" variant="outline-secondary">{this.state.notesbox.show ? <RiCloseFill style={{color:"indianred"}}/> : <FaPencilAlt style={{color:"#466dd6"}}/>}</button>
                 </div>);
-        }else{
-            return (<div className="col-12 user-notes background-white">
-            <br/>
-            <FormattedMessage id='cart_note_msg' defaultMessage="Write a note for the staff along with your order...">
-                        {(placeholder)=><FormControl onChange={(e)=>{
-                            this.cart.notes = e.target.value;
-                            this.calcCartSum();
-                            this.setState({notesbox:{show:true, msg:e.target.value}});
-                            }} value={this.cart.notes} as="textarea" className="user-notes" aria-label="With textarea"
-                            placeholder={placeholder} />}
-                            </FormattedMessage>
-                        <br/><br/>
-                        {/* <Button onClick={()=>{this.setState( {notesbox:{show:false, msg:''}})}} size="sm" variant="outline-secondary">Cancel <FaPencilAlt/> </Button> */}
-                </div>);
-        }
+        // }
 
     }
 
@@ -362,6 +368,8 @@ class Cart extends Component {
         this.cart.totalCost = this.cart.tip + this.cart.cartTotal + this.cart.tax + this.cart.delivery_fee - this.cart.promo ;
         this.cart.pickup_date = this.props.order_meta.pickup.date;
         this.props.updateCartInStore(this.cart);
+        cookies.remove('cart');
+        cookies.set('cart',this.cart, {path:'/'});
         this.setState({status:true});
     }
     
@@ -556,12 +564,16 @@ class Cart extends Component {
                 <div className="row">
                 
                 <div className="col-12 no-padding-float-left ">
-                <HeadTitle text={"Tab Warenkorb"} icon={<RiHandbagFill/>}/>
+                <HeadTitle text={t("cart_heading")} icon={<RiHandbagFill/>}/>
                 {/* <SubTitle text={t('cart_tab_summary_title')}/> */}
                 {/* {this.state.status && <center><b>DISH SUMMARY</b></center> } */}
                 <br/>
                 <div className="theme-card">
                  {this.renderDishes()}
+                 <div className="row">
+                         {this.renderNotesBox()}
+                 </div>
+                 
                 </div>
                     
                 </div>
@@ -570,8 +582,9 @@ class Cart extends Component {
                 <div className="row">
                 <div className="col-12">
                     {/* <Button as={Link} to='/menu' size="sm" variant="outline-secondary"><FaUtensils/> </Button> */}
-                    {/* {this.renderNotesBox()} */}
+                    
                     <div className="theme-card">
+
                     {/* <SubTitle text={"Promo"} /> */}
                     {/* <small><b>{t('cart_promo')}</b></small> */}
                     {this.renderPromo()}

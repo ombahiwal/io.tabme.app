@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 // import scriptLoader from "react-async-script-loader";
 // import Car from "../assets/img/car.jpg";
 // import Spinner from "./Spinner"/;
-import { Alert} from "react-bootstrap";
+import { Alert, Spinner} from "react-bootstrap";
 // import Cookies from 'universal-cookie';
 // import { ReactReduxContext } from 'react-redux'
 // const cookies = new Cookies();
@@ -48,12 +48,13 @@ class PaypalButton extends React.Component {
 
   componentDidMount() {
     setTimeout(async ()=>{
+      PayPalButton = "SPINNER";
       await loadScript(`https://www.paypal.com/sdk/js?currency=${this.state.currency}&client-id=${this.state.client_id}&locale=de_DE&disable-funding=card,credit,giropay,sepa,sofort,ideal`).then(loaded=>{
         // console.log('PAYPAL LOADED?', loaded);
         if(loaded){
           PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
           this.setState({ loading: false, showButtons: true });
-        }  
+        }
       });
     },0);
   }
@@ -97,10 +98,10 @@ class PaypalButton extends React.Component {
               onApprove={(data, actions) => this.onApprove(data, actions)}
               style={{color:"gold", height:34, shape:'pill'}}
             />}
-
+        {!showButtons && <center><div style={{color:'red'}}>  <Spinner animation="border" variant="light" /></div></center>}
         {paid && (
           <div className="main">
-            <Alert variant="success">Payment Successful!</Alert>
+            <Alert variant="success">Success</Alert>
           </div>
         )}
       </div>

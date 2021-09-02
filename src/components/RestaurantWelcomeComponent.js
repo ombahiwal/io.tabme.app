@@ -168,7 +168,7 @@ class RestaurantWelcome extends Component{
                 {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
            </center>
           {this.state.cookies_banner.show &&  <CookieBanner
-                description={t('cookies_msg')}
+                description={t('cookie_consent_msg')}
                 acceptFunc={this.acceptCookie}
                 acceptLabel={t('accept')}
                 rejectFunc={this.rejectCookie}

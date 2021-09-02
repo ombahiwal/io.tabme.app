@@ -31,7 +31,7 @@ const CookieBannerDescription = ({ children })  => {
 
 const CookieBannerTnC = ({children})=>{
   return (<div className="cookiebanner__tnc" >
-  <a href="https://www.tabme.info/datapolicy.html#cookies" rel="noopener noreferrer" target="_blank">{t('cookie_policy')}</a>  
+  <a href="https://www.tabme.io/datapolicy.html#cookies" rel="noopener noreferrer" target="_blank">{t('cookie_policy')}</a>  
   </div>);
 }
 const CookieBannerActions = ({ children })  => {
@@ -69,9 +69,10 @@ const CookieBanner = ({
     <CookieBannerBlock>
       <CookieBannerWrapper>
         <CookieBannerDescription>
-          {description}  
+          <small>{description}  <br/>
+          <a href="https://www.tabme.io/datapolicy.html#cookies" rel="noopener noreferrer" target="_blank"><b>{t('cookie_policy')}</b></a>  </small>
         </CookieBannerDescription>
-        <CookieBannerTnC/>
+        {/* <CookieBannerTnC/> */}
         <CookieBannerActions>
           <CookieBannerAccept onClick={() => acceptFunc()}>
             {acceptLabel}

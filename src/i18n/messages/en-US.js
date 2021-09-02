@@ -144,6 +144,7 @@ export default {
     'table_num_label':"Table No. ",
     'table_num_another':"Change Table",
     'description':"Description",
-    
+    'cookie_consent_msg':"By using this website, you consent to our use of cookies. We use cookies to give you a great experience and to operate our website effectively.",
+    'cart_heading':"Cart"
   },
 };

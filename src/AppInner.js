@@ -19,6 +19,9 @@ import RestaurantPickup from './components/RestaurantPickupComponent';
 import RestaurantDelivery from './components/RestaurantDeliveryComponent';
 import MenuRedirect from './components/menuInterComp';
 import RestaurantCustomQR from './components/RestaurantCustomQrComponent';
+import DataService from './services/data-service';
+import Cookies from 'universal-cookie';
+
 // Paypal
 // import PaypalCheckout from './components/PaypalCheckoutComponent';
 
@@ -36,6 +39,7 @@ import WebShop from './components/WebShop/WebShop';
 // QR Code
 // import QRCodeDisplay from "react-qr-code";
 // Redux
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -48,8 +52,10 @@ import { I18nProvider} from "./i18n/index";
 // Language Locale
 import {connect} from 'react-redux';
 import {countryToLocales} from './components/shared/CurrencyFromCode'
+import LoadingOverlay from 'react-loading-overlay';
 
-
+var Actions = require('./redux/actions/index');
+const cookies = new Cookies();
 class AppInner extends Component{
 
   constructor(props){
@@ -57,7 +63,8 @@ class AppInner extends Component{
     this.state = {
       counter:0,
       state : false,
-      locale:'de-de'
+      locale:'de-de',
+      loading:true,
     };
 
     // console.log(props.restaurant)
@@ -71,6 +78,38 @@ class AppInner extends Component{
           if(prevProps.restaurant.country !== this.props.restaurant.country)
             this.setState({locale:countryToLocales(this.props.restaurant.country)});
         }catch(e){}
+  }
+  componentDidMount(){
+    // set cookies state of the app on reload.
+        console.log('Cookies->', cookies.get('gastro'), cookies.get('menu'), cookies.get('table_num'));
+        var cookies_restaurant = cookies.get('gastro');
+        if(cookies_restaurant){
+          var id = cookies_restaurant.alias;
+          setTimeout(async ()=>{
+           await DataService.getQRInfo({id: id.match(/^[0-9a-fA-F]{24}$/) ? id : "" , alias:id}).then((res)=>{
+              var qr = res.data;
+              console.log(res)
+              if(res){ 
+                      if(res.data.success){
+                        this.props.setRestaurant(qr.gastro);
+                        this.props.setMenu(res.data.menu);
+                        if(cookies.get('cart')){
+                          this.props.updateCartInStore(cookies.get('cart'));
+                        }
+                        
+                        this.props.setTableNumber(cookies.get('table_num'));
+                          this.setState({loading:false});
+                      }else{
+                          // setLoading(false);
+                          this.setState({loading:false});
+                      }
+                  }
+              });
+          },0)
+      
+          }else{
+            this.setState({loading:false});
+          }
   }
 
 pageDefault(){
@@ -96,7 +135,15 @@ pageRestaurantWelcome(){
 render() {
       return (
   <Router>
-  <I18nProvider locale={this.state.locale}>
+    <LoadingOverlay
+      active={this.state.loading}
+      spinner
+      fadeSpeed={200}
+      text='Loading...'
+      >
+      {this.state.loading &&<div className="loading-div2"></div>}
+    </LoadingOverlay>
+  {!this.state.loading && <I18nProvider locale={this.state.locale}>
     {/* <Heading history={history}/> */}
     <div className="main-body">
       
@@ -190,7 +237,7 @@ render() {
     </div>
           </div>
           {/* <CountContainer/> */}
-          </I18nProvider>
+          </I18nProvider>}
     </Router>
     );
   }
@@ -199,11 +246,15 @@ render() {
 const mapStateToProps = state => {
   return {
           restaurant:state.restaurant,
+          cart:state.cart,
         }
 }
 const mapDispatchToProps = dispatch =>{
   return {
-
+    updateCartInStore: (cart) => dispatch(Actions.updateCart(cart)),
+    setTableNumber:(tnum)=>dispatch(Actions.setTableNumber(tnum)),
+    setRestaurant:(gastro)=>dispatch(Actions.setRestaurant(gastro)),
+    setMenu:(menu)=>dispatch(Actions.setMenu(menu)),
   }
 }
 

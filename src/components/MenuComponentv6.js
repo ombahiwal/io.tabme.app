@@ -9,11 +9,9 @@ import { Modal } from 'react-rainbow-components';
 // import DCard from './shared/Card';
 import CDCard from './shared/CartDishCard';
 import DCardImage from './shared/CardImage';
-
 import MenuBanner from './shared/MenuBanner';
 import MenuCategories from './shared/MenuCategories';
 import MenuCatTitle from './shared/MenuCategoryTitle';
-
 import CurrencySymbol from './CurrencySymbolComponent';
 import Cookies from 'universal-cookie';
 import { FaPlus, FaMinus } from 'react-icons/fa';
@@ -718,7 +716,7 @@ class Menu6 extends Component {
                  aria-expanded={this.state.collapses.desc}
                 style={{"marginRight":"28px"}}><b>{dish.name}{' '} <sup><small><BsInfoCircle/></small></sup></b></h4>
                <h6><b><CurrencySymbol/> {dish.price.toFixed(2)}</b></h6>
-                <small>{this.dishCatBreadCrumb(dish.category, dish.subcategory)}</small>
+                {/* <small>{this.dishCatBreadCrumb(dish.category, dish.subcategory)}</small> */}
                 <hr/>
                  <div className="row">
                         <div className="col-12"> 
@@ -1121,6 +1119,8 @@ class Menu6 extends Component {
 
     // Redux Cart Update 
     updateInStore(newState){
+        cookies.remove('cart');
+        cookies.set('cart', newState,{path:'/'});
         this.props.updateCartInStore(newState);
     }
 

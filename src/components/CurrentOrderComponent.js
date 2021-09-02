@@ -336,18 +336,19 @@ function Process(subprop){
             <hr/>
             {!order.open &&
             <div className="row">
-            <div className="col-7"> 
+                     <div className="col-4 d-flex"> 
+            <div className="ml-auto"><small></small></div> 
+            </div>
+            <div className="col-7 m-1"> 
             <br/>
-            <a target="_blank" rel="noopener noreferrer" href={`${ENV.CDN_URL}/user_invoices/${order._id}.pdf`}>
-            <Button variant="outline-dark" size="small" >
+            <a style={{float:'right'}} target="_blank" rel="noopener noreferrer" href={`${ENV.CDN_URL}/user_invoices/${order._id}.pdf`}>
+            <Button className="theme-button" variant="outline-dark" size="small" >
                 <b>{t('order_receipt_btn')}</b>
             </Button>
             </a>
             {/* <a target="_blank" href=></a> */}
             </div>
-            <div className="col-5 d-flex"> 
-            <div className="ml-auto"><small></small></div> 
-            </div>
+   
             </div>
             }
             <hr/>

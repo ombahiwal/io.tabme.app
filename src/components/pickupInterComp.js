@@ -62,6 +62,29 @@ function Process(subprop){
             dispatch(Actions.setMenu(qr.menu));
             cookies.remove('menu', {path:'/'});
             cookies.remove('gastro', {path:'/'});
+            // cookies.remove('cart', {path:'/'});
+            cookies.set('table_num', -1,{path:'/'});
+            cookies.set('gastro', qr.gastro, {path:'/'});
+            cookies.remove('cart', {path:'/'});
+            var newCart = Object({dishes:[],
+                itemCount:0,
+                cartTotal:0,
+                taxlabel:"included",
+                taxpercent:0,
+                tax:0,
+                delivery_fee:0,
+                discountpercent:0,
+                promo:0,
+                tip:0,
+                currency:'',
+                totalCost:0,
+                notes:"",
+                promo_data:null,
+                tax_data:null,
+                pickup_date:null,
+                order_label:null});
+            dispatch(Actions.updateCart(newCart));
+            cookies.set('cart',newCart, {path:'/'});
         }else{
             setLoading(false);
             // return(<center><b>{t('restaurant_not_found')}</b></center>);

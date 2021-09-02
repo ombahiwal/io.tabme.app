@@ -6,7 +6,7 @@
   /* background-color: #0a1e42; */
   color: #fff;
   text-align: left;  
-  background-color: rgba(10, 30, 66, 0.9);
+  background-color: rgba(0,0,0, 0.8);
 }
 .cookiebanner__wrapper {
   display: flex;
@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
   margin-right: 20px;
+  text-align: justify;
 }
 
 .cookiebanner__tnc {
@@ -57,7 +58,9 @@
 }
 .cookiebanner__button--accept {
   border: 1px solid #fff;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  border-radius: 1.25rem;
+  margin-bottom:10px; 
 }
 .cookiebanner__button--accept:hover {
   background-color: #fff;
@@ -70,7 +73,7 @@
 .cookiebanner__button--reject {
   background-color: transparent;
   border: none;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 .cookiebanner__button--reject:hover {
