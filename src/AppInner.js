@@ -97,7 +97,7 @@ class AppInner extends Component{
                           this.props.updateCartInStore(cookies.get('cart'));
                         }
                         
-                        this.props.setTableNumber(cookies.get('table_num'));
+                        this.props.setTableNumber(parseInt(cookies.get('table_num')));
                           this.setState({loading:false});
                       }else{
                           // setLoading(false);

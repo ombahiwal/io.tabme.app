@@ -78,7 +78,7 @@ export default function PaypalCheckout(props) {
 
   async function initiateTabmeOrder(paymentData){
     props.cartLoading(true, 'Payment Successful!');
-    // console.log(paymentData, 'Parent');
+    console.log(paymentData, 'Parent');
     var shipping_address = paymentData.details.purchase_units[0].shipping.address;
     shipping_address = shipping_address.address_line_1+ " ";
     var billInfoObj;
@@ -90,7 +90,7 @@ export default function PaypalCheckout(props) {
         email:paymentData.details.payer.email_address,
         phone:paymentData.details.payer.email_address,
         address:shipping_address,
-        zip:shipping_address.postal_code,
+        zip:paymentData.details.purchase_units[0].shipping.address.postal_code,
         guest:true
       }; 
     

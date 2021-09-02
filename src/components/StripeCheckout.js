@@ -246,12 +246,12 @@ export default function StripeCheckout(props) {
   // Alles Conditions (Bendigungen)
 
       // For delivery
-      /* 
+    
       if(tablenum === -2){
         billInfoObj = {
           fname:billInfo.fname.value,
           lname:billInfo.lname.value,
-          email:billInfo.email.value,
+          email:false,
           phone:billInfo.phone_code.value+billInfo.phone.value,
           address:billInfo.address.value,
           zip:billInfo.zip.value,
@@ -260,50 +260,53 @@ export default function StripeCheckout(props) {
         // if(!(billInfoObj.address && billInfoObj.zip)){
         //   return
         // }
-      }else{
-        billInfoObj = {
-          fname:billInfo.fname.value,
-          lname:billInfo.lname.value,
-          email:billInfo.email.value,
-          phone:billInfo.phone_code.value+billInfo.phone.value,
-          guest:true
+        
+        
+        //condition for delivery address
+
+        if(billInfoObj.address === "" || /^\\d{5}$/.test(billInfoObj.zip) || billInfoObj.zip === ""){
+          setShowAlertBillInfo(true);
+          // console.log('Guest User, Delivery Addres not valid');
+          return
+        }
+        if(billInfoObj.fname !== "" && billInfoObj.lname !== ""  && billInfoObj.phone !== ""  && billInfoObj.email !== "" && user.email === null){
+          setShowAlertBillInfo(false);
+        }else if(user.email === null){
+          setShowAlertBillInfo(true);
+          // console.log('Guest User');
+          return
         }
       }
+      // else{
+      //   billInfoObj = {
+      //     fname:billInfo.fname.value,
+      //     lname:billInfo.lname.value,
+      //     email:billInfo.email.value,
+      //     phone:billInfo.phone_code.value+billInfo.phone.value,
+      //     guest:true
+      //   }
+      // }
     if(restaurant === undefined)
       return
     if(restaurant._id === 'test'){
       return   
     }
+    // restaurant closed
     if(!restaurant.open){
       return
     }
-
-    if(cart.totalCost <=0){
+    if(cart.totalCost <=0 || cart.itemCount <=0){
       return
     }
     
-    if(billInfoObj.fname !== "" && billInfoObj.lname !== ""  && billInfoObj.phone !== ""  && billInfoObj.email !== "" && user.email === null){
-      setShowAlertBillInfo(false);
-    }else if(user.email === null){
-      setShowAlertBillInfo(true);
-      // console.log('Guest User');
-      return
-    }
-    */
-    
+   
     // // Condition for Regular User
     if(user.email !== null){
       billInfoObj = user;
       // console.log('user is present', billInfoObj)
     }
 
-    // //condition for delivery address
-
-    // if(billInfoObj.address === "" || /^\\d{5}$/.test(billInfoObj.zip) || billInfoObj.zip === ""){
-    //   setShowAlertBillInfo(true);
-    //   // console.log('Guest User, Delivery Addres not valid');
-    //   return
-    // }
+    
 
     setLoading(true);
     setLoadingText('Loading...');
@@ -386,13 +389,13 @@ export default function StripeCheckout(props) {
                         </Form.Text>
                     </Form.Group>
                   
-                        <Form.Group controlId="formBasicEmail">
+                        {/* <Form.Group controlId="formBasicEmail">
                         <FormattedMessage id="label_email" defaultMessage="Email Address">
                               {(placeholder)=><Form.Control ref={node => (billInfo.email = node)} name="email" type="email" placeholder={placeholder} required/>}
                         </FormattedMessage>
                             <Form.Text className="text-muted">
                             </Form.Text>
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group controlId="formBasicEmail">
                         <InputGroup>
                         <InputGroup.Prepend>
@@ -431,11 +434,11 @@ export default function StripeCheckout(props) {
                   </Form>
                   <div className="col-12">
                     <Link to="/login"><i><small>{t('register_link2')}</small></i></Link>
-                    <Form.Text className="text-muted">
+                    {/* <Form.Text className="text-muted">
                             <small> 
                               {t('guest_form_security_message')}
                             </small>
-                            </Form.Text>
+                            </Form.Text> */}
                   </div>
                   <br/>
                   {showAlertBillInfo && <Alert variant="warning">{t('payment_msg_bill_info')}</Alert>}
@@ -481,6 +484,12 @@ export default function StripeCheckout(props) {
           <div className="col-12">
           <HeadTitle text={t('cart_heading')} icon={<RiHandbagFill/>}/>
           <br/>
+          {tablenum === -2 && <div className="row">
+              <div className="col-12">
+              <SubTitle text={t("delivery_info")}/>
+              {renderBillingInfo()}
+              </div>          
+          </div>}
           {/* <SubTitle text={stripe_payment_method}/> */}
           <SubTitle text={t('cart_payment_options_title')}/>
 
@@ -506,7 +515,6 @@ export default function StripeCheckout(props) {
         <div className="row">
         {redirect && <Redirect to='/order/current'/>}
         {/* {renderBillingInfo()} */}
-        <br/>
         </div>
        
         <br/>

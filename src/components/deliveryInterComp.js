@@ -64,7 +64,8 @@ function Process(subprop){
             dispatch(Actions.setMenu(qr.menu));
             cookies.remove('menu', {path:'/'});
             cookies.remove('gastro', {path:'/'});
-            cookies.set('table_num', -2,{path:'/'});
+            cookies.set('table_num', -2, {path:'/'});
+            cookies.set('gastro', qr.gastro, {path:'/'});
             cookies.remove('cart', {path:'/'});
             var newCart = Object({dishes:[],
                 itemCount:0,

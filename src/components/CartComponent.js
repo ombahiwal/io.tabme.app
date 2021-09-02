@@ -456,7 +456,7 @@ class Cart extends Component {
                 { this.props.cart.delivery_fee > 0 &&
                 <div className="row">
                     <div className="col-3"><small>{t('delivery_charge_label')}</small></div>
-                    <div className="col-5"><hr/></div>
+                    <div className="col-5"></div>
                     <div className="col-4 no-padding-float-right"><center><small><CurrencySymbol/> {this.cart.delivery_fee.toFixed(2)}</small></center></div>
                 </div> }
                 <div className="row">
