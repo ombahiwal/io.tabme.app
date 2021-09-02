@@ -141,7 +141,7 @@ render() {
       fadeSpeed={200}
       text='Loading...'
       >
-      {this.state.loading &&<div className="loading-div2"></div>}
+      <div style={{display:this.state.loading ? 'block':'none'}} className="loading-div2"></div>
     </LoadingOverlay>
   {!this.state.loading && <I18nProvider locale={this.state.locale}>
     {/* <Heading history={history}/> */}
