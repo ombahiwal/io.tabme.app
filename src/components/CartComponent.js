@@ -175,6 +175,7 @@ class Cart extends Component {
         //         </div>);
         // }else{
             return (<div className="col-12">
+            {!this.state.notesbox.show && <span><small>{this.cart.notes}</small></span>}
             <Collapse in={this.state.notesbox.show}>
             <div id="notes-collapse" >
                 <FormattedMessage id='cart_note_msg' defaultMessage="Write a note for the staff along with your order...">
