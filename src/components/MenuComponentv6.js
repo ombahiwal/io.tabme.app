@@ -743,7 +743,7 @@ class Menu6 extends Component {
                             shadowColor="white">                            
                             {dish.description}<br/><hr/>
                             {this.dishAllergenDisplay(dish.allergen)}
-                            <br/><br/>
+                            <br/><br/><br/>
                             </AnimatedShowMore>
                             </small>
                 <hr/>

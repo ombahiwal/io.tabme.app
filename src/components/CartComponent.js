@@ -188,13 +188,17 @@ class Cart extends Component {
                                 placeholder={placeholder} />}
                                 </FormattedMessage>
             </div>
-            
+
             </Collapse>
-                        <button aria-controls="notes-collapse"
-                        aria-expanded={this.state.notesbox.show} 
-                        style={{float:'right'}} 
-                        className="theme-button-small-invert" 
-                            onClick={()=>{this.cart.notes="";this.setState( {notesbox:{show:!this.state.notesbox.show, msg:''}});this.calcCartSum();}} size="sm" variant="outline-secondary">{this.state.notesbox.show ? <RiCloseFill style={{color:"indianred"}}/> : <FaPencilAlt style={{color:"#466dd6"}}/>}</button>
+                    <button aria-controls="notes-collapse"
+                    aria-expanded={this.state.notesbox.show} 
+                    style={{float:'right'}} 
+                    className="theme-button-small-invert" 
+                        onClick={()=>{this.cart.notes="";this.setState( {notesbox:{show:!this.state.notesbox.show, msg:''}});this.calcCartSum();}} 
+                        size="sm" 
+                        variant="outline-secondary">
+                        {this.state.notesbox.show ? <RiCloseFill style={{color:"indianred"}}/> : <FaPencilAlt style={{color:"#466dd6"}}/>}
+                        </button>
                 </div>);
         // }
 
