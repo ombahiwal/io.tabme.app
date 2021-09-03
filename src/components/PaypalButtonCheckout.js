@@ -94,9 +94,7 @@ export default function PaypalCheckout(props) {
         guest:true
       }; 
     
-      
       // Stage Order Object
-
     var OrderRequestData = {
         user:billInfoObj,
         menu_id:restaurant.active_menu_id,

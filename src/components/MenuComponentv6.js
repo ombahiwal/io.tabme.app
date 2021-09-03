@@ -740,7 +740,7 @@ class Menu6 extends Component {
                             height={35}
                             toggle={({ isOpen }) => isOpen ? t('show_less') : t('show_more') }
                             speed={200}
-                            shadowColor="white">                            
+                            shadowColor="none">                            
                             {dish.description}<br/><hr/>
                             {this.dishAllergenDisplay(dish.allergen)}
                             <br/><br/><br/>
