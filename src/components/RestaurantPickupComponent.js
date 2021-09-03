@@ -70,7 +70,8 @@ class RestaurantPickup extends Component{
 
     handleCheckin(){
         this.props.setTableNum(this.table_num);
-        this.setState({showAlertSuccess:true})
+        this.setState({showAlertSuccess:true});
+        this.setState({redirect:{show:true, path:'/menu6'}});
     }
 
     setPickupDateObj(e){
@@ -157,7 +158,8 @@ class RestaurantPickup extends Component{
                             <h5><b>{t('welcome_order_for_pickup')}</b></h5>
                             
                             {/* <small>{t('pickup_msg_time', {time:this.props.restaurant.pickup_time})}</small> */}
-                            { this.props.restaurant.info.pickup.pickup_address.length < 5 ? <small>{t('pickup_msg_addr', {zip:this.props.restaurant.zip, address:this.props.restaurant.address, city:this.props.restaurant.city, opening:this.props.restaurant.time_opening, closing:this.props.restaurant.time_closing})} </small> : <small>{this.props.restaurant.info.pickup.pickup_address}</small>}
+                            {/* { this.props.restaurant.info.pickup.pickup_address.length < 5 ? <small>{t('pickup_msg_addr', {zip:this.props.restaurant.zip, address:this.props.restaurant.address, city:this.props.restaurant.city, opening:this.props.restaurant.time_opening, closing:this.props.restaurant.time_closing})} </small> : <small>{this.props.restaurant.info.pickup.pickup_address}</small>} */}
+                            {this.props.restaurant.info.pickup.pickup_address}
                             <small>{this.props.restaurant.info.pickup.pickup_msg}</small><br/>
                             
                             
@@ -177,12 +179,14 @@ class RestaurantPickup extends Component{
                     <b >{t('restaurant_closed_msg')}</b>
                 </span>}
                 
-                
+
                 
            </center>}
+           
            {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
            <span>
      <TnC/>
+     <Redirect to={'/menu6'}/>
     </span>
         </div>  
         );

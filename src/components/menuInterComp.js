@@ -26,7 +26,7 @@ function Process(subprop){
    useEffect(()=>{
        async function fetchData(){
         await DataService.getQRInfo({id:id, alias:id}).then((res)=>{
-            // console.log(res.data);
+            console.log(res.data);
             setQr(res.data);
             });
        }
@@ -59,7 +59,7 @@ function Process(subprop){
             }catch(e){
                 // console.log('Some Error related to User Login happened');
             }
-            dispatch(Actions.setTableNumber(0));
+            dispatch(Actions.setTableNumber(parseInt(qr.table_number)));
             dispatch(Actions.setRestaurant(qr.gastro));
             dispatch(Actions.setMenu(qr.menu));
             cookies.remove('menu', {path:'/'});
@@ -84,7 +84,7 @@ function Process(subprop){
                 order_label:null});
             dispatch(Actions.updateCart(newCart));
             cookies.set('cart',newCart, {path:'/'});
-            cookies.set('table_num', 0, {path:'/'});
+            cookies.set('table_num', parseInt(qr.table_number), {path:'/'});
             cookies.set('gastro', qr.gastro, {path:'/'});
         }else
         return(<center><b>{t('restaurant_not_found')}</b></center>);

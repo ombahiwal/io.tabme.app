@@ -21,10 +21,8 @@ const PromoField = (props)=>{
         if(cart.promo_data){
             // console.log('preset');
                     setPromo({valid:true, value:cart.promo_data.promo, discount:cart.promo_data.discount, discountpercent:cart.promo_data.discountpercent , data:cart.promo_data});                
-                    setAlert({show:true, response:'cart_promo_valid', variant:"success", style:{color:'green'}});
+                    setAlert({show:true, response:'cart_promo_valid', variant:"success", style:{color:'#6cff6c'}});
         }
-        
-
     },[cart]);
 
     const handlePromoSubmit = async (event) => {
