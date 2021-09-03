@@ -10,6 +10,8 @@ import {Link} from 'react-router-dom';
 import t from '../i18n/translate';
 import TnC from './shared/TnCFoot';
 import CurrencySymbol from './CurrencySymbolComponent';
+// import AnimatedShowMore from 'react-animated-show-more';
+import ShowMoreText from "react-show-more-text";
 // const cookies = new Cookies();
 
 var Action = require('../redux/actions/index');
@@ -86,9 +88,9 @@ class RestaurantPickup extends Component{
         }
         */
        return(
-        <><Button as={Link} to="/menu6" className="welcome-btn" variant="outline-success styled-btn-outline-blue"><b>{t('continue_menu_btn')}</b></Button>
+        <Link to="/menu6"><Button  className="welcome-btn" variant="outline-success styled-btn-outline-blue"><b>{t('continue_menu_btn')}</b></Button>
             {this.props.restaurant.info.delivery.delivery_fee > 0 && <small> <br/><b>{t('delivery_charge_label')} <CurrencySymbol/> {this.props.restaurant.info.delivery.delivery_fee} </b></small>}
-        </>
+        </Link>
         );
     }
     render(){
@@ -96,25 +98,41 @@ class RestaurantPickup extends Component{
         
         <div className="register-form col-12 no-padding-float-left background-white">
         
-        <center>
+        
             {/* <h4>Welcome!</h4>
             <hr/> */}
             {/* <Image className="restaurant-logo-img-welcome" fluid="true" src={"https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/"+this.props.restaurant._id+".png"} rounded/> */}
             <MenuBanner restaurant={this.props.restaurant}/>
             <div  className="theme-card">
+            <center>
                 <h3><b>{this.props.restaurant.rname}</b>
                 </h3>
-                <p className="about-restaurant"><small>
-                    {this.props.restaurant.about}
-                    </small></p> 
+                </center>
+                <small>
+                <ShowMoreText
+                            lines={4}
+                            more={t('show_more')}
+                            less={t('show_less')}
+                            className="content-css-show-more"
+                            anchorClass="my-anchor-css-class"
+                            expanded={false}
+                            truncatedEndingComponent={"... "}
+                        >
+                            <p className="about-restaurant">
+                            {this.props.restaurant.about}
+                                </p> 
+                            </ShowMoreText>
+                            </small>
+                
             </div>
+            <center>
             <br/>
                 <Form>
                     <FormGroup>
                         <Form.Label>
                             <h5><b>{t('welcome_order_for_delivery')}</b></h5>
                             {/* <b>Once you place your order, it will be set for delivery in approx. {this.props.restaurant.pickup_time}mins*<br/><small>*(preparation time may vary)</small> </b> */}
-                            <small>{this.props.restaurant.info.delivery.delivery_msg}</small><br/>
+                            <small>{this.props.restaurant.info.delivery.delivery_msg}</small>
                         </Form.Label>
                         
                         {/* <small>{this.props.restaurant.info.delivery.delivery_fee}</small> */}
