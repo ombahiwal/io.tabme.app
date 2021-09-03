@@ -366,7 +366,8 @@ export default function StripeCheckout(props) {
               // User In not LoggedIn - Return the user info input form.
 
               return(
-                <div className="col-12 background-white">
+                <div className="theme-card">
+                <div>
                   <Form>
                   <Form.Group>
                     <InputGroup>
@@ -442,7 +443,7 @@ export default function StripeCheckout(props) {
                   </div>
                   <br/>
                   {showAlertBillInfo && <Alert variant="warning">{t('payment_msg_bill_info')}</Alert>}
-
+                  </div>
                 </div>
               );
           }

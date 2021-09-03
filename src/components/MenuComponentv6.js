@@ -738,12 +738,12 @@ class Menu6 extends Component {
                         </ShowMoreText></small> */}
                          <small> <AnimatedShowMore
                             height={35}
-                            toggle={({ isOpen }) => isOpen ? t('show_less') : t('show_more') }
+                            toggle={({ isOpen }) => <span style={{color:"rgb(70, 109, 214)"}}><i>{isOpen ? t('show_less') : t('show_more')}</i></span>}
                             speed={200}
                             shadowColor="none">                            
-                            {dish.description}<br/><hr/>
+                            {dish.description}<br/><br/>
                             {this.dishAllergenDisplay(dish.allergen)}
-                            <br/><br/><br/>
+                            <br/><br/>
                             </AnimatedShowMore>
                             </small>
                 <hr/>
@@ -1076,7 +1076,7 @@ class Menu6 extends Component {
     dishAllergenDisplay(aller){
         if(aller === "true"){
             return(<>
-           <h6><b>Allergen Info</b></h6> 
+           <h7><b>Allergen Info</b></h7> 
                 <p><small>This dish may contain any of the following allergy inducing ingredients - Milk, Eggs, Wheat, gluten, Soy, Tree nuts, Fish, Shellfish, Peanuts.</small></p>
                 </>
             );
