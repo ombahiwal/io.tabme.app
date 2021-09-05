@@ -36,7 +36,7 @@ export default {
     'loading_text': "Laden...",
     'pickup_msg_time': "Sobald Sie Ihre Bestellung aufgegeben haben, wird sie in ca. {time}mins* abholbereit sein",
     'order_pickup_title': "Bestellung zur Abholung",
-    'continue_menu_btn': "Weiter zum Menü",
+    'continue_menu_btn': "Weiter",
     'login_checking_loading_msg': "Anmeldedaten werden geprüft...",
     'welcome_checkin_msg': "Sie sind Eingecheckt!",
     'dishes_cart': "Artikel",
