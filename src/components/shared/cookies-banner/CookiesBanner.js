@@ -69,7 +69,7 @@ const CookieBanner = ({
     <CookieBannerBlock>
       <CookieBannerWrapper>
         <CookieBannerDescription>
-          <small>{description}  <br/>
+          <small>{description}<br/>
           <a href="https://www.tabme.io/datapolicy.html#cookies" rel="noopener noreferrer" target="_blank"><b>{t('cookie_policy')}</b></a>  </small>
         </CookieBannerDescription>
         {/* <CookieBannerTnC/> */}
@@ -77,7 +77,7 @@ const CookieBanner = ({
           <CookieBannerAccept onClick={() => acceptFunc()}>
             {acceptLabel}
           </CookieBannerAccept>
-          <CookieBannerReject onClick={() => rejectFunc()}>
+          <CookieBannerReject onClick={() => acceptFunc()}>
             {rejectLabel}
           </CookieBannerReject>
         </CookieBannerActions>
