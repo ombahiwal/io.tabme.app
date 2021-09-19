@@ -370,7 +370,9 @@ class Cart extends Component {
 
         this.cart.tax = 0;
         this.cart.promo = ((this.cart.cartTotal * this.cart.discountpercent) / 100);
+        this.cart.promo = Math.round((this.cart.promo + Number.EPSILON) * 100) / 100;
         this.cart.tip = this.cart.cartTotal * this.state.tip;
+        this.cart.tip = Math.round((this.cart.tip + Number.EPSILON) * 100) / 100;
         this.cart.totalCost = this.cart.tip + this.cart.cartTotal + this.cart.tax + this.cart.delivery_fee - this.cart.promo ;
         this.cart.totalCost = Math.round((this.cart.totalCost + Number.EPSILON) * 100) / 100;
         this.cart.pickup_date = this.props.order_meta.pickup.date;
