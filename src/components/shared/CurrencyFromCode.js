@@ -51,7 +51,9 @@ export  function   symbolCode(code){
             case "Japan":
             locales = "en-us"
             break;
-
+            case "Netherlands":
+            locales = "en-us"
+            break;
             default:
             locales = "en-us"
         }

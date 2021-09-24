@@ -65,7 +65,9 @@ const CurrencySymbol = (props)=> {
                 "Germany" : '€',
                 "India" : "₹",
                 "United Kingdom":'£',
-                "Japan" : '¥'
+                "Japan" : '¥',
+                "Netherlands" : '€'
+
             }
         // switch(country){
         //     case "Germany":

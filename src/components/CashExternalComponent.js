@@ -299,21 +299,44 @@ const CheckoutForm = () => {
               cookies.remove('current_order');
               cookies.remove('current_order', {path:'/'});
               cookies.set('current_order', OrderReq.order,  {path:'/'});
-              // Refresh or Clear Cart
+              // Refresh or Clear Cartssss
               dispatch(Actions.updateCart({
                 dishes:[],
                 itemCount:0,
                 cartTotal:0,
-                taxlabel:"VAT",
-                taxpercent:5,
+                taxlabel:"included",
+                taxpercent:0,
                 tax:0,
+                delivery_fee:0,
                 discountpercent:0,
                 promo:0,
                 tip:0,
+                currency:'',
                 totalCost:0,
-                delivery_fee:0
+                notes:"",
+                promo_data:null,
+                tax_data:null,
+                pickup_date:null,
+                order_label:null
             }));
             cookies.remove('cart', {path:'/'});
+            cookies.set('cart', {dishes:[],
+              itemCount:0,
+              cartTotal:0,
+              taxlabel:"included",
+              taxpercent:0,
+              tax:0,
+              delivery_fee:0,
+              discountpercent:0,
+              promo:0,
+              tip:0,
+              currency:'',
+              totalCost:0,
+              notes:"",
+              promo_data:null,
+              tax_data:null,
+              pickup_date:null,
+              order_label:null}, {path:'/'});
               setLoadingText('Order Created!');
               setLoading(false);
               setRedirectPage(true);
