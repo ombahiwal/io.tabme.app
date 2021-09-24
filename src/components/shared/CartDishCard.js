@@ -218,6 +218,7 @@ const Text = styled.div`
   margin: 0px 0px 20px 39px;
   font-size:0.80rem;
   color: black;
+  overflow-wrap: break-word;
 `;
 
 const OptionText = styled.span`

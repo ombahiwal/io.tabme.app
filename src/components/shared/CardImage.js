@@ -194,6 +194,7 @@ const TextWrapper = styled.div`
     text-align: justify;
     text-justify: inter-word;
     -webkit-box-orient: vertical;
+    overflow-wrap: break-word;
   `;
 
 const Price = styled.h2`
