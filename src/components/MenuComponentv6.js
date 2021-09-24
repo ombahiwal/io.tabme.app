@@ -736,7 +736,7 @@ class Menu6 extends Component {
                         <br/><hr/>
                             {this.dishAllergenDisplay(dish.allergen)}
                         </ShowMoreText></small> */}
-                         <small> <AnimatedShowMore
+                         {dish.description.length >=1 && <small> <AnimatedShowMore
                             height={35}
                             toggle={({ isOpen }) => <span style={{color:"rgb(70, 109, 214)"}}><i>{isOpen ? t('show_less') : t('show_more')}</i></span>}
                             speed={200}
@@ -745,7 +745,7 @@ class Menu6 extends Component {
                             {this.dishAllergenDisplay(dish.allergen)}
                             <br/><br/>
                             </AnimatedShowMore>
-                            </small>
+                            </small>}
                 <hr/>
                  {/* <div className="row">
                         <div className="col-12"> 
