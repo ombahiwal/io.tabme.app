@@ -70,6 +70,7 @@ background-repeat: no-repeat;
 background-size: cover;
 position: relative;
 display: block;
+border-radius:0 0 10px 10px;
 `;
 
 
