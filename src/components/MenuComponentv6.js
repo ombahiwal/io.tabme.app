@@ -147,7 +147,7 @@ class Menu6 extends Component {
          // Search Sub Categories of this menu from dishes
          subcategories = [];
          this.state.menu.dishes.forEach((o) => {
-             if (o.category === cat && o.subcategory !=='none') {
+             if (o.category === cat && o.subcategory !=='none' && o.active) {
                  subcategories.push(o.subcategory);
              }
          });
