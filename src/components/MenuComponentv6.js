@@ -1077,9 +1077,12 @@ class Menu6 extends Component {
 
     dishAllergenDisplay(aller){
         if(aller === "true"){
+            var allegene_array =  ["1 Geschmacksverstärker", "2 Phosphat", "3 Konservierungsstoffe", "4 Antioxidationsmittel", "5 Farbstoff", "6 geschwärzt", "7 Süßungsmittel",  "8 Weichkase", "9 Säurungsmittel", " 10 Koffein", " 11 Phenylanalinquelle", "12 Taurin", "13 Sulfite", "14 Säurungsmittel", "15 Stabilisatoren", "16 geschwefelt", "17 chininhaltig", "18 gewachst", "19 gentechnisch verändert", "C Soja", "D Milch oder Laktose", "E Ei", " F glutenhaltiges Getreide", "G Sesamsamen", "H alle Arten von Fisch", "K. Krebstiere", "W. Weichtiere", "Er. Erdnüsse", "Sf. Schalenfrüchte", "Se. Sellerie", "Sn. Senf"];
+//                console.log(allegene_array.join(" ").length);
+
             return(<>
            <h7><b>Allergen Info</b></h7> 
-                <p><small>This dish may contain any of the following allergy inducing ingredients - Milk, Eggs, Wheat, gluten, Soy, Tree nuts, Fish, Shellfish, Peanuts.</small></p>
+                <p><small>{allergene_array.join(" ")}</small></p>
                 </>
             );
         }else{
