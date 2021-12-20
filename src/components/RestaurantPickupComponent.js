@@ -186,7 +186,7 @@ class RestaurantPickup extends Component{
            {this.state.redirect.show && <Redirect to={this.state.redirect.path}/>}
            <span>
      <TnC/>
-     <Redirect to={'/menu6'}/>
+               {/*<Redirect to={'/menu6'}/>*/}
     </span>
         </div>  
         );
