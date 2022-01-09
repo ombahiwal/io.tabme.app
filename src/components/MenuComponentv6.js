@@ -435,12 +435,12 @@ class Menu6 extends Component {
         var oper;      
 
        // Find dish in Cart
-        console.log('Increment Dish', cartdish, optsetobj, optionset_idx);
+        // console.log('Increment Dish', cartdish, optsetobj, optionset_idx);
         oper = this.cart.dishes.find((dish, i)=>{
             
             if(cartdish.dish_id === dish.dish_id){
                 // Dish found in cart
-                console.log('dish found in cart', dish);
+                // console.log('dish found in cart', dish);
                 
                     // dish has options, +dc,  optionset,
                     if(this.cart.dishes[i].optionSets[optionset_idx].option_dish_count > 0 && this.cart.dishes[i].dishCount>0){
