@@ -738,6 +738,7 @@ class Menu6 extends Component {
                         </ShowMoreText></small> */}
                          {dish.description.length >=1 && <small> <AnimatedShowMore
                             height={35}
+                            style={{paddingBottom:20}}
                             toggle={({ isOpen }) => <span style={{color:"rgb(70, 109, 214)"}}><i>{isOpen ? t('show_less') : t('show_more')}</i></span>}
                             speed={200}
                             shadowColor="none">                            
