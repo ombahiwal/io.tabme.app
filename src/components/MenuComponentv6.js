@@ -739,10 +739,13 @@ class Menu6 extends Component {
                             style={{paddingBottom:20}}
                             toggle={({ isOpen }) => <span style={{color:"rgb(70, 109, 214)"}}><i>{isOpen ? t('show_less') : t('show_more')}</i></span>}
                             speed={200}
-                            shadowColor="none">                            
+                            shadowColor="none">  
+                                <div
+                                 style={{paddingBottom:30}}>
                             {dish.description}<br/><br/>
                             {this.dishAllergenDisplay(dish.allergen, dish.allergenList)}
                             <br/><br/>
+                                </div>
                             </AnimatedShowMore>
                             </small>}
                 <hr/>
