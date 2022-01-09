@@ -406,9 +406,7 @@ class Menu6 extends Component {
                 totalPrice:this.cart_current_dish.totalPrice,
                 discount:this.cart_current_dish.discount
             });
-            
             this.cart.dishes.push(cart_d);
-           
             this.current_required_isselected = false;
             this.calcOptionPrice(this.cart_current_dish.dish_id);
         }
@@ -743,7 +741,7 @@ class Menu6 extends Component {
                             speed={200}
                             shadowColor="none">                            
                             {dish.description}<br/><br/>
-                            {this.dishAllergenDisplay(dish.allergen)}
+                            {this.dishAllergenDisplay(dish.allergen, dish.allergenList)}
                             <br/><br/>
                             </AnimatedShowMore>
                             </small>}
@@ -1076,25 +1074,29 @@ class Menu6 extends Component {
 
     
 
-    dishAllergenDisplay(aller){
+    dishAllergenDisplay(aller, allerlist){
         if(aller === "true"){
-            var allergene_array =  ["1 Geschmacksverstärker", "2 Phosphat", "3 Konservierungsstoffe", "4 Antioxidationsmittel", "5 Farbstoff", "6 geschwärzt", "7 Süßungsmittel",  "8 Weichkase", "9 Säurungsmittel", " 10 Koffein", " 11 Phenylanalinquelle", "12 Taurin", "13 Sulfite", "14 Säurungsmittel", "15 Stabilisatoren", "16 geschwefelt", "17 chininhaltig", "18 gewachst", "19 gentechnisch verändert", "C Soja", "D Milch oder Laktose", "E Ei", " F glutenhaltiges Getreide", "G Sesamsamen", "H alle Arten von Fisch", "K. Krebstiere", "W. Weichtiere", "Er. Erdnüsse", "Sf. Schalenfrüchte", "Se. Sellerie", "Sn. Senf"];
-//                console.log(allegene_array.join(" ").length);
-
+            var allergene_array;
+        
+            if(!allerlist && allerlist.length){
+                allergene_array =  ["1 Geschmacksverstärker", "2 Phosphat", "3 Konservierungsstoffe", "4 Antioxidationsmittel", "5 Farbstoff", "6 geschwärzt", "7 Süßungsmittel",  "8 Weichkase", "9 Säurungsmittel", " 10 Koffein", " 11 Phenylanalinquelle", "12 Taurin", "13 Sulfite", "14 Säurungsmittel", "15 Stabilisatoren", "16 geschwefelt", "17 chininhaltig", "18 gewachst", "19 gentechnisch verändert", "C Soja", "D Milch oder Laktose", "E Ei", " F glutenhaltiges Getreide", "G Sesamsamen", "H alle Arten von Fisch", "K. Krebstiere", "W. Weichtiere", "Er. Erdnüsse", "Sf. Schalenfrüchte", "Se. Sellerie", "Sn. Senf"];
+            }else{
+                allergene_array = allerlist;
+            }
             return(<>
-           <h7><b>Allergen Info</b></h7> 
-                <p><small>{allergene_array.join(" ")}</small></p>
-                </>
-            );
+                <h7><b>Allergen Info</b></h7> 
+                     <p>{allergene_array.join(", ")}</p>
+                     </>
+                 );
         }else{
-            return(<span></span>);
+            return(<span>{"N/A"}</span>);
         }
     }
 
     dishCatBreadCrumb(cat, subcat){
         if(cat !== "" || cat !=="none"){
             if(subcat!== "none"){
-                return(<span>{cat} > {subcat}</span>);
+                return(<span>{cat} {">"} {subcat}</span>);
             }else{
                 return(<span>{cat}</span>);
             }
@@ -1189,9 +1191,7 @@ class Menu6 extends Component {
         return ( 
             <div className="container no-padding-float-left">
             {this.state.redirect && <Redirect to="/" />}
-            {!this.state.redirect &&<div>
-            
-
+            {!this.state.redirect && <div>
             <div className="col-12 no-padding-float-left" >
                 <div>
                 {this.renderImageBanner()}
@@ -1199,11 +1199,9 @@ class Menu6 extends Component {
                 {this.renderCategories()}
                 <center><b>.</b></center>
                 </div>    
-                
                 <div className="">
                     {this.renderTotal()}
                 </div>
-               
                 {this.state.isOpenInfo && this.renderAllergenModal()}
             {this.state.isOpenCustom && this.renderCustomisationModal()}
             </div>
