@@ -1081,8 +1081,9 @@ class Menu6 extends Component {
         if(aller === "true"){
             var allergene_array;
         
-            if(!allerlist && allerlist.length){
-                allergene_array =  ["1 Geschmacksverstärker", "2 Phosphat", "3 Konservierungsstoffe", "4 Antioxidationsmittel", "5 Farbstoff", "6 geschwärzt", "7 Süßungsmittel",  "8 Weichkase", "9 Säurungsmittel", " 10 Koffein", " 11 Phenylanalinquelle", "12 Taurin", "13 Sulfite", "14 Säurungsmittel", "15 Stabilisatoren", "16 geschwefelt", "17 chininhaltig", "18 gewachst", "19 gentechnisch verändert", "C Soja", "D Milch oder Laktose", "E Ei", " F glutenhaltiges Getreide", "G Sesamsamen", "H alle Arten von Fisch", "K. Krebstiere", "W. Weichtiere", "Er. Erdnüsse", "Sf. Schalenfrüchte", "Se. Sellerie", "Sn. Senf"];
+            if(!allerlist.length){
+                // allergene_array =  ["1 Geschmacksverstärker", "2 Phosphat", "3 Konservierungsstoffe", "4 Antioxidationsmittel", "5 Farbstoff", "6 geschwärzt", "7 Süßungsmittel",  "8 Weichkase", "9 Säurungsmittel", " 10 Koffein", " 11 Phenylanalinquelle", "12 Taurin", "13 Sulfite", "14 Säurungsmittel", "15 Stabilisatoren", "16 geschwefelt", "17 chininhaltig", "18 gewachst", "19 gentechnisch verändert", "C Soja", "D Milch oder Laktose", "E Ei", " F glutenhaltiges Getreide", "G Sesamsamen", "H alle Arten von Fisch", "K. Krebstiere", "W. Weichtiere", "Er. Erdnüsse", "Sf. Schalenfrüchte", "Se. Sellerie", "Sn. Senf"];
+                allergene_array = ["N/A"]
             }else{
                 allergene_array = allerlist;
             }
@@ -1092,7 +1093,7 @@ class Menu6 extends Component {
                      </>
                  );
         }else{
-            return(<span>{"N/A"}</span>);
+            return(<span></span>);
         }
     }
 
