@@ -742,9 +742,9 @@ class Menu6 extends Component {
                             shadowColor="none">  
                                 <div
                                  style={{paddingBottom:30}}>
-                            {dish.description}<br/><br/>
-                            {this.dishAllergenDisplay(dish.allergen, dish.allergenList)}
-                            <br/><br/>
+                                        {dish.description}<br/><br/>
+                                        {this.dishAllergenDisplay(dish.allergen, dish.allergenList)}
+                                        <br/><br/>
                                 </div>
                             </AnimatedShowMore>
                             </small>}
@@ -1078,6 +1078,7 @@ class Menu6 extends Component {
     
 
     dishAllergenDisplay(aller, allerlist){
+        try{
         if(aller === "true"){
             var allergene_array;
         
@@ -1094,6 +1095,8 @@ class Menu6 extends Component {
                  );
         }else{
             return(<span></span>);
+        }}catch(e){
+            return(<span></span>)
         }
     }
 
