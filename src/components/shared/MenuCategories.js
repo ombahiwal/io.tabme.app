@@ -18,11 +18,6 @@ import { height } from 'dom-helpers';
  *
  */
 
-
-
-
-
-
 function onscroll_for_menu_bar(navbar,stickyph, offset) {
   // console.log('ss',window.pageYOffset, offset);
   // Categories offset + menubar offset + top bar offset

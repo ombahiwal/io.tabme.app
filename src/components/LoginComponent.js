@@ -17,14 +17,14 @@ var Action = require('../redux/actions/index');
 /*
 Sample User
 
-{ 
-    "user":{
-        "email": "t@t.co",
-        "password" : "test",
-        "name": "Omkar B",
-        "address": "GOoglel, Ausreich"
-    } 
-}
+    { 
+        "user":{
+            "email": "t@t.co",
+            "password" : "test",
+            "name": "Omkar B",
+            "address": "GOoglel, Ausreich"
+        } 
+    }
 
 */
 
@@ -129,8 +129,6 @@ class UserLogin extends Component{
                         <Link to="/register">{t('register_link1')}</Link>
                 </div>
                 </Form>
-            
-               
             </React.Fragment>
         );
     }
@@ -151,8 +149,8 @@ class UserLogin extends Component{
                     >
                 {this.renderLoginPage()}
                 <span>
-     <TnC/>
-    </span>
+                <TnC/>
+                </span>
             </LoadingOverlay>
             
         );

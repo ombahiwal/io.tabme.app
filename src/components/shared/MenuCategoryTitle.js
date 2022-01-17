@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 * @param  {props} props
 */
 const MenuCatTitle = props => {
-
   return(<MenuTitleContainer> 
       <SubTitleText>{props.text}</SubTitleText>
       {props.children}
@@ -47,7 +46,6 @@ const SubTitleText = styled.span`
   font-size: 1.25rem;
   text-align: center;
   align-self: center;
-  
 
 `;
 

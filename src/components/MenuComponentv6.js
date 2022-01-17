@@ -94,8 +94,29 @@ class Menu6 extends Component {
             this.state = {cart:props.cart, status:false, menu:this.props.menu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:true, tooltip:false, active_category:"Menu", menu_rendered:[]};
             // console.log(this.state.menu);
         }else{
+            console.log(props.tablenum)
             cookies.set('menu', props.menu, {path:'/'});
-            this.state = {cart:props.cart, status:false, menu:this.props.menu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:false, tooltip:false, active_category:"Menu", menu_rendered:[], collapses:{desc:false, allergen:false}};
+            var menuItemTypes = "A";
+            
+            switch(this.props.tablenum){
+                case -2:
+                    menuItemTypes = "D"
+                    break;
+                case -1:
+                    menuItemTypes = "D"
+                    break;
+               
+                default:
+                    menuItemTypes = "T"
+            }
+            var filteredMenu = this.props.menu;
+            filteredMenu.dishes = this.props.menu.dishes.filter(function(dish) { console.log((dish.active && (dish.itemtype === 'A' || dish.itemtype === menuItemTypes))); return (dish.active && (dish.itemtype === 'A' || dish.itemtype === menuItemTypes)); });
+            filteredMenu.categories = this.props.menu.categories.filter(function(cat){ return filteredMenu.dishes.find((d)=> d.category === cat)})
+            filteredMenu.subcategories = this.props.menu.subcategories.filter(function(subcat){ return filteredMenu.dishes.find((d)=> d.category === subcat)})
+            console.log(filteredMenu.subcategories)
+            this.state = {cart:props.cart, status:false, menu:filteredMenu, isOpenInfo:false, dishInfo:{}, isOpenCustom:false, dishCustom:{}, customOptionValueRadio:'auto', open:false, redirect:false, tooltip:false, active_category:"Menu", menu_rendered:[], 
+            collapses:{desc:false, allergen:false}, itemTypes: menuItemTypes};
+            console.log(this.state.menu)
         }
     }
 
@@ -164,7 +185,6 @@ class Menu6 extends Component {
              /> 
          <div className="col-12" style={{padding:'0px'}}>               
          <Grid>
-             
             {this.state.menu.dishes.map((dish)=>{
                 if(dish.category === cat && dish.subcategory==='none'){
                     return(this.dishCardDisplay(dish));
@@ -1113,8 +1133,8 @@ class Menu6 extends Component {
     }
 
     dishCardDisplay(dish){
-
-        if(dish.active){
+        // console.log(dish['itemtype'], dish.active && (dish.itemType === 'A' || dish.itemType === this.state.itemTypes))
+        if(dish.active && (dish.itemtype === 'A' || dish.itemtype === this.state.itemtypes)){
             return(
                 <DCardImage 
                     menu_id = {this.state.menu._id}
@@ -1222,9 +1242,11 @@ class Menu6 extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log("STATE=====", state)
     return {cart:state.cart,
             restaurant:state.restaurant,
-            menu:state.menu
+            menu:state.menu,
+            tablenum:state.tablenum
         }
   }
 const mapDispatchToProps = dispatch =>{
