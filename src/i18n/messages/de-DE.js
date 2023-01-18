@@ -149,8 +149,7 @@ export default {
     'cart_heading':"Warenkorb",
     'show_more':"mehr anzeigen",
     'show_less':"weniger anzeigen",
-    'delivery_info':"Lieferinformationen"
-
-
+    'delivery_info':"Lieferinformationen",
+    'order_pay_cash':"Bestellen und Bar Bezahlen",
   },
 };

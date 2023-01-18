@@ -395,6 +395,9 @@ div[data-id="accordion-section-summary"]{
 .background-light{
   background-color: #fcfcfc;
 }
+.background-dark{
+  background-color: #323232;
+}
 span b{
   font-weight: 700;
 }

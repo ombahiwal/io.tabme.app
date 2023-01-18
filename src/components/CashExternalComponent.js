@@ -18,6 +18,7 @@ import AccountInfoList from './shared/AccountInfo';
 // import '../styles/common.css';
 import t from '../i18n/translate';
 import {FormattedMessage} from 'react-intl';
+import FooterComponent from './shared/FooterComponent';
 
 var cookies = new Cookies();
 var Actions = require('../redux/actions/index');
@@ -42,11 +43,11 @@ const CheckoutForm = () => {
   const [showAlertBillInfo, setShowAlertBillInfo ] = useState(false);
   // const [cardInfoComplete, setCardInfoComplete] = useState(false)
   const [loading, setLoading] = useState(false);
-  const [loadingText, setLoadingText] = useState("Processing...")
+  const [loadingText, setLoadingText] = useState("Processing...");
+  const [skipGuest, setSkipGuest] = useState(false);
   const dispatch = useDispatch();
   
   
-
   // const [isUserPresent, setUserPresent] = useState(false);
   const [redirect, setRedirectPage ] = useState(false);
   // const pay = {
@@ -65,12 +66,22 @@ const CheckoutForm = () => {
   useEffect(()=>{
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0;
-
+    // UPDATE Vietal 17.01.2023
+    // If the table number is above >=0 place the order as guest. Table Orders
+    // Place order directly
+    if(tablenum >=0 && cart.itemCount){
+      setLoading(true);
+      setSkipGuest(true);
+      handleSubmit();
+    }else{
+      setLoading(false);
+    }
   },[]);
 
   
   if(restaurant._id === 'test'){
     restaurant = cookies.get('gastro');
+    if(restaurant)
     if(restaurant._id !== 'test')
       dispatch(Actions.setRestaurant(restaurant));
   }
@@ -84,8 +95,10 @@ const CheckoutForm = () => {
 
 
   // Payments process
-  const handleSubmit = async (event) =>{
-    event.preventDefault();
+  const handleSubmit = async () =>{
+    // if(event)
+    // event.preventDefault();
+    console.log("Submit Clicked");
     // console.log(event)
     
     var billInfoObj = {
@@ -144,14 +157,17 @@ const CheckoutForm = () => {
       billInfoObj.email = "info@tabme.info";
     }
     
+      if(billInfoObj.fname !== "" && billInfoObj.lname !== ""  && billInfoObj.phone !== "" && user.email === null){
+        setShowAlertBillInfo(false);
+        
+      }else if(tablenum >=0){
 
-    if(billInfoObj.fname !== "" && billInfoObj.lname !== ""  && billInfoObj.phone !== "" && user.email === null){
-      setShowAlertBillInfo(false);
-    }else if(user.email === null){
-      setShowAlertBillInfo(true);
-      // console.log('Guest User');
-      return null
-    }
+      }else if( user.email === null){
+        setShowAlertBillInfo(true);
+        console.log("Here")
+        // console.log('Guest User');
+        return null
+      }
 
     // Condition for Regular User
     if(user.email !== null){
@@ -168,9 +184,6 @@ const CheckoutForm = () => {
     }
 
     
-   
-      
-
     // Stage Order Object
 
     var OrderRequestData = {
@@ -418,6 +431,7 @@ const CheckoutForm = () => {
           }else{
             // setUserPresent(false);
               // User In not LoggedIn - Return the user info input form.
+              if(!loading){
 
               return(
                 <div className="col-12 background-white">
@@ -494,6 +508,15 @@ const CheckoutForm = () => {
 
                 </div>
               );
+            
+            }else{
+              return(<div className="col-12 background-white">
+
+
+              </div>)
+            }
+
+
           }
 
         }catch(e){
@@ -505,7 +528,7 @@ const CheckoutForm = () => {
   const renderCheckoutForm = ()=>{
     return(
       <div className="col-12 background-white">
-        <Form onSubmit={handleSubmit} >          
+        <Form id="createorder" onSubmit={handleSubmit} >          
           <center>
           {showAlertSuccess && <Alert variant="success"><b>{t('payment_success')}</b><small><br/>{t('payment_msg_order_failed')}</small></Alert>}
           {showAlertFailure && <Alert variant="danger"><b>{t('payment_failed')}</b></Alert>}  
@@ -513,9 +536,9 @@ const CheckoutForm = () => {
           <div className="row">
         {redirect && <Redirect to='/order/current'/>}
           <div className="col-12 menu-footer">
-          <FormattedMessage id="btn_pay" defaultMessage="Pay">
-           {(label)=><Button disabled={loading} className="wide-btn" type="submit" variant="dark" label={label} ><b> {t('btn_place_order')} <CurrencySymbol/> {cart.totalCost.toFixed(2)}</b></Button>}
-           </FormattedMessage>
+          {/* <FormattedMessage id="btn_pay" defaultMessage="Pay">
+           {(label)=><Button disabled={loading} className="wide-btn" type="submit" variant="dark" label={label}><b> {t('btn_place_order')} <CurrencySymbol/> {cart.totalCost.toFixed(2)}</b></Button>}
+           </FormattedMessage> */}
           </div>
           </div>
         </Form>
@@ -528,7 +551,7 @@ const CheckoutForm = () => {
     active={loading}
     spinner
     text={loadingText}
-    style={{'z-index':'200'}}
+    style={{'z-index':'200', 'background':'black'}}
     >
     <div className="col-12">
     
@@ -576,7 +599,11 @@ const CheckoutForm = () => {
     </div>
     {/* <hr/> */}
     </div>
-    
+    <FormattedMessage id='cart' defaultMessage="Cart">
+                      {(placeholder)=><FormattedMessage values={{text:""}} id={"order"}>
+                          {(placeholder2)=><FooterComponent tnc={true} next={{text:placeholder2, type:'function', func:()=>{handleSubmit()} }} back={{show:true, to:"/cart", type:"route", text:placeholder, arrow:true}}>
+                          </FooterComponent>}</FormattedMessage>}
+     </FormattedMessage>
 </LoadingOverlay>
  
   );

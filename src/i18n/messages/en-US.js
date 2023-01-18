@@ -148,6 +148,7 @@ export default {
     'cart_heading':"Cart",
     'show_more':"show more",
     'show_less':"show less",
-    'delivery_info':"Delivery Information"
+    'delivery_info':"Delivery Information",
+    'order_pay_cash':"Order and Pay with Cash",
   },
 };

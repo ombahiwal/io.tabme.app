@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 
 import React, {Component} from 'react';
 import CurrencySymbol from './CurrencySymbolComponent';
@@ -34,6 +34,8 @@ class Cart extends Component {
             tipstate:false, promo:0, 
             notesbox:{show:this.props.cart.notes.length > 0, note:this.props.cart.notes}, 
             currency:'INR', loading:false, loadingText:"Processing",
+            payment_methods:this.props.restaurant.payment_methods,
+            next_route:{route:"/stripe", type:"route", next_button_label:'proceed_btn'},
             isPaypal:(this.props.restaurant.info && this.props.restaurant.payment_methods.includes('paypal') && this.props.restaurant.info.paypal_client_id)
         };
         this.onChangePaymentMethod = this.onChangePaymentMethod.bind(this);
@@ -88,6 +90,7 @@ class Cart extends Component {
         if(this.state.cart.dishes.length > 0){
             this.setState({status:true});
         }
+        
     }
     componentWillUnmount(){
         // remove paypal client when not needed
@@ -99,23 +102,90 @@ class Cart extends Component {
         // console.log(CurrencyCode.countryToCode('India'))
         this.cart.currency = CurrencyCode.countryToCode(this.props.restaurant.country);
         this.cart.tablenum = this.props.tablenum;
-        // If india
+        // If india 
         if(this.cart.currency === 'INR'){
             this.setState({payment:'external'});
         }
+        // If Payment method is ONLY CASH --- 17.01.2023  modification
+        if(this.state.payment_methods){
+            if(this.state.payment_methods.length === 1 && this.state.payment_methods[0] === 'cash'){
+                this.setState({next_route:{route:'/external', type:'route', next_button_label:this.cart.tablenum >=0 ? 'order' : 'continue_menu_btn'}});
+            
+            }
+        }
+
+
         // If paypal Client
         // localStorage.removeItem("paypal_client_id", );
         // if(this.props.restaurant.info && this.props.restaurant.info.paypal_client_id){
         //     cookies.set("paypal_client_id", this.props.restaurant.info.paypal_client_id, {path:'/'});
         // }
-        
         this.calcCartSum();
+
     }
 
     // Redux Menu Update 
     updateInStore(newState){
         this.props.updateCartInStore(newState);
     }
+
+    // CASH ORDER UPDATE 17.01.2023 
+
+    createCashOrder(){
+
+        // Billing Info- using anonymous guest user.
+        var billInfoObj = {
+            fname:"Guest",
+            lname:"guest",
+            email:"info@tabme.info",
+            phone:"guest",
+            address:"guest",
+            zip:"guest",
+            guest:true
+          }; 
+
+        // Stage Order Object
+    var OrderRequestData = {
+        user:billInfoObj,
+        menu_id:this.props.restaurant.active_menu_id,
+        restaurant_id:this.props.restaurant._id,
+        rname:this.props.restaurant.rname,
+        tablenum:this.cart.tablenum,
+        cart:this.cart,
+        paymentInfo:null,
+        pickup_time:this.props.restaurant.pickup_time
+      };
+
+      OrderRequestData.cart.pmethod = "CASH / External";
+      var shipping;
+      // set loading true
+      shipping = {
+        name: `${billInfoObj.fname} ${billInfoObj.lname}`,
+        address: {
+          line1: this.props.restaurant.address,
+          postal_code: this.props.restaurant.zip,
+          city: "--",
+          state: this.props.restaurant.region,
+          country: CurrencyCode.getCountry2Alpha(this.props.restaurant.country),
+        }
+      };
+
+    if(this.props.restaurant === undefined)
+      return null
+    if(this.props.restaurant._id === 'test'){
+    return null
+    }
+    if(!this.props.restaurant.open){
+    return null
+    }
+
+    if(this.props.cart.totalCost <=0){
+    return null
+    }
+
+
+    }
+    // ... 
 
     setCartLoading(ld, lT){
         this.setState({loading:ld, loadingText:lT});
@@ -615,7 +685,6 @@ class Cart extends Component {
                     {/* <SubTitle text={t('cart_payment_options_title')}/> */}
                     {/* {this.renderPaymentOptions()} */}
                     <hr/>
-                    
                     {/* <center><Link to="/checkout"><Button className="wide-btn" variant="dark"><b>Proceed to Pay</b></Button></Link></center> */}
                     {/* <center>{t('or')}</center>
                                 <br/>
@@ -632,9 +701,11 @@ class Cart extends Component {
 
                         </Link>
                     </div>    */}
-                    <FormattedMessage id='menu' defaultMessage="Menu">
-                                {(placeholder)=><FormattedMessage values={{text:""}} id="proceed_btn">{(placeholder2)=><FooterComponent  tnc={true} next={{text:placeholder2, to:"/stripe", type:"route"}}back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}></FooterComponent>}</FormattedMessage>}
-                    </FormattedMessage>
+                           <FormattedMessage id='menu' defaultMessage="Menu">
+                                {(placeholder)=><FormattedMessage values={{text:""}} id={this.state.next_route.next_button_label}>
+                                    {(placeholder2)=><FooterComponent disabled={this.cart.itemCount < 0 ? true : false} tnc={true} next={{text:placeholder2, to:this.state.next_route.route, type:this.state.next_route.type, disabled:this.cart.itemCount <= 0}} back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}>
+                                    </FooterComponent>}</FormattedMessage>}
+                            </FormattedMessage>
                 </div>
             </div>
         );

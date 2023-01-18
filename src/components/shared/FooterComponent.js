@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from "styled-components";
 // import PropTypes from 'prop-types';
 /*
@@ -13,7 +13,8 @@ import t from '../../i18n/translate';
 const ENV = require('../../services/env-vars')
 
 const FooterComponent = props => {
-
+  useEffect(()=>{
+  },[])
   return(
   <div>
    {props.hide && <Container></Container>}
@@ -31,9 +32,9 @@ const FooterComponent = props => {
       </LeftWrapper>
 
       <RightWrapper>
-        <RightIconButton>
+        {!props.next.disabled && <RightIconButton>
         { props.next.type==="route" && <Link to={props.next.to}> 
-                        <FooterButton  style={{color:'white', background:'#466dd6'}}><b>{props.next.text}</b>
+                        <FooterButton style={{color:'white', background:props.next.disabled ? '#a39999' : '#466dd6'}}><b>{props.next.text}</b>
                         {/* &nbsp;<small><b><CurrencySymbol/>{this.renderCartTotal()}</b></small> */}
                         </FooterButton>
                     </Link>}
@@ -43,7 +44,10 @@ const FooterComponent = props => {
             </FooterButton>}
 
             { props.next.type==="paypal" && props.next.func}
-              </RightIconButton>
+              </RightIconButton>}
+            {props.next.disabled && <RightIconButton>  
+              <FooterButton style={{color:'white', background:props.next.disabled ? '#a39999' : '#466dd6'}}><b>{props.next.text}</b>  </FooterButton>
+              </RightIconButton>}
             </RightWrapper>
             {props.children}
             </Container>}
