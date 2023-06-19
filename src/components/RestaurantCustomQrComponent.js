@@ -63,7 +63,7 @@ class RestaurantCustomQR extends Component{
 
     handleCheckin(){
         this.props.setTableNum(this.table_num);
-        this.setState({showAlertSuccess:true, redirect:{show:true, path:'/menu6'}});
+        this.setState({showAlertSuccess:true, redirect:{show:true, path:'/menu'}});
         
     }
 
@@ -82,12 +82,12 @@ class RestaurantCustomQR extends Component{
             );
         }else{
             return(
-                <Button as={Link} to="/menu6" className="welcome-btn" variant="outline-success styled-btn-solid-orange">Continue to Menu</Button>
+                <Button as={Link} to="/menu" className="welcome-btn" variant="outline-success styled-btn-solid-orange">Continue to Menu</Button>
             );
         }
         */
        return(
-        <><Button as={Link} to="/menu6" className="welcome-btn" variant="outline-success styled-btn-outline-blue"><b>{t('continue_menu_btn')}</b></Button>
+        <><Button as={Link} to="/menu" className="welcome-btn" variant="outline-success styled-btn-outline-blue"><b>{t('continue_menu_btn')}</b></Button>
             {/* {this.props.restaurant.info.delivery.delivery_fee > 0 && <small> <br/><b>{t('delivery_charge_label')} <CurrencySymbol/> {this.props.restaurant.info.delivery.delivery_fee} </b></small>} */}
         </>
         );
@@ -103,7 +103,7 @@ class RestaurantCustomQR extends Component{
             {/* <Image className="restaurant-logo-img-welcome" fluid="true" src={"https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/"+this.props.restaurant._id+".png"} rounded/> */}
             <MenuBanner restaurant={this.props.restaurant}/>
             <div className="theme-card">
-       <Redirect to="/menu6"/>
+       <Redirect to="/menu"/>
                 <h3><b>{this.props.restaurant.rname}</b>
                 </h3>
                 <p className="about-restaurant"><small>
