@@ -202,15 +202,15 @@ export default function StripeCheckout(props) {
     checkSession();
     console.log('update');
     var grid_item_stage = [
-      {value:"card", class:"active", label:"cards", background:'url(https://cdn.tabme.io/app-public-assets/credit-card-regular.svg) 50% 0 / 45px no-repeat transparent'},
-      {value:"wallet", class:"", label:"wallets", background:'url("https://cdn.tabme.io/app-public-assets/applepay.svg") 15% 30% / 26px no-repeat, url("https://cdn.tabme.io/app-public-assets/gpay.svg") 80% 30% / 26px no-repeat'},
-      {value:"giropay", class:"", label:"Giropay", background:'url(https://cdn.tabme.io/app-public-assets/giropay.svg) 50% 0 / 45px no-repeat transparent'},
-      {value:"ideal", class:"", label:"iDeal", background:'url(https://cdn.tabme.io/app-public-assets/ideal.svg) 50% 0 / 45px no-repeat transparent'},
-      {value:"bancontact", class:"", label:"Bancontact", background:'url(https://cdn.tabme.io/app-public-assets/bancontact.svg) 50% 0 / 50px no-repeat transparent'},
+      {value:"card", class:"active", label:"cards", background:'url(https://cdn2.tabme.io/app-public-assets/credit-card-regular.svg) 50% 0 / 45px no-repeat transparent'},
+      {value:"wallet", class:"", label:"wallets", background:'url("https://cdn2.tabme.io/app-public-assets/applepay.svg") 15% 30% / 26px no-repeat, url("https://cdn.tabme.io/app-public-assets/gpay.svg") 80% 30% / 26px no-repeat'},
+      {value:"giropay", class:"", label:"Giropay", background:'url(https://cdn2.tabme.io/app-public-assets/giropay.svg) 50% 0 / 45px no-repeat transparent'},
+      {value:"ideal", class:"", label:"iDeal", background:'url(https://cdn2.tabme.io/app-public-assets/ideal.svg) 50% 0 / 45px no-repeat transparent'},
+      {value:"bancontact", class:"", label:"Bancontact", background:'url(https://cdn2.tabme.io/app-public-assets/bancontact.svg) 50% 0 / 50px no-repeat transparent'},
 
     ];
     if(restaurant.info.paypal_client_id){
-      grid_item_stage.push({value:"paypal_chkout", class:"", label:"", background:'url(https://cdn.tabme.io/app-public-assets/paypal.svg) 50% 50% / 70px no-repeat transparent'})
+      grid_item_stage.push({value:"paypal_chkout", class:"", label:"", background:'url(https://cdn2.tabme.io/app-public-assets/paypal.svg) 50% 50% / 70px no-repeat transparent'})
     }
     setGridItems(grid_item_stage);
   }, []);
@@ -257,9 +257,6 @@ export default function StripeCheckout(props) {
           zip:billInfo.zip.value,
           guest:true
         }
-        // if(!(billInfoObj.address && billInfoObj.zip)){
-        //   return
-        // }
         
         
         //condition for delivery address
@@ -277,15 +274,7 @@ export default function StripeCheckout(props) {
           return
         }
       }
-      // else{
-      //   billInfoObj = {
-      //     fname:billInfo.fname.value,
-      //     lname:billInfo.lname.value,
-      //     email:billInfo.email.value,
-      //     phone:billInfo.phone_code.value+billInfo.phone.value,
-      //     guest:true
-      //   }
-      // }
+    
     if(restaurant === undefined)
       return
     if(restaurant._id === 'test'){
@@ -306,32 +295,30 @@ export default function StripeCheckout(props) {
       // console.log('user is present', billInfoObj)
     }
 
-    
-
     setLoading(true);
     setLoadingText('Loading...');
     // Get Stripe.js instance
     try{
-    const stripe = await stripePromise;
-    // Call your backend to create the Checkout Session
-    const response = await Axios.post(payment_server_url+'stripe/checkout/create_session', { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart, stripe_payment_method:[stripe_payment_method]});
-        // console.log(response.data, { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart  });
-    const session = response.data;
-    if(response.data.success){
-        // When the customer clicks on the button, redirect them to Checkout.
-    const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-      if(result.error) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer
-        // using `result.error.message`.
-        // console.log(result.error.message);
+      const stripe = await stripePromise;
+      // Call your backend to create the Checkout Session
+      const response = await Axios.post(payment_server_url+'stripe/checkout/create_session', { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart, stripe_payment_method:[stripe_payment_method]});
+          console.log(response.data, { method: 'POST', restaurant:restaurant, billInfo:billInfoObj, cart:cart  });
+      const session = response.data;
+      if(response.data.success){
+          // When the customer clicks on the button, redirect them to Checkout.
+      const result = await stripe.redirectToCheckout({
+          sessionId: session.id,
+        });
+        if(result.error) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, display the localized error message to your customer
+          // using `result.error.message`.
+          // console.log(result.error.message);
+          setLoading(false);
+        }
+      }else{
         setLoading(false);
       }
-    }else{
-      setLoading(false);
-    }
     }catch(e){
       // console.log(e);
       setLoading(false);
@@ -435,11 +422,6 @@ export default function StripeCheckout(props) {
                   </Form>
                   <div className="col-12">
                     <Link to="/login"><i><small>{t('register_link2')}</small></i></Link>
-                    {/* <Form.Text className="text-muted">
-                            <small> 
-                              {t('guest_form_security_message')}
-                            </small>
-                            </Form.Text> */}
                   </div>
                   <br/>
                   {showAlertBillInfo && <Alert variant="warning">{t('payment_msg_bill_info')}</Alert>}

@@ -61,7 +61,7 @@ class UserLogin extends Component{
                         cookies.set('token', response.data.token, {path: '/'});
                         // Display Login Success
                         if(this.props.menu !== null){
-                            this.setState({redirect:"/menu6", status:true, alert:{show:false, variant:"success"}, response:response.data.response, loading:false});
+                            this.setState({redirect:"/menu", status:true, alert:{show:false, variant:"success"}, response:response.data.response, loading:false});
                             this.props.history.go(-1);
                         }else
                         this.setState({redirect:"/home", status:true, alert:{show:true, variant:"success"}, response:response.data.response, loading:false});

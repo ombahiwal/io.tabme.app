@@ -35,7 +35,6 @@ class RestaurantWelcome extends Component{
     table_num = this.props.tablenum;
     restaurant_open = this.props.restaurant.open;
 
-
     componentDidMount(){
         // console.log(cookies.get('tabme_consent'));
         if(!cookies.get('tabme_consent')){
@@ -95,20 +94,21 @@ class RestaurantWelcome extends Component{
     handleCheckin(){
         this.props.setTableNum(this.table_num);
         this.setState({showAlertSuccess:true});
-        this.setState({redirect:{show:true, path:'/menu6'}});
+        this.setState({redirect:{show:true, path:'/menu'}});
     }
 
     handleChangePickup(){
         this.props.setTableNum(-1);
         this.setState({showAlertSuccessPickup:true});
-        this.setState({redirect:{show:true, path:'/menu6'}});
+        this.setState({redirect:{show:true, path:'/menu'}});
     }
 
     renderContinueBtns(){
         return(
-            <Button as={Link} to="/menu6" className="welcome-btn styled-btn-outline-blue" variant="outline-info"><b>{t('continue_menu_btn')}</b></Button>
+            <Button as={Link} to="/menu" className="welcome-btn styled-btn-outline-blue" variant="outline-info"><b>{t('continue_menu_btn')}</b></Button>
         );
     }
+    
     renderPickupOption(){
         if(!(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && parseInt(this.props.restaurant.pickup_time) > 0){
             return(
@@ -124,14 +124,7 @@ class RestaurantWelcome extends Component{
     render(){
         return(
         <div className="register-form col-12 no-padding-float-left margin-btm">
-        
-            {/* <hr/> */}
-            {/* <Image className="restaurant-logo-img-welcome" fluid="true" src={"https://s3.eu-west-2.amazonaws.com/tabme.info/user_public_assets/"+this.props.restaurant._id+".png"} rounded/> */}
-           
                  <center><MenuBanner restaurant={this.props.restaurant}/>
-            
-            {/* <h4>Welcome!</h4> */}
-            
             <div className="about-restaurant-wrapper">
             <h4><b>{this.props.restaurant.rname}</b></h4>
              <p className="about-restaurant">
@@ -141,26 +134,15 @@ class RestaurantWelcome extends Component{
               </center>  
               <center>
               <TableNumberSelector tablenum={this.table_num} onChange={this.changetablenum}/>
-                {/* <Form>
-                    <FormGroup>
-                        <Form.Label>
-                            <h5><b>{t('table_num',{tablenum:this.table_num})}</b></h5>
-                        </Form.Label><br/>
-                        {!this.state.showAlertSuccess && this.state.showTableNumIn && <b><Form.Control min="1" className="table-num-checkin" onChange={this.changetablenum} style={{display:"block"}} variant="outline-success" type="number" inline/> </b> }
-                        {!this.state.showAlertSuccess && <div onClick={()=>{this.setState({showTableNumIn:!this.state.showTableNumIn})}}><small><i>{t('another_table')}</i></small></div>}
-                    </FormGroup>
-                </Form> */}
                 <br/><br/>
                 { this.props.restaurant.open && <>
                 
-                {this.state.showAlertSuccess && <Alert variant="success"><b>{t('welcome_checkin_msg')}</b></Alert>}
-                {this.state.showAlertSuccessPickup && <Alert variant="success"><b>{t('welcome_pickup_msg')}</b></Alert>}
-                {!(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && <Button className="welcome-btn" onClick={()=>{this.handleCheckin();}} variant="outline-info"><b>{t('checkin_btn')}</b></Button>}{' '}
-                
-                {this.renderPickupOption()}
-                
-                {(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && this.renderContinueBtns()}
-                {this.state.showpage && this.renderHomePage()}
+                    {this.state.showAlertSuccess && <Alert variant="success"><b>{t('welcome_checkin_msg')}</b></Alert>}
+                    {this.state.showAlertSuccessPickup && <Alert variant="success"><b>{t('welcome_pickup_msg')}</b></Alert>}
+                    {!(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && <Button className="welcome-btn" onClick={()=>{this.handleCheckin();}} variant="outline-info"><b>{t('checkin_btn')}</b></Button>}{' '}
+                    {this.renderPickupOption()}
+                    {(this.state.showAlertSuccess || this.state.showAlertSuccessPickup) && this.renderContinueBtns()}
+                    {this.state.showpage && this.renderHomePage()}
                 </>}
                 {!this.state.restaurant_open && <span className="restaurant_closed">
                     <b>{t('restaurant_closed_msg')}</b>

@@ -703,7 +703,7 @@ class Cart extends Component {
                     </div>    */}
                            <FormattedMessage id='menu' defaultMessage="Menu">
                                 {(placeholder)=><FormattedMessage values={{text:""}} id={this.state.next_route.next_button_label}>
-                                    {(placeholder2)=><FooterComponent disabled={this.cart.itemCount < 0 ? true : false} tnc={true} next={{text:placeholder2, to:this.state.next_route.route, type:this.state.next_route.type, disabled:this.cart.itemCount <= 0}} back={{show:true, to:"/menu6", type:"route", text:placeholder, arrow:true}}>
+                                    {(placeholder2)=><FooterComponent disabled={this.cart.itemCount < 0 ? true : false} tnc={true} next={{text:placeholder2, to:this.state.next_route.route, type:this.state.next_route.type, disabled:this.cart.itemCount <= 0}} back={{show:true, to:"/menu", type:"route", text:placeholder, arrow:true}}>
                                     </FooterComponent>}</FormattedMessage>}
                             </FormattedMessage>
                 </div>

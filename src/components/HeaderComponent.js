@@ -25,7 +25,7 @@ function Heading(props) {
     //   alert(`location: ${document.location}, state: ${JSON.stringify(event.state)}`)
     // }
     if(!to){
-      setTo(restaurant.open ? '/menu6': '/');
+      setTo(restaurant.open ? '/menu': '/');
     
     
       let now = new Date();
@@ -50,12 +50,12 @@ function Heading(props) {
         setRedirect({to:"/cart", state:true});
     }else if(location.pathname.includes('cart')){
       setRedirect({ state:false});
-        setRedirect({to:"/menu6", state:true});
+        setRedirect({to:"/menu", state:true});
     }else
     switch(location.pathname){  
       case '/order/current':
         setRedirect({ state:false});
-        setRedirect({to:"/menu6", state:true});
+        setRedirect({to:"/menu", state:true});
         break;
       case '/stripe':
         setRedirect({state:false});
@@ -64,10 +64,10 @@ function Heading(props) {
 
       case '/cart':
         setRedirect({ state:false});
-        setRedirect({to:"/menu6", state:true});
+        setRedirect({to:"/menu", state:true});
         break;
       
-      case '/menu6':
+      case '/menu':
         setRedirect({state:false});
         setRedirect({to:"/", state:true});
         break;

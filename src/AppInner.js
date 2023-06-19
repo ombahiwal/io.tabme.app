@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 // Components
 import DefaultPage from './components/defaultPage';
@@ -66,10 +67,6 @@ class AppInner extends Component{
       locale:'de-de',
       loading:true,
     };
-
-    // console.log(props.restaurant)
-    // ReactGA.initialize('UA-90856241-1');
-    // ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -150,7 +147,7 @@ render() {
      {/* <Tabs/> */}
     <div className="container fillup">
       <Switch>
-        <Route path="/welcome">
+        <Route path={"/welcome"}>
             {this.pageRestaurantWelcome}
         </Route>
       <Route path="/register">
@@ -169,7 +166,7 @@ render() {
             <WebShop/>
           </Route>
 
-          <Route path="/menu6">
+          <Route path="/menu">
             <Menu6 />
           </Route>
 
@@ -185,7 +182,6 @@ render() {
           <Route path="/cart">
             {this.pageCart()}
           </Route>
-
           <Route path="/stripe/:session_id" component={StripeCheckout}/>
           <Route path="/stripe">
             <StripeCheckout history={history}/>

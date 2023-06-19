@@ -27,7 +27,6 @@ function Process(subprop){
     */
    useEffect(()=>{
        console.log(id);
-
        if(!qr){
         setTimeout(async ()=>{
             await DataService.getQRInfo({id: id.match(/^[0-9a-fA-F]{24}$/) ? id : "" , alias:id}).then((res)=>{
@@ -43,7 +42,6 @@ function Process(subprop){
                 });
            }, 0);  
        }
-        
    },[id, qr]);
    
     const dispatch = useDispatch();
@@ -54,7 +52,7 @@ function Process(subprop){
             spinner
             text='Loading...'>
             <div className="loading-div"><br/>
-            <center><b>{!loading && t('restaurant_not_found')}</b></center>
+                <center><b>{!loading && t('restaurant_not_found')}</b></center>
             </div>
             </LoadingOverlay>
         );
@@ -105,9 +103,7 @@ function Process(subprop){
             cookies.remove('menu', {path:'/'});
             cookies.remove('gastro', {path:'/'});
             cookies.set('gastro', qr.gastro,  {path: '/' });
-            cookies.set('table_num', qr.table_number,  {path: '/' });
-            
-            
+            cookies.set('table_num', qr.table_number,  {path: '/' }); 
         }else
         return(<div><center><b>{t('restaurant_not_found')}</b></center></div>);
     }
@@ -123,7 +119,7 @@ function Process(subprop){
                     <div className="col-12">
                     <div className="loading-div">
                     <center>{t('restaurant_not_found')}</center>
-                    {loading && <Redirect to={parseInt(qr.table_number) === -4 ? '/r/custom' : "/welcome"}/>}
+                    {loading && <Redirect to={parseInt(qr.table_number) === -4 ? '/r/custom' :"/welcome"}/>}
                     </div>
                     </div>    
                 </div>
